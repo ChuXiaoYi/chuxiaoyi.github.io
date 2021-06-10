@@ -114,3 +114,9 @@ symbols_count_time:
   wpm: 275
   suffix: "mins."
 
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
