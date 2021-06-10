@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>解决python3.7 + celery4.2.1运行时找不到async | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="参考文档：  https:&#x2F;&#x2F;github.com&#x2F;celery&#x2F;celery&#x2F;issues&#x2F;4500  最近在使用python3.7去运行celery4.2.1时，发现会报以下错误： 原因是python3.7中async已经变成了关键字。因此出现这个错误时，需要将报错文件中所有的async改为asynchronous，并编写如下shell脚本运行： 12345678TARGET&#x3D;&#x2F;Libra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决python3.7 + celery4.2.1运行时找不到async">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2019/01/09/%E8%A7%A3%E5%86%B3python3.7%20+%20celery4.2.1%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0async/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="参考文档：  https:&#x2F;&#x2F;github.com&#x2F;celery&#x2F;celery&#x2F;issues&#x2F;4500  最近在使用python3.7去运行celery4.2.1时，发现会报以下错误： 原因是python3.7中async已经变成了关键字。因此出现这个错误时，需要将报错文件中所有的async改为asynchronous，并编写如下shell脚本运行： 12345678TARGET&#x3D;&#x2F;Libra">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190109203309807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2019-01-09T12:41:54.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.663Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="celery python3.7 celery">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190109203309807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-解决python3.7 + celery4.2.1运行时找不到async" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/09/%E8%A7%A3%E5%86%B3python3.7%20+%20celery4.2.1%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0async/" class="article-date">
+  <time class="dt-published" datetime="2019-01-09T12:41:54.000Z" itemprop="datePublished">2019-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      解决python3.7 + celery4.2.1运行时找不到async
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>参考文档：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/celery/celery/issues/4500">https://github.com/celery/celery/issues/4500</a></li>
+</ul>
+<p>最近在使用python3.7去运行celery4.2.1时，发现会报以下错误：<br><img src="https://img-blog.csdnimg.cn/20190109203309807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>原因是python3.7中<code>async</code>已经变成了关键字。因此出现这个错误时，需要将报错文件中所有的<code>async</code>改为<code>asynchronous</code>，并编写如下shell脚本运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">TARGET=/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/celery/backends</span><br><span class="line">cd $TARGET</span><br><span class="line">if [ -e async.py ]</span><br><span class="line">then</span><br><span class="line">    mv async.py asynchronous.py</span><br><span class="line">    sed -n &#x27;s/async/asynchronous/g&#x27; redis.py</span><br><span class="line">    sed -n &#x27;s/async/asynchronous/g&#x27; rpc.py</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>运行后，你会发现celery可以正常使用了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2019/01/09/%E8%A7%A3%E5%86%B3python3.7%20+%20celery4.2.1%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0async/" data-id="ckpqq95ah002rykjd8hdf40hh" data-title="解决python3.7 + celery4.2.1运行时找不到async" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/09/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          celery学习笔记（二）——celery快速入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/09/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%B8%89)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">django项目开发实战——博客(三)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

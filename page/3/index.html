@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="cxy">
+<meta property="og:url" content="https://chuxiaoyi.github.io/page/3/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:locale">
+<meta property="article:author" content="chuxiaoyi">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Mac下使用国内镜像安装Homebrew" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/12/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%AE%89%E8%A3%85Homebrew/" class="article-date">
+  <time class="dt-published" datetime="2019-01-12T07:28:15.000Z" itemprop="datePublished">2019-01-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/12/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%AE%89%E8%A3%85Homebrew/">Mac下使用国内镜像安装Homebrew</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h2 id="通用安装方式"><a href="#通用安装方式" class="headerlink" title="通用安装方式"></a>通用安装方式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用国内镜像安装步骤"><a href="#使用国内镜像安装步骤" class="headerlink" title="使用国内镜像安装步骤"></a>使用国内镜像安装步骤</h2><p>第一步，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install &gt;&gt; brew_install</span><br></pre></td></tr></table></figure>
+
+<p>第二步，修改<code>brew_install</code>文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#!/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby</span><br><span class="line"># This script installs to /usr/local only. To install elsewhere you can just</span><br><span class="line"># untar https://github.com/Homebrew/brew/tarball/master anywhere you like or</span><br><span class="line"># change the value of HOMEBREW_PREFIX.</span><br><span class="line">HOMEBREW_PREFIX = &quot;/usr/local&quot;.freeze</span><br><span class="line">HOMEBREW_REPOSITORY = &quot;/usr/local/Homebrew&quot;.freeze</span><br><span class="line">HOMEBREW_CACHE = &quot;#&#123;ENV[&quot;HOME&quot;]&#125;/Library/Caches/Homebrew&quot;.freeze</span><br><span class="line">HOMEBREW_OLD_CACHE = &quot;/Library/Caches/Homebrew&quot;.freeze</span><br><span class="line"></span><br><span class="line"># 下面这行是原始文件，将此行注释掉，换成它下面这行</span><br><span class="line">#BREW_REPO = &quot;https://github.com/Homebrew/brew&quot;.freeze	</span><br><span class="line">BREW_REPO = &quot;git://mirrors.ustc.edu.cn/brew.git&quot;.freeze</span><br><span class="line"></span><br><span class="line"># 下面这行是原始文件，将此行注释掉，换成它下面这行</span><br><span class="line">#CORE_TAP_REPO = &quot;https://github.com/Homebrew/homebrew-core&quot;.freeze</span><br><span class="line">CORE_TAP_REPO = &quot;git://mirrors.ustc.edu.cn/homebrew-core.git&quot;.freeze</span><br></pre></td></tr></table></figure>
+
+<p>第三步，终端输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby ~/brew_install </span><br></pre></td></tr></table></figure>
+
+<p>第四步，替换homebrew默认源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &quot;$(brew --repo)&quot;</span><br><span class="line">git remote set-url origin git://mirrors.ustc.edu.cn/brew.git</span><br></pre></td></tr></table></figure>
+
+<p>第五步，替换homebrew-core源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-core&quot;</span><br><span class="line">git remote set-url origin git://mirrors.ustc.edu.cn/homebrew-core.git</span><br></pre></td></tr></table></figure>
+
+<p>第六步，设置 bintray镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#x27; &gt;&gt; ~/.bash_profile</span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2019/01/12/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%AE%89%E8%A3%85Homebrew/" data-id="ckpqq958z0004ykjdfyc62ug6" data-title="Mac下使用国内镜像安装Homebrew" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-celery学习笔记（二）——celery快速入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/09/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-01-09T13:13:41.000Z" itemprop="datePublished">2019-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/09/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">celery学习笔记（二）——celery快速入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h2 id="在应用中使用celery"><a href="#在应用中使用celery" class="headerlink" title="在应用中使用celery"></a>在应用中使用celery</h2><p>项目结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proj/__init__.py</span><br><span class="line">    /celery.py</span><br><span class="line">    /tasks.py</span><br></pre></td></tr></table></figure>
+
+<p>proj/celery.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import, unicode_literals</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"></span><br><span class="line">app = Celery(<span class="string">&#x27;proj&#x27;</span>,</span><br><span class="line">             broker=<span class="string">&#x27;pyamqp://guest@localhost//&#x27;</span>,</span><br><span class="line">             backend=<span class="string">&#x27;redis://localhost&#x27;</span>,</span><br><span class="line">             include=[<span class="string">&#x27;proj.tasks&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Optional configuration, see the application user guide.</span></span><br><span class="line">app.conf.update(</span><br><span class="line">    result_expires=<span class="number">3600</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.start()</span><br></pre></td></tr></table></figure>
+
+<p>在这个模块中，创建一个Celery实例。其中：</p>
+<ul>
+<li>broker表示消息中间件</li>
+<li>backend表示结果存储的地方</li>
+<li>include表示worker启动时，要导入的task。只有加入到这里，worker才能找到他们。</li>
+</ul>
+<p>proj/tasks.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import, unicode_literals</span><br><span class="line"><span class="keyword">from</span> .celery <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mul</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x * y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xsum</span>(<span class="params">numbers</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(numbers)</span><br></pre></td></tr></table></figure>
+
+<p>使用celery命令启动worker。注意:运行启动命令时，需要保证你所在的位置在proj的上层（就是和proj同级的目录下）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A proj worker --loglevel=info</span><br></pre></td></tr></table></figure>
+
+<p>当worker启动的时候，你可以看到这些信息：<br><img src="https://img-blog.csdnimg.cn/20190109205236392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>transport：也就是broker，就是在定义celery实例时的broker参数。或者，我们可以通过<code>-b</code>命令在运行时指定broker</li>
+<li>concurrency：fork出的可以处理task的并发的worker进程数。当这些worker都在忙时，新的任务会等待直到其中一个结束。默认情况下，并发数量时cpu的数量，我们可以通过使用<code>celery worker -c</code>指定。如果任务主要是IO类型的，可以通过将进程数增加超过cpu数量的两倍，但是这样可能会降低一些性能。celery也支持使用Eventlet, Gevent在单线程中运行</li>
+<li>task events：如果将它打开，celery会监控worker中发生的操作并发送监控消息（事件）。这些可用与一些监控程序，如celery 事件，Flower-实时celery监控。</li>
+<li>queues：worker会从queues里消费任务。worker会被告知能从多个队列消费任务，这被用于将消息路由到指定的worker，从而可以实现优先级排序等问题。</li>
+</ul>
+<h2 id="在后台运行celery"><a href="#在后台运行celery" class="headerlink" title="在后台运行celery"></a>在后台运行celery</h2><p>在后台，可以利用守护进程执行<code>celery multi</code>命令开启一个或多个worker：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery multi start w1 -A proj -l info</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190112182354566.png" alt="在这里插入图片描述"></p>
+<p>也可以重新启动:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery  multi restart w1 -A proj -l info</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/2019011218230472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>停止worker：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery multi stop w1 -A proj -l info</span><br></pre></td></tr></table></figure>
+
+<p><code>stop</code>命令是异步的，因此他不会等待全部worker都执行完才停止。如果想等待所有worker都执行完当前正在执行的任务才停止celery，可以使用<code>stopwait</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery multi stopwait w1 -A proj -l info</span><br></pre></td></tr></table></figure>
+
+<p>注意：<code>celery multi</code>不存储有关worker的信息，因此在重新启动时需要使用相同的命令行参数。 停止时，只能使用相同的<code>pidfile</code>和<code>logfile</code>参数。默认情况下，它会在当前目录中创建pid和日志文件，以防止多个worker在彼此之上启动，不过，还是推荐将这些文件放在专用目录中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /var/run/celery</span><br><span class="line">sudo mkdir -p /var/log/celery</span><br><span class="line">sudo celery multi start w1 -A proj -l info --pidfile=/var/run/celery/%n.pid --logfile=/var/log/celery/%n%I.log</span><br></pre></td></tr></table></figure>
+
+<p>使用multi命令可以启动多个worker，并且还有一个强大的命令行语法来为不同的worker指定参数，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery multi start 10 -A proj -l info -Q:1-3 images,video -Q:4,5 data -Q default -l:4,5 debug</span><br></pre></td></tr></table></figure>
+
+<p>这行命令的意思是：开启10个worker，其中三个处理images和video队列的任务，两个处理data队列的任务并且日志级别为debug，剩下的worker处理default队列的任务</p>
+<p><img src="https://img-blog.csdnimg.cn/2019011218225234.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="调用任务"><a href="#调用任务" class="headerlink" title="调用任务"></a>调用任务</h2><p>可以使用<code>delay()</code>方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; add.delay(2, 2)</span><br></pre></td></tr></table></figure>
+
+<p>这个方法实际上是<code>apply_async ()</code>的另一种快捷方式，它相当于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; add.apply_async((2, 2))</span><br></pre></td></tr></table></figure>
+
+<p>在终端中试着调用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from proj.tasks import add</span><br><span class="line">&gt;&gt;&gt; add.delay(2, 2)</span><br><span class="line">&lt;AsyncResult: 94bf8b45-9a47-4021-a306-0786aa22fbd2&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190113004740401.png" alt="在这里插入图片描述"></p>
+<p>而<code>apply_async</code>可以制定一些选项，例如运行时间（倒计时），被发送到的队列等等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; add.apply_async((2, 2), queue=&#x27;lopri&#x27;, countdown=10)</span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，任务将被发送到名为lopri的队列，任务将在发送消息后最早10秒执行。</p>
+<p>另外一种调用方式，就是直接调用<code>__call__()</code>，它会立即反悔结果，并且不发任务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; add(2, 2)</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<p>以上三种方式都叫做celery的”Calling API”</p>
+<p>每个任务调用都将被赋予唯一标识符（UUID），这是任务ID(task id)。<code>delay</code>和<code>apply_async</code>方法返回一个AsyncResult实例，该实例可用于跟踪任务执行状态。 但为此你需要启用一个backend，以便状态可以存储在某个地方。默认情况下，不会指定backend，因为不是任意一个backend都适合每一个应用。因此，在选择backend的时候，需要考虑他的优缺点。backend也不适合监控任务。</p>
+<p>如果配置了backend，可以这样获取结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; res = add.delay(2, 2)</span><br><span class="line">&gt;&gt;&gt; res.get(timeout=1)</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<p>也可以通过id属性查看task id</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; res.id</span><br><span class="line">&#x27;fa572be9-a077-4df0-b562-4942ef889b4c&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>如果task抛出异常，我们是可以获取到异常的，默认情况下，<code>res.get()</code>会自动把异常抛出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; res = add.delay(2)</span><br><span class="line">&gt;&gt;&gt; res.get(timeout=1)</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下，会看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">File &quot;/opt/devel/celery/celery/result.py&quot;, line 113, in get</span><br><span class="line">    interval=interval)</span><br><span class="line">File &quot;/opt/devel/celery/celery/backends/rpc.py&quot;, line 138, in wait_for</span><br><span class="line">    raise meta[&#x27;result&#x27;]</span><br><span class="line">TypeError: add() takes exactly 2 arguments (1 given)</span><br></pre></td></tr></table></figure>
+
+<p>官网给出的抛出异常的点是在get之后，但是这里我发现，其实在执行到<code>res = add.delay(2)</code>的时候，就已经抛出异常了：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190113004759247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>如果不想抛出异常，可以指定<code>propagate</code>为<code>False</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; res.get(propagate=False)</span><br></pre></td></tr></table></figure>
+
+<p>如果想要查看任务执行的结果，必须在指向结果的对象上查看：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; res.failed()</span><br><span class="line">True</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; res.successful()</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+
+<p>那么，它是如果知道任务执行成功或失败的呢？他会查看任务的状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; res.state</span><br><span class="line">&#x27;FAILURE&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>任务只能处于单个状态，但可以从多个状态转化过来。 典型任务的执行状态阶段可以是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PENDING -&gt; STARTED -&gt; SUCCESS</span><br></pre></td></tr></table></figure>
+
+<p>STARTED状态是一种特殊状态，仅在启用<code>task_track_started</code>设置或者为任务设置了<code>@task（track_started = True）</code>选项时才会记录。</p>
+<p>PENDING 状态实际上不是记录状态，而是任何未知任务ID的默认状态,从此示例中看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from proj.celery import app</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; res = app.AsyncResult(&#x27;this-id-does-not-exist&#x27;)</span><br><span class="line">&gt;&gt;&gt; res.state</span><br><span class="line">&#x27;PENDING&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>对于重试的任务，他的状态会变得复杂，例如重试了两次的任务，它是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PENDING -&gt; STARTED -&gt; RETRY -&gt; STARTED -&gt; RETRY -&gt; STARTED -&gt; SUCCESS</span><br></pre></td></tr></table></figure>
+
+<h2 id="设计工作流"><a href="#设计工作流" class="headerlink" title="设计工作流"></a>设计工作流</h2><p>通常情况下，使用<code>delay</code>调用任务实现异步，但是有时候，需要将任务调用的签名传递给另一个进程或作为另一个方法的参数，celery称这种方式叫签名。</p>
+<p>签名以一种方式包装单个任务调用的参数和其他可选参数，以便它可以传递给函数，甚至可以进行序列化和发送。</p>
+<p>下面为任务创建一个签名，并传递参数:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; add.signature((2, 2), countdown=10)</span><br><span class="line">proj.tasks.add(2, 2)</span><br></pre></td></tr></table></figure>
+
+<p>也可以写成这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; add.s(2, 2)</span><br><span class="line">proj.tasks.add(2, 2)</span><br></pre></td></tr></table></figure>
+
+<p>另外，<code>signature</code>也可以使用<code>Calling API</code>(delay、apply_async )。不同的是，signature对象可能为任务指定了参数，例如<code>add</code>任务需要有两个参数，那么有两个参数的signature，就是完整的signature对象了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; s1 = add.s(2, 2)</span><br><span class="line">&gt;&gt;&gt; res = s1.delay()</span><br><span class="line">&gt;&gt;&gt; res.get()</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<p>当然，也可以创建不完整的signature对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; s2 = add.s(2)</span><br><span class="line">&gt;&gt;&gt; s2</span><br><span class="line">proj.tasks.add(2)</span><br></pre></td></tr></table></figure>
+
+<p>add任务需要两个参数，但是签名对象只赋予了它一个参数，我们可以在调用任务的时候，对任务再次进行赋值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; res = s2.delay(8)</span><br><span class="line">&gt;&gt;&gt; res.get()</span><br><span class="line">10</span><br></pre></td></tr></table></figure>
+
+<h2 id="signature对象的实际用处"><a href="#signature对象的实际用处" class="headerlink" title="signature对象的实际用处"></a>signature对象的实际用处</h2><p>以下这些他们本身就是signature对象，因此，他们以多种方式组合以组成复杂的工作流：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">group	chain	chord</span><br><span class="line">map		starmap		chunks</span><br></pre></td></tr></table></figure>
+
+<h4 id="Groups"><a href="#Groups" class="headerlink" title="Groups"></a>Groups</h4><p><code>group</code>会<strong>并行</strong>调用任务，并以列表的形式返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from celery import group</span><br><span class="line">&gt;&gt;&gt; from proj.tasks import add</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; g1 = group(add.s(i, i) for i in range(5))</span><br><span class="line">&gt;&gt;&gt; g1</span><br><span class="line">group([proj.tasks.add(0, 0), add(1, 1), add(2, 2), add(3, 3), add(4, 4)])</span><br><span class="line">&gt;&gt;&gt; res = g1()</span><br><span class="line">&gt;&gt;&gt; res.get()</span><br><span class="line">[0, 2, 4, 6, 8]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190113120218842.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>传递部分参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; g = group(add.s(i) for i in range(10))</span><br><span class="line">&gt;&gt;&gt; g(10).get()</span><br><span class="line">[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]</span><br></pre></td></tr></table></figure>
+
+<h4 id="Chains"><a href="#Chains" class="headerlink" title="Chains"></a>Chains</h4><p><code>chain</code>会把任务链接到一起，当前一个任务完成后，会将结果传递给下一个任务继续执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from celery import chain</span><br><span class="line">&gt;&gt;&gt; from proj.tasks import add, mul</span><br><span class="line"></span><br><span class="line"># (4 + 4) * 8</span><br><span class="line">&gt;&gt;&gt; chain(add.s(4, 4) | mul.s(8))().get()</span><br><span class="line">64</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; # (? + 4) * 8</span><br><span class="line">&gt;&gt;&gt; g = chain(add.s(4) | mul.s(8))</span><br><span class="line">&gt;&gt;&gt; g(4).get()</span><br><span class="line">64</span><br></pre></td></tr></table></figure>
+
+<p>也可以简化成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; (add.s(4, 4) | mul.s(8))().get()</span><br><span class="line">64</span><br></pre></td></tr></table></figure>
+
+<h4 id="Chords"><a href="#Chords" class="headerlink" title="Chords"></a>Chords</h4><p><code>chord</code>是一个有回调的group：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from celery import chord</span><br><span class="line">&gt;&gt;&gt; from proj.tasks import add, xsum</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; chord((add.s(i, i) for i in range(10)), xsum.s())().get()</span><br><span class="line">90</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190113120200703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>如果将group和其他任务chain到一起，就会自动变成了chord了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; (group(add.s(i, i) for i in range(10)) | xsum.s())().get()</span><br><span class="line">90</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2019/01/09/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" data-id="ckpqq9593000bykjd7ppsbndp" data-title="celery学习笔记（二）——celery快速入门" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-解决python3.7 + celery4.2.1运行时找不到async" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/09/%E8%A7%A3%E5%86%B3python3.7%20+%20celery4.2.1%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0async/" class="article-date">
+  <time class="dt-published" datetime="2019-01-09T12:41:54.000Z" itemprop="datePublished">2019-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/09/%E8%A7%A3%E5%86%B3python3.7%20+%20celery4.2.1%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0async/">解决python3.7 + celery4.2.1运行时找不到async</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>参考文档：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/celery/celery/issues/4500">https://github.com/celery/celery/issues/4500</a></li>
+</ul>
+<p>最近在使用python3.7去运行celery4.2.1时，发现会报以下错误：<br><img src="https://img-blog.csdnimg.cn/20190109203309807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>原因是python3.7中<code>async</code>已经变成了关键字。因此出现这个错误时，需要将报错文件中所有的<code>async</code>改为<code>asynchronous</code>，并编写如下shell脚本运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">TARGET=/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/celery/backends</span><br><span class="line">cd $TARGET</span><br><span class="line">if [ -e async.py ]</span><br><span class="line">then</span><br><span class="line">    mv async.py asynchronous.py</span><br><span class="line">    sed -n &#x27;s/async/asynchronous/g&#x27; redis.py</span><br><span class="line">    sed -n &#x27;s/async/asynchronous/g&#x27; rpc.py</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>运行后，你会发现celery可以正常使用了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2019/01/09/%E8%A7%A3%E5%86%B3python3.7%20+%20celery4.2.1%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0async/" data-id="ckpqq95ah002rykjd8hdf40hh" data-title="解决python3.7 + celery4.2.1运行时找不到async" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-django项目开发实战——博客(三)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/09/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%B8%89)/" class="article-date">
+  <time class="dt-published" datetime="2019-01-09T10:32:22.000Z" itemprop="datePublished">2019-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/09/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%B8%89)/">django项目开发实战——博客(三)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>经过好几版的修改，终于变成了现在这个样子（咳咳。）网站可以<a target="_blank" rel="noopener" href="http://chuxiaoyi.cn/">戳这里</a>，欢迎大家多提意见哦～</p>
+<p><img src="https://img-blog.csdnimg.cn/20190109171946399.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>在之前的基础上，做了以下增加：</p>
+<h2 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h2><p>评论功能依旧用了渲染的方式，加了一些原生js控制css样式。</p>
+<p>评论框：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;pure-form comment&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;&#123;% url &#x27;comment:comment&#x27; pk=post.id %&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">&quot;pure-group&quot;</span>&gt;</span></span><br><span class="line">        昵称：<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;pure-input-1-4&quot;</span> <span class="attr">name</span>=<span class="string">&quot;comment-name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;昵称&quot;</span>&gt;</span></span><br><span class="line">        <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">        邮箱：<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;pure-input-1-3&quot;</span> <span class="attr">name</span>=<span class="string">&quot;comment-email&quot;</span> <span class="attr">type</span>=<span class="string">&quot;email&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;留下邮箱，可以收到回复提醒哦～&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">class</span>=<span class="string">&quot;comment-content&quot;</span> <span class="attr">name</span>=<span class="string">&quot;comment&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;想对作者说点什么。。。&quot;</span> <span class="attr">onfocus</span>=<span class="string">&quot;show_person_info(this)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;comment-div&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;tip_comment&quot;</span>&gt;</span>支持markdown格式<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;pure-button&quot;</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>发表评论<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>评论展示区域</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for comment in comment_list %&#125;</span><br><span class="line">   <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;comment-list &quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;comment-li first-comment&quot;</span> <span class="attr">onmouseover</span>=<span class="string">&quot;show_reply(this)&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">onmouseleave</span>=<span class="string">&quot;hidden_replay(this)&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;fa fa-user-circle&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; comment.name &#125;&#125;：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;reply&quot;</span> <span class="attr">href</span>=<span class="string">&#x27;javascript:void(0);&#x27;</span> <span class="attr">onclick</span>=<span class="string">&quot;show_replyform(this)&quot;</span>&gt;</span>回复<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;comment-info&quot;</span>&gt;</span>&#123;&#123; comment.text | safe &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">           <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;pure-form reply-form&quot;</span> <span class="attr">id</span>=<span class="string">&quot;reply-form&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span></span></span><br><span class="line"><span class="tag">                 <span class="attr">action</span>=<span class="string">&quot;&#123;% url &#x27;comment:comment&#x27; pk=post.id %&#125;&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">               <span class="tag">&lt;<span class="name">input</span> <span class="attr">hidden</span> <span class="attr">name</span>=<span class="string">&quot;reply_to&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; comment.id &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">input</span> <span class="attr">hidden</span> <span class="attr">name</span>=<span class="string">&quot;reply_name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; comment.name &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">input</span> <span class="attr">hidden</span> <span class="attr">name</span>=<span class="string">&quot;root_to&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; comment.id &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">input</span> <span class="attr">hidden</span> <span class="attr">name</span>=<span class="string">&quot;reply_email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; comment.email &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">&quot;pure-group&quot;</span>&gt;</span></span><br><span class="line">                   昵称：<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;pure-input-1-4&quot;</span> <span class="attr">name</span>=<span class="string">&quot;comment-name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;昵称&quot;</span>&gt;</span></span><br><span class="line">                   <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">                   邮箱：<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;pure-input-1-3&quot;</span> <span class="attr">name</span>=<span class="string">&quot;comment-email&quot;</span> <span class="attr">type</span>=<span class="string">&quot;email&quot;</span></span></span><br><span class="line"><span class="tag">                             <span class="attr">placeholder</span>=<span class="string">&quot;留下邮箱，可以收到回复提醒哦～&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">class</span>=<span class="string">&quot;comment-content&quot;</span> <span class="attr">name</span>=<span class="string">&quot;comment&quot;</span> <span class="attr">onblur</span>=<span class="string">&quot;hidden_replyform(this)&quot;</span></span></span><br><span class="line"><span class="tag">                         <span class="attr">placeholder</span>=<span class="string">&quot;想对作者说点什么。。。&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;comment-div&quot;</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;tip_comment&quot;</span>&gt;</span>支持markdown格式<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;pure-button&quot;</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>发表评论<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">       &#123;% for reply in comment.replies %&#125;</span><br><span class="line">           <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;comment-li reply-comment&quot;</span> <span class="attr">onmouseover</span>=<span class="string">&quot;show_reply(this)&quot;</span></span></span><br><span class="line"><span class="tag">               <span class="attr">onmouseleave</span>=<span class="string">&quot;hidden_replay(this)&quot;</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;fa fa-user-circle&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; reply.name &#125;&#125;回复&#123;&#123; reply.reply_name &#125;&#125;: <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;reply&quot;</span> <span class="attr">href</span>=<span class="string">&#x27;javascript:void(0);&#x27;</span> <span class="attr">onclick</span>=<span class="string">&quot;show_replyform(this)&quot;</span>&gt;</span>回复<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;comment-info&quot;</span>&gt;</span>&#123;&#123; reply.text | safe &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">               <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;pure-form reply-form&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span></span></span><br><span class="line"><span class="tag">                     <span class="attr">action</span>=<span class="string">&quot;&#123;% url &#x27;comment:comment&#x27; pk=post.id %&#125;&quot;</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">input</span> <span class="attr">hidden</span> <span class="attr">name</span>=<span class="string">&quot;reply_to&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; reply.id &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">input</span> <span class="attr">hidden</span> <span class="attr">name</span>=<span class="string">&quot;reply_name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; reply.name &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">input</span> <span class="attr">hidden</span> <span class="attr">name</span>=<span class="string">&quot;root_to&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; comment.id &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">input</span> <span class="attr">hidden</span> <span class="attr">name</span>=<span class="string">&quot;reply_email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; reply.email &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">&quot;pure-group&quot;</span>&gt;</span></span><br><span class="line">                       昵称：<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;pure-input-1-4&quot;</span> <span class="attr">name</span>=<span class="string">&quot;comment-name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">                                 <span class="attr">placeholder</span>=<span class="string">&quot;昵称&quot;</span>&gt;</span></span><br><span class="line">                       <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">                       邮箱：<span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;pure-input-1-3&quot;</span> <span class="attr">name</span>=<span class="string">&quot;comment-email&quot;</span> <span class="attr">type</span>=<span class="string">&quot;email&quot;</span></span></span><br><span class="line"><span class="tag">                                 <span class="attr">placeholder</span>=<span class="string">&quot;留下邮箱，可以收到回复提醒哦～&quot;</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">class</span>=<span class="string">&quot;comment-content&quot;</span> <span class="attr">name</span>=<span class="string">&quot;comment&quot;</span> <span class="attr">onblur</span>=<span class="string">&quot;hidden_replyform(this)&quot;</span></span></span><br><span class="line"><span class="tag">                             <span class="attr">placeholder</span>=<span class="string">&quot;想对作者说点什么。。。&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;comment-div&quot;</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;tip_comment&quot;</span>&gt;</span>支持markdown格式<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                       <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;pure-button&quot;</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>发表评论<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line">           <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">       &#123;% endfor %&#125;</span><br><span class="line">   <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>comment/models.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comment</span>(<span class="params">models.Model</span>):</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">20</span>)</span><br><span class="line">    email = models.EmailField(max_length=<span class="number">50</span>)</span><br><span class="line">    website = models.URLField(blank=<span class="literal">True</span>)</span><br><span class="line">    text = models.TextField()</span><br><span class="line">    created_time = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    post = models.ForeignKey(<span class="string">&#x27;Post.Post&#x27;</span>, on_delete=<span class="literal">True</span>)  <span class="comment"># 一篇文章有多个评论</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 评论</span></span><br><span class="line">    reply_to = models.IntegerField(verbose_name=<span class="string">&quot;回复的哪条评论&quot;</span>, default=<span class="number">0</span>)</span><br><span class="line">    reply_name = models.CharField(verbose_name=<span class="string">&quot;回复的哪个人&quot;</span>, max_length=<span class="number">50</span>, default=<span class="literal">None</span>)</span><br><span class="line">    reply_email = models.EmailField(verbose_name=<span class="string">&quot;被回复的邮箱&quot;</span>, max_length=<span class="number">50</span>, default=<span class="string">&#x27;chuxiaoyi@chuxiaoyi@cn&#x27;</span>)</span><br><span class="line">    root_to = models.IntegerField(verbose_name=<span class="string">&quot;回复的是哪个主评论&quot;</span>, default=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ordering = [<span class="string">&#x27;-created_time&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="异步任务"><a href="#异步任务" class="headerlink" title="异步任务"></a>异步任务</h2><p>celery目前已经完成支持django了，原始文档<a target="_blank" rel="noopener" href="http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html">戳这里</a>。我主要在评论区回复邮件和增加pv（页面访问量）使用了异步。</p>
+<p>首先，在和项目同名的包下的创建<code>celery.py</code>(与settings.py同级)文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import, unicode_literals</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line"><span class="comment"># set the default Django settings module for the &#x27;celery&#x27; program.</span></span><br><span class="line">os.environ.setdefault(<span class="string">&#x27;DJANGO_SETTINGS_MODULE&#x27;</span>, <span class="string">&#x27;MySite.settings&#x27;</span>)</span><br><span class="line"></span><br><span class="line">app = Celery(<span class="string">&#x27;MySite&#x27;</span>, broker=<span class="string">&#x27;redis://127.0.0.1:6379/3&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Using a string here means the worker doesn&#x27;t have to serialize</span></span><br><span class="line"><span class="comment"># the configuration object to child processes.</span></span><br><span class="line"><span class="comment"># - namespace=&#x27;CELERY&#x27; means all celery-related configuration keys</span></span><br><span class="line"><span class="comment">#   should have a `CELERY_` prefix.</span></span><br><span class="line">app.config_from_object(<span class="string">&#x27;django.conf:settings&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load task modules from all registered Django app configs.</span></span><br><span class="line">app.autodiscover_tasks(<span class="keyword">lambda</span>: settings.INSTALLED_APPS)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task(<span class="params">bind=<span class="literal">True</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug_task</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Request: &#123;0!r&#125;&#x27;</span>.<span class="built_in">format</span>(self.request))</span><br></pre></td></tr></table></figure>
+
+<p>并且。在和celery.py同级的<code>__init__.py</code>中添加如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This will make sure the app is always imported when</span></span><br><span class="line"><span class="comment"># Django starts so that shared_task will use this app.</span></span><br><span class="line"><span class="keyword">from</span> .celery <span class="keyword">import</span> app <span class="keyword">as</span> celery_app</span><br><span class="line"></span><br><span class="line">__all__ = (<span class="string">&#x27;celery_app&#x27;</span>,)</span><br></pre></td></tr></table></figure>
+
+<p>然后，在需要使用异步的功能所在app中添加<code>tasks.py</code>。在这里，我加在了<code>Post</code>和<code>comment</code>里：</p>
+<p>Post/tasks.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> shared_task</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> F</span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_pv</span>(<span class="params">post_id</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    增加页面访问量</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    Post.objects.<span class="built_in">filter</span>(<span class="built_in">id</span>=post_id).update(views=F(<span class="string">&#x27;views&#x27;</span>) + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>comment/tasks.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> shared_task</span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">async_send_mail</span>(<span class="params">email, text, post_pk</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    异步发送信息，告知被回复者有人评论</span></span><br><span class="line"><span class="string">    :param email:</span></span><br><span class="line"><span class="string">    :param text:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    title = <span class="string">&quot;邮箱发送test&quot;</span></span><br><span class="line">    msg = <span class="string">&quot;收到回复：&quot;</span> + text + \</span><br><span class="line">          <span class="string">&quot;\n跳转到www.chuxiaoyi.cn/detail/post-&#123;&#125;/查看&quot;</span>.<span class="built_in">format</span>(post_pk)</span><br><span class="line">    from_email = settings.EMAIL_HOST_USER</span><br><span class="line">    recievers = [email, ]</span><br><span class="line">    <span class="built_in">print</span>(email)</span><br><span class="line">    send_mail(title, msg, from_email, recievers, fail_silently=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>写好之后，在views.py中直接调用即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">async_send_mail.delay(comment.reply_email, comment.text, pk)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_pv.delay(pk)</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署：通过supervisor管理celery"><a href="#部署：通过supervisor管理celery" class="headerlink" title="部署：通过supervisor管理celery"></a>部署：通过supervisor管理celery</h2><p>安装supervisor</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install supervisor</span><br></pre></td></tr></table></figure>
+
+<p>添加celery配置，在<code>/etc/supervisor/conf.d</code>文件夹下，创建<code>celery.conf</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[program:celery]</span><br><span class="line"></span><br><span class="line">#启动命令入口</span><br><span class="line">command=/root/.pyenv/shims/celery worker -A MySite --loglevel=info</span><br><span class="line"></span><br><span class="line"># 命令程序所在目录</span><br><span class="line">directory=/home/BlogWebsite</span><br><span class="line"></span><br><span class="line"># 运行命令的用户名</span><br><span class="line">user=root</span><br><span class="line"></span><br><span class="line">autostart=true</span><br><span class="line">autorestart=true</span><br><span class="line">stdout_logfile=/var/log/celery/blog_comment_mail_worker.log</span><br><span class="line">stderr_logfile=/var/log/celery/blog_comment_mail_worker.log</span><br></pre></td></tr></table></figure>
+
+<p>后台运行celery</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo supervisorctl start celery</span><br><span class="line"></span><br><span class="line">sudo supervisorctl stop celery</span><br><span class="line"></span><br><span class="line">sudo supervisorctl restart celery</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2019/01/09/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%B8%89)/" data-id="ckpqq9599000mykjd6vlnf7hz" data-title="django项目开发实战——博客(三)" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-python2-mac10.13下安装mysql-python" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/12/28/python2-mac10.13%E4%B8%8B%E5%AE%89%E8%A3%85mysql-python/" class="article-date">
+  <time class="dt-published" datetime="2018-12-28T05:24:17.000Z" itemprop="datePublished">2018-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/12/28/python2-mac10.13%E4%B8%8B%E5%AE%89%E8%A3%85mysql-python/">python2-mac10.13下安装mysql-python</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>安装环境：OS X 操作系统，Python 2.7.3。</p>
+<p>MySQLdb 其实包含在 MySQL-python 包中，因此无论下载还是在 pip 中 search，都应该是搜寻 MySQL-python。</p>
+<p>以下为安装步骤</p>
+<h4 id="安装MYSQLdb"><a href="#安装MYSQLdb" class="headerlink" title="安装MYSQLdb"></a>安装MYSQLdb</h4><p>在 SourceForge 可以下载 <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mysql-python/">MySQL-python-1.2.4b4.tar</a>，下载后解压，然后在终端 Terminal 中执行以下命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) ➜  MySQL-python-<span class="number">1.2</span><span class="number">.4</span>b4    python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>但是，可能会出现这样的问题：<br><img src="https://img-blog.csdnimg.cn/20181228132213220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>不要慌，接下来在终端中输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) ➜  MySQL-python-<span class="number">1.2</span><span class="number">.4</span>b4 wget https://pypi.python.org/packages/source/d/distribute/distribute-<span class="number">0.6</span><span class="number">.28</span>.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>接下来，继续安装，会发现可以安装了！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) ➜  MySQL-python-<span class="number">1.2</span><span class="number">.4</span>b4 sudo python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>但是你会发现，又出现了另外一个错误<br><img src="https://img-blog.csdnimg.cn/20181228132241849.png" alt="在这里插入图片描述"></p>
+<p>此时，在终端输入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) ➜  MySQL-python-<span class="number">1.2</span><span class="number">.4</span>b4 brew install mysql-connector-c </span><br></pre></td></tr></table></figure>
+
+<p>然后继续执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(venv) ➜  MySQL-python-<span class="number">1.2</span><span class="number">.4</span>b4 sudo python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>这时，你会发现安装成功了！<br><img src="https://img-blog.csdnimg.cn/20181228132304145.png" alt="在这里插入图片描述"><br>最后安装MYSQL-python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip2 install MYSQL-python</span><br></pre></td></tr></table></figure>
+
+<p>打开python进行验证，发现又遇到了另一个问题<br><img src="https://img-blog.csdnimg.cn/20181228132318540.png" alt="在这里插入图片描述"><br>在终端输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /usr/local/mysql/lib/libmysqlclient<span class="number">.21</span>.dylib /usr/local/lib/libmysqlclient<span class="number">.21</span>.dylib</span><br></pre></td></tr></table></figure>
+
+<p>但是会发现有权限问题，解决方法是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">重启电脑，开机时按住 cmd + R，进入 Recovery 模式。然后打开终端工具 ，输入命令：csrutil diable，然后再次重启电脑即可。</span><br></pre></td></tr></table></figure>
+
+<p>然后继续在终端输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) ➜  lib sudo ln -s /usr/local/mysql/lib/libmysqlclient<span class="number">.21</span>.dylib /usr/local/lib/libmysqlclient<span class="number">.21</span>.dylib</span><br><span class="line">(venv) ➜  lib sudo ln -s /usr/local/mysql/lib/libmysqlclient<span class="number">.21</span>.dylib /usr/lib/libmysqlclient<span class="number">.21</span>.dylib</span><br></pre></td></tr></table></figure>
+
+<p>好啦。现在再次检查，成功！<br><img src="https://img-blog.csdnimg.cn/20181228132336290.png" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/12/28/python2-mac10.13%E4%B8%8B%E5%AE%89%E8%A3%85mysql-python/" data-id="ckpqq95a6002aykjd0vm4176h" data-title="python2-mac10.13下安装mysql-python" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-django项目开发实战——博客(二)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/12/18/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%BA%8C)/" class="article-date">
+  <time class="dt-published" datetime="2018-12-18T09:22:11.000Z" itemprop="datePublished">2018-12-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/12/18/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%BA%8C)/">django项目开发实战——博客(二)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>参考文档：<br>- <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1099709">Django 博客使用 Markdown 自动生成文章目录</a><br>- <a target="_blank" rel="noopener" href="https://www.zmrenwu.com/post/45/">Django Haystack 全文检索与关键词高亮</a></p>
+<p>自从做了之前的<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40156487/article/details/81512807">django项目开发实战——博客</a>之后，一直没有继续做下去。现在终于有时间把后面的笔记补起来了！(虽然还是一个很简陋滴= =)</p>
+<p>git地址：<a target="_blank" rel="noopener" href="https://github.com/ChuXiaoYi/BlogWebSite/tree/test">https://github.com/ChuXiaoYi/BlogWebSite/tree/test</a></p>
+<p>先放图：<br><img src="https://img-blog.csdnimg.cn/2018121912245131" alt="image_1cv08semaqaa1d981p161p4n20km.png-164.9kB"></p>
+<p><img src="https://img-blog.csdnimg.cn/2018121912245155" alt="image_1cv091rb08sr1d3rvoj1vegm621j.png-234.6kB"></p>
+<h2 id="列表页"><a href="#列表页" class="headerlink" title="列表页"></a>列表页</h2><p>页面是扒的<a target="_blank" rel="noopener" href="https://templatemag.com/blog/">这个地址</a>，然后做了一些修改</p>
+<p>列表页主要说明一下<strong>分页</strong>和<strong>flash</strong>插件</p>
+<h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><p>判断是否有上一页下一页需要用<code>paginator</code>处理过的<code>post_list</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">view.py</span><br><span class="line"></span><br><span class="line">limit = <span class="number">3</span></span><br><span class="line">paginator = Paginator(post, limit)</span><br><span class="line">page = request.GET.get(<span class="string">&#x27;page&#x27;</span>, <span class="number">1</span>)</span><br><span class="line">result = paginator.page(page)</span><br><span class="line">context = &#123;</span><br><span class="line">    <span class="string">&quot;post_list&quot;</span>: result,</span><br><span class="line">    <span class="string">&quot;page&quot;</span>: page,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">list.html</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;pagination clearfix&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;pager&quot;</span>&gt;</span></span><br><span class="line">        &#123;% if post_list.has_previous %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;previous&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?page=&#123;&#123; post_list.previous_page_number &#125;&#125;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;larr;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> Newer<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% else %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;previous disabled&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;larr;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                Newer<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">        &#123;% if post_list.has_next %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;next&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?page=&#123;&#123; post_list.next_page_number &#125;&#125;&quot;</span>&gt;</span>Older <span class="tag">&lt;<span class="name">span</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;rarr;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% else %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;next disabled&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Older <span class="tag">&lt;<span class="name">span</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;rarr;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="flash插件"><a href="#flash插件" class="headerlink" title="flash插件"></a>flash插件</h4><p>这是一个国际友人写的一个js脚本。放到页面中可以直接用。这里我把它处理成html代码直接放到页面中了。<a target="_blank" rel="noopener" href="http://chabudai.org/blog/?s=honehoneclock">原地址戳这里</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">classid</span>=<span class="string">&quot;clsid:d27cdb6e-ae6d-11cf-96b8-444553540000&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">codebase</span>=<span class="string">&quot;http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;auto&quot;</span> <span class="attr">id</span>=<span class="string">&quot;honehoneclock&quot;</span> <span class="attr">align</span>=<span class="string">&quot;middle&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;allowScriptAccess&quot;</span> <span class="attr">value</span>=<span class="string">&quot;always&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;movie&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">value</span>=<span class="string">&quot;http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.swf&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;quality&quot;</span> <span class="attr">value</span>=<span class="string">&quot;high&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;bgcolor&quot;</span> <span class="attr">value</span>=<span class="string">&quot;#ffffff&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;wmode&quot;</span> <span class="attr">value</span>=<span class="string">&quot;transparent&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;play&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">embed</span> <span class="attr">wmode</span>=<span class="string">&quot;transparent&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">src</span>=<span class="string">&quot;http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.swf&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">quality</span>=<span class="string">&quot;high&quot;</span> <span class="attr">bgcolor</span>=<span class="string">&quot;#ffffff&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;auto&quot;</span> <span class="attr">name</span>=<span class="string">&quot;honehoneclock&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">align</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">allowscriptaccess</span>=<span class="string">&quot;always&quot;</span> <span class="attr">type</span>=<span class="string">&quot;application/x-shockwave-flash&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">pluginspage</span>=<span class="string">&quot;http://www.macromedia.com/go/getflashplayer&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/2018121912245176" alt="image_1cv0acqik1534vs31h8s1gs91ts53q.png-12kB"></p>
+<p>如果想把背景改为透明的，修改<code>http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.swf</code>为<code>http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf</code>就可以啦～</p>
+<h2 id="详情页"><a href="#详情页" class="headerlink" title="详情页"></a>详情页</h2><p>这里主要有说明两个：<code>markdown生成目录</code>和<code>markdown高亮</code></p>
+<ol>
+<li><pre><code>首先，安装第三方包
+</code></pre>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mardkown</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><pre><code>在`view.py`中导入第三方包，并修改代码为：
+</code></pre>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">md = markdown.Markdown(extensions=[</span><br><span class="line">            <span class="string">&#x27;markdown.extensions.extra&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;markdown.extensions.codehilite&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;markdown.extensions.toc&#x27;</span>,</span><br><span class="line">        ])</span><br><span class="line">post.body = md.convert(post.body)</span><br><span class="line"></span><br><span class="line">comment_list = Comment.objects.<span class="built_in">filter</span>(post__id=pk)</span><br><span class="line"></span><br><span class="line">context = &#123;</span><br><span class="line">    <span class="string">&#x27;post&#x27;</span>: post,</span><br><span class="line">    <span class="string">&#x27;toc&#x27;</span>: md.toc,</span><br><span class="line">    <span class="string">&#x27;comment_list&#x27;</span>: comment_list</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意:这里使用的是<code>Markdown</code>实例化一个对象！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;markdown.extensions.toc&#x27;</span>,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;toc&#x27;</span>: md.toc,</span><br></pre></td></tr></table></figure>
+
+<p>如果想要自动生成目录，一定要写这两个！</p>
+<p>但是如果我们点击目录，发现url变得很不美观，接下来我们来优化一下</p>
+<p>将<code>markdown.extensions.toc</code>改为<code>TocExtension(slugify=slugify)</code>，但是在这之前，不要忘记引入两个必要的包<code>from django.utils.text import slugify</code>和<code>from markdown.extensions.toc import TocExtension</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">md = markdown.Markdown(extensions=[</span><br><span class="line">        <span class="string">&#x27;markdown.extensions.extra&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;markdown.extensions.codehilite&#x27;</span>,</span><br><span class="line">        TocExtension(slugify=slugify),</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure>
+
+<p><code>TocExtension</code>在实例化时其<code>slugify</code>参数可以接受一个函数作为参数，这个函数将被用于处理标题的锚点值。Markdown内置的处理方法不能处理中文标题，所以我们使用了<code>django.utils.text</code>中的<code>slugify</code>方法，该方法可以很好地处理中文.</p>
+<p>现在在看就可以发现，url变得好看多了<br><img src="https://img-blog.csdnimg.cn/20181219111501584.png" alt="在这里插入图片描述"></p>
+<p>但是，如果只是这样的话，并不能实现代码的高亮。接下来我们还需要做一些事情。</p>
+<ol start="3">
+<li><pre><code>安装Pygments
+</code></pre>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install Pygments </span><br></pre></td></tr></table></figure>
+
+<p>运行<code>pygmentize \-S default \-f html \-a .codehilite &gt; code.css</code>命令,将<code>code.css</code>放到你的静态文件目录下，并在html的头部添加<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;&#123;% static 'Post/css/code.css' %&#125;&quot;&gt;</code>(你的路径可能和我的不一样，不要错啦！)</p>
+<p>最后，千万不要忘记添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;markdown.extensions.codehilite&#x27;</span>,</span><br></pre></td></tr></table></figure>
+
+<p>如果步骤正确，你会看到这样滴：<br><img src="https://img-blog.csdnimg.cn/20181218183108452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>我很喜欢CSDN可以隐藏过长的文章。我也实现了一个<br><img src="https://img-blog.csdnimg.cn/20181218183358167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;hide-article-box text-center&quot;</span> <span class="attr">id</span>=<span class="string">&quot;hide-article-box&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">id</span>=<span class="string">&quot;btn-readmore&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;btnReadMore()&quot;</span>&gt;</span>阅读更多<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> readMore = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;btn-readmore&#x27;</span>);</span><br><span class="line">        <span class="keyword">var</span> hideArticleBox = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;hide-article-box&#x27;</span>);</span><br><span class="line">        <span class="keyword">var</span> content = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;entry-content&#x27;</span>);</span><br><span class="line">        readMore.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            content.style.height = <span class="string">&#x27;auto&#x27;</span>;</span><br><span class="line">            hideArticleBox.style.display = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="全文检索"><a href="#全文检索" class="headerlink" title="全文检索"></a>全文检索</h2><p>对于一个搜索引擎来说，至少应该能够根据用户的搜索关键词对搜索结果进行排序以及高亮关键字。这里使用的是<code>django-haystack</code>实现这些特性。</p>
+<p>django-haystack 是一个专门提供搜索功能的 django 第三方应用，它支持 Solr、Elasticsearch、Whoosh、Xapian 等多种搜索引擎，配合著名的中文自然语言处理库<code>jieba</code>分词，就可以为我们的博客提供一个效果不错的博客文章搜索系统。</p>
+<p><strong>首先，安装依赖包：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install whoosh django-haystack jieba</span><br></pre></td></tr></table></figure>
+
+<p>注意：不要同时安装<code>haystack</code>和<code>django-haystack</code>，会冲突的！！</p>
+<p><strong>配置setting</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.auth&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.contenttypes&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.sessions&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.messages&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.staticfiles&#x27;</span>,</span><br><span class="line">    <span class="comment"># 这里要写哦～</span></span><br><span class="line">    <span class="string">&#x27;haystack&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;Post&quot;</span>,</span><br><span class="line">    <span class="string">&quot;comment&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HAYSTACK_CONNECTIONS = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">        <span class="comment"># 指定了 django haystack 使用的搜索引擎，这里我们使用了 blog.whoosh_cn_backend.WhooshEngine，虽然目前这个引擎还不存在，但我们接下来会创建它。</span></span><br><span class="line">        <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;Post.whoosh_cn_backend.WhooshEngine&#x27;</span>,</span><br><span class="line">        <span class="comment"># PATH 指定了索引文件需要存放的位置，我们设置为项目根目录 BASE_DIR 下的 whoosh_index 文件夹（在建立索引是会自动创建）</span></span><br><span class="line">        <span class="string">&#x27;PATH&#x27;</span>: os.path.join(BASE_DIR, <span class="string">&#x27;whoosh_index&#x27;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 指定如何对搜索结果分页，这里设置为每 10 项结果为一页。</span></span><br><span class="line">HAYSTACK_SEARCH_RESULTS_PER_PAGE = <span class="number">10</span></span><br><span class="line"><span class="comment"># 指定什么时候更新索引，这里我们使用 haystack.signals.RealtimeSignalProcessor，作用是每当有文章更新时就更新索引。由于博客文章更新不会太频繁，因此实时更新没有问题。</span></span><br><span class="line">HAYSTACK_SIGNAL_PROCESSOR = <span class="string">&#x27;haystack.signals.RealtimeSignalProcessor&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>处理数据</strong></p>
+<p>接下来就要告诉 django haystack 使用那些数据建立索引以及如何存放索引。如果要对<code>Post</code>应用下的数据进行全文检索，做法是在<code>Post</code>应用下建立一个<code>search_indexes.py</code>文件，写上如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> haystack <span class="keyword">import</span> indexes</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Post</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PostIndex</span>(<span class="params">indexes.SearchIndex, indexes.Indexable</span>):</span></span><br><span class="line">    text = indexes.CharField(document=<span class="literal">True</span>, use_template=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_model</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> Post</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">index_queryset</span>(<span class="params">self, using=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.get_model().objects.<span class="built_in">all</span>()</span><br></pre></td></tr></table></figure>
+
+<p>路径：<br><img src="https://img-blog.csdnimg.cn/20181219120855412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>这是 django haystack 的规定。要相对某个 app 下的数据进行全文检索，就要在该 app 下创建一个 search_indexes.py 文件，然后创建一个 XXIndex 类（XX 为含有被检索数据的模型，如这里的 Post），并且继承 SearchIndex 和 Indexable。</p>
+<p>每个索引里面必须有且只能有一个字段为<code>document=True</code>，这代表 django haystack 和搜索引擎将使用此字段的内容作为索引进行检索(primary field)。注意，如果使用一个字段设置了<code>document=True</code>，则一般约定此字段名为<code>text</code>，这是在 SearchIndex 类里面一贯的命名，以防止后台混乱，当然名字你也可以随便改，不过不建议改。</p>
+<p>并且，haystack提供了<code>use_template=True</code>在text字段中这样就允许我们使用数据模板去建立搜索引擎索引的文件，说得通俗点就是索引里面需要存放一些什么东西，例如Post的title字段，这样我们可以通过 title 内容来检索 Post 数据了。举个例子，假如你搜索 Python ，那么就可以检索出title中含有 Python 的Post了，怎么样是不是很简单？数据模板的路径为 <code>templates/search/indexes/youapp/\&lt;model_name&gt;_text.txt</code>（例如 templates/search/indexes/blog/post_text.txt, model_name必须是小写的哦！)，其内容为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; <span class="built_in">object</span>.title &#125;&#125;</span><br><span class="line">&#123;&#123; <span class="built_in">object</span>.body &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>路径：<br><img src="https://img-blog.csdnimg.cn/2018121912092277.png" alt="在这里插入图片描述"></p>
+<p><strong>配置 URL</strong><br>在项目的<code>urls.py</code>中添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = [</span><br><span class="line">    re_path(<span class="string">&#x27;admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">    <span class="comment"># 在这里</span></span><br><span class="line">    re_path(<span class="string">r&#x27;^search/&#x27;</span>, include(<span class="string">&#x27;haystack.urls&#x27;</span>)),</span><br><span class="line">    re_path(<span class="string">r&#x27;&#x27;</span>, include(<span class="string">&#x27;Post.urls&#x27;</span>, namespace=<span class="string">&quot;Post&quot;</span>)),</span><br><span class="line">    re_path(<span class="string">r&#x27;&#x27;</span>, include(<span class="string">&#x27;comment.urls&#x27;</span>, namespace=<span class="string">&quot;comment&quot;</span>)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改搜索表单</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;input-group&quot;</span> <span class="attr">action</span>=<span class="string">&quot;&#123;% url &#x27;haystack_search&#x27; %&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;search&quot;</span> <span class="attr">name</span>=<span class="string">&quot;q&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;search&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;input-group-btn&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-default&quot;</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>Go!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：input的name属性的值一定要是<code>q</code></p>
+<p><strong>创建搜索结果页面</strong><br><code>haystack_search</code>视图函数会将搜索结果传递给模板<code>search/search.html</code>，因此创建这个模板文件，对搜索结果进行渲染：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if query %&#125;</span><br><span class="line">    &#123;% for result in page.object_list %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">article</span> <span class="attr">id</span>=<span class="string">&quot;post-77&quot;</span></span></span><br><span class="line"><span class="tag">                 <span class="attr">class</span>=<span class="string">&quot;clearfix post post-77 blog type-blog status-publish has-post-thumbnail hentry&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">&quot;entry-title&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;Post:detail&#x27; result.object.id %&#125;&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;bookmark&quot;</span>&gt;</span></span><br><span class="line">                    &#123;% highlight result.object.title with query %&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;entry-meta&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;glyphicon glyphicon-time&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">time</span> <span class="attr">class</span>=<span class="string">&quot;meta-date&quot;</span> <span class="attr">itemprop</span>=<span class="string">&quot;datePublished&quot;</span></span></span><br><span class="line"><span class="tag">                      <span class="attr">datetime</span>=<span class="string">&quot;&#123;&#123; result.object.modified_time &#125;&#125;&quot;</span>&gt;</span> &#123;&#123; result.object.modified_time &#125;&#125;<span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;glyphicon glyphicon-tags&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;post-cate&quot;</span>&gt;</span>&#123;&#123; result.object.category.name &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;entry-content&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;% highlight result.object.body with query %&#125;<span class="symbol">&amp;hellip;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;etry-more&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;Post:detail&#x27; result.object.id %&#125;&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;bookmark&quot;</span>&gt;</span>Read More<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    &#123;% empty %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;no-post&quot;</span>&gt;</span>没有搜索到你想要的结果！<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>路径：<br><img src="https://img-blog.csdnimg.cn/20181219121428191.png" alt="在这里插入图片描述"></p>
+<p>这个模板基本和<code>Post/list.html</code>一样，只是由于haystack对搜索结果做了分页，传给模板的变量是一个<code>page</code>对象，所以我们从<code>page</code>中取出这一页对应的搜索结果，然后对其循环显示，即<code>&#123;% for result in page.object_list %&#125;</code>。另外要取得Post（文章）以显示文章的数据如标题、正文，需要从<code>result</code>的<code>object</code>属性中获取.<code>query</code>变量的值即为用户搜索的关键词。</p>
+<p><strong>高亮关键词</strong><br>在django haystack中实现这个效果也非常简单，只需要使用<code>&#123;% highlight %&#125;</code>模板标签即可,上面的示例已经有了高亮。高亮处理的原理其实就是给文本中的关键字包上一个<code>span</code>标签并且为其添加<code>highlighted</code>样式,因此你可以自己设置高亮的颜色哦：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    <span class="selector-tag">span</span><span class="selector-class">.highlighted</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: red;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改搜索引擎为中文分词</strong><br>我们使用 Whoosh 作为搜索引擎，但在 django haystack 中为 Whoosh 指定的分词器是英文分词器，可能会使得搜索结果不理想，我们把这个分词器替换成 jieba 中文分词器。从你安装的 haystack 中把<code>haystack/backends/whoosh_backends.py</code>文件拷贝到<code>Post/</code>下，重命名为<code>whoosh_cn_backends.py</code>（之前我们在 <code>settings.py</code>中的<code>HAYSTACK_CONNECTIONS</code> 指定的就是这个文件），然后找到如下一行代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schema_fields[field_class.index_fieldname] = TEXT(stored=<span class="literal">True</span>, analyzer=StemmingAnalyzer(), field_boost=field_class.boost, sortable=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>将其中的<code>analyzer</code>改为<code>ChineseAnalyzer</code>，当然为了使用它，你需要在文件顶部引入：<code>from jieba.analyse import ChineseAnalyzer</code>。<br>改成这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注意先找到这个再修改，而不是直接添加  </span></span><br><span class="line">schema_fields[field_class.index_fieldname] = TEXT(stored=<span class="literal">True</span>, analyzer=ChineseAnalyzer(),field_boost=field_class.boost, sortable=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>建立索引文件</strong><br>最后一步就是建立索引文件了，运行命令<code>python manage.py rebuild_index</code>就可以建立索引文件了。<br>最后就可以看到效果啦<br><img src="https://img-blog.csdnimg.cn/20181219122427497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/12/18/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%BA%8C)/" data-id="ckpqq959b000pykjd4khf05xe" data-title="django项目开发实战——博客(二)" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-celery学习笔记（一）——celery快速入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/11/07/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="article-date">
+  <time class="dt-published" datetime="2018-11-07T03:54:58.000Z" itemprop="datePublished">2018-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/11/07/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">celery学习笔记（一）——celery快速入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p><strong>参考文档：</strong></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/forward-wang/p/5970806.html">https://www.cnblogs.com/forward-wang/p/5970806.html</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/shizhengwen/p/6911043.html">http://www.cnblogs.com/shizhengwen/p/6911043.html</a></p>
+</li>
+</ul>
+<p><strong>环境：</strong></p>
+<ul>
+<li><p>python： 3.7</p>
+</li>
+<li><p>celery： 4.2.1</p>
+</li>
+</ul>
+<h2 id="什么是生产者与消费者模式"><a href="#什么是生产者与消费者模式" class="headerlink" title="什么是生产者与消费者模式"></a>什么是生产者与消费者模式</h2><p>在实际的软件开发过程中，经常会碰到如下场景：某个模块负责产生数据，这些数据由另一个模块来负责处理（此处的模块是广义的，可以是类、函数、线程、进程等）。产生数据的模块，就形象地称为生产者；而处理数据的模块，就称为消费者。</p>
+<p>生产者消费者模式是通过一个容器来解决生产者和消费者的强耦合问题。生产者和消费者彼此之间不直接通讯，而通过消息队列（缓冲区）来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给消息队列，消费者不找生产者要数据，而是直接从消息队列里取，消息队列就相当于一个缓冲区，平衡了生产者和消费者的处理能力。这个消息队列就是用来给生产者和消费者解耦的。</p>
+<p>如图所示：</p>
+<p><img src="http://static.zybuluo.com/chuxiaoyi/zxy45sv0m24dmt85rkhdyubt/image_1crk5j4k71nth1hg015vnko8jdd9.png" alt="image_1crk5j4k71nth1hg015vnko8jdd9.png-9.9kB"></p>
+<p>通过这样的模式，可以解决并发的问题，而celery就有效的利用这样一个模式的框架。</p>
+<h2 id="什么是celery"><a href="#什么是celery" class="headerlink" title="什么是celery"></a>什么是celery</h2><p>Celery 是一个基于python开发的分布式异步消息任务队列，通过它可以轻松的实现任务的异步处理。</p>
+<p>任务队列的输入是称为任务的工作单元，专用工作进程不断监视任务队列以执行新工作。</p>
+<p>celery通过消息进行通信，通常使用broker（消息队列）将客户端与worker解藕。客户端向broker中添加消息，然后broker将消息传递给worker。</p>
+<p>celery可以有多个worker和broker，这实现了高可用和水平扩展。</p>
+<p>如图所示：</p>
+<p><img src="http://static.zybuluo.com/chuxiaoyi/mbrw4uzxh97cv8tllr5awxt6/image_1crk6ab8k6b0mmsvvh1u4cve7m.png" alt="image_1crk6ab8k6b0mmsvvh1u4cve7m.png-15.1kB"></p>
+<p><strong>celery的架构主要由三部分组成：</strong></p>
+<ul>
+<li><p>消息队列（消息中间件）：celery本身无法接收或发送消息，这个时候就需要一个中间人帮celery来完成。这个中间人就是消息中间件，也就是上面说的broker。broker包括：<a target="_blank" rel="noopener" href="http://www.rabbitmq.com/documentation.html">RabbitMQ</a>,<a target="_blank" rel="noopener" href="http://www.redis.net.cn/tutorial/3501.html">Redis</a>,<a target="_blank" rel="noopener" href="https://www.mongodb.com/">MongoDB</a>等</p>
+</li>
+<li><p>worker：执行任务的基本单元。一个celery可以有多个worker。worker运行在分布式的各个系统中。</p>
+</li>
+<li><p>backend：用来存储任务的执行结果。celery支持很多种存储结构的方法：Redis，MongoDB，Django ORM，AMQP等</p>
+</li>
+</ul>
+<p>如图所示：</p>
+<p><img src="http://static.zybuluo.com/chuxiaoyi/togusggtlnyqudkyc1a9304l/image_1crk8hjg01a0ibd9mra5a1tel13.png" alt="image_1crk8hjg01a0ibd9mra5a1tel13.png-30.6kB"></p>
+<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><p>celery的架构分为三部分：broker，worker，backend</p>
+<p>那么首先，需要选择一个适合我们的broker。这里会介绍rabbitMQ和redis作为broker的用法</p>
+<ul>
+<li><p>rabbitMQ</p>
+<ul>
+<li><p>安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install rabbitmq</span><br></pre></td></tr></table></figure>
+
+<p>安装后的地址在：<code>/usr/local/Cellar/</code></p>
+<p>将<code>/usr/local/Cellar/rabbitmq/3.7.8/sbin</code>添加到<code>.bash_profile</code>中，便于使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/Cellar/rabbitmq/3.7.8/sbin</span><br></pre></td></tr></table></figure></li>
+<li><p>启动与停止</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rabbitmq-server</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://static.zybuluo.com/chuxiaoyi/lmj4ijmlbm4tjmher44ili1n/image_1crkbmffqatp134q14hj1qkn11c7m.png" alt="image_1crkbmffqatp134q14hj1qkn11c7m.png-31.6kB"></p>
+<p>注意，rabbimq停止的时候不要用kill命令，要用下面这个：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rabbitmqctl stop</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>redis</p>
+<ul>
+<li><p>安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -U &quot;celery[redis]&quot;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://download.redis.io/releases/">redis安装包戳这里</a></p>
+</li>
+<li><p>启动与停止</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://static.zybuluo.com/chuxiaoyi/8xgdv7f84vusoloaek576a4l/image_1crm0m6qe1jvuc5jnkgldk9as9.png" alt="image_1crm0m6qe1jvuc5jnkgldk9as9.png-58kB"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli shutdown</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>下面，我们来安装celery</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install celery</span><br></pre></td></tr></table></figure>
+
+<p>实现一个celery架构的第一步，就是需要一个celery实例。通常这个实例叫app，并且这个实例将作为一切你想在celery中做的事的入口。所以，必须保证app所在的module可以让任意一个文件导入。</p>
+<p>这里我们做一个简单的示例，把所有东西都写在一个module（<a target="_blank" rel="noopener" href="http://tasks.py/">tasks.py</a>）中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"></span><br><span class="line">app = Celery(<span class="string">&#x27;tasks&#x27;</span>, broker=<span class="string">&#x27;pyamqp://guest@localhost//&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x + y</span><br></pre></td></tr></table></figure>
+
+<p>Celery的第一个参数“tasks”是当前module的名称。只有当“<strong>name</strong> == ‘<strong>main</strong>’”的时候才能自动生成名称</p>
+<p>第二个参数“broker”，指定了使用的消息中间件的url，这里使用的是rabbitmq</p>
+<p>使用“@app.task”装饰的“add”，将作为任务放到任务队列中</p>
+<p>运行一下，看看效果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A tasks worker --loglevel=info</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://static.zybuluo.com/chuxiaoyi/jsxht7u3za82i3itbsd6zp3h/image_1crm304c81kuj70mjtrr0k1vk62m.png" alt="image_1crm304c81kuj70mjtrr0k1vk62m.png-71.7kB"></p>
+<p>celery启动后，我们需要向celery中添加任务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from tasks import add</span><br><span class="line">&gt;&gt;&gt; add.delay(1, 1)</span><br><span class="line">&lt;AsyncResult: f17075c0-f36d-44e9-87a0-df7a24d66438&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>delay()</code>是<code>apply_async()</code>的一种快捷使用方式，用来更好的控制任务的执行</p>
+<p>控制台打印了如下信息：</p>
+<p><img src="http://static.zybuluo.com/chuxiaoyi/2wu91socwh0hmjn2zbczk0g0/image_1crm3ihba5v46cnjrkaag1dhr4j.png" alt="image_1crm3ihba5v46cnjrkaag1dhr4j.png-17.4kB"></p>
+<p>我们可以看到，add任务已经被worker处理。</p>
+<p>调用一个任务，将返回一个AsyncResult实例。这个实例可以用来检查任务的状态，从而等待任务完成并获取其返回值</p>
+<p>这里我们没有设置backend，所以在通过AsyncResult实例检查任务状态时，会报错<code>AttributeError: &#39;DisabledBackend&#39; object has no attribute &#39;_get_task_meta_for&#39;</code></p>
+<p>上面提到的会报错，原因是没有一个backend可以用来存储任务的状态及结果，因此，我们在上面的tasks.py中，添加backend参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"></span><br><span class="line">app = Celery(<span class="string">&#x27;tasks&#x27;</span>, broker=<span class="string">&#x27;pyamqp://guest@localhost//&#x27;</span>, backend=<span class="string">&#x27;redis://localhost&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">x, y</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x + y</span><br></pre></td></tr></table></figure>
+
+<p>重新启动celery，再次调用任务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from tasks import add</span><br><span class="line">&gt;&gt;&gt; result = add.delay(1, 1)</span><br></pre></td></tr></table></figure>
+
+<p>这时我们会发现控制台打印了和上面一样的内容</p>
+<p>同时，我们通过result（这是一个AsyncResult实例）检查任务的状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; result.ready()</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+<p>结果为True，证明已经执行结束，此时，我们查看结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; result.get()</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; result.result</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>这里我们用了两个方式去获取结果，他们的区别在于<code>get()</code>在获取到结果的时候，同时释放了资源，而<code>result</code>却没有。backend在存储和传输结果的时候，会占用资源，因此推荐使用<code>get()</code>。</p>
+<p>我们的backend使用了redis来存储，那么我们去redis中看一看结果</p>
+<p><img src="http://static.zybuluo.com/chuxiaoyi/ie0e8qfr716s75tpwx45qjnc/image_1crm4ercmsnj1of553jucf18bv50.png" alt="image_1crm4ercmsnj1of553jucf18bv50.png-35.5kB"></p>
+<p>这样一个celery的简单入门就结束啦～～～</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/11/07/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" data-id="ckpqq9592000aykjd2dk70v3s" data-title="celery学习笔记（一）——celery快速入门" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Django使用MySQL后端日期不能按月过滤的问题及解决方案" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/30/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time class="dt-published" datetime="2018-09-30T13:37:34.000Z" itemprop="datePublished">2018-09-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/09/30/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">Django使用MySQL后端日期不能按月过滤的问题及解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>参考文档：<br><a target="_blank" rel="noopener" href="https://chowyi.com/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">https://chowyi.com/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</a></p>
+<p>在终端中，输入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/09/30/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="ckpqq958r0000ykjd7w92fjwj" data-title="Django使用MySQL后端日期不能按月过滤的问题及解决方案" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/" rel="tag">django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-计算字符串相似度的一些方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/30/%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2018-09-30T04:10:11.000Z" itemprop="datePublished">2018-09-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/09/30/%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/">计算字符串相似度的一些方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>产品出了一个奇怪的需求，想通过字符串相似度取匹配城市= =（当然，最后证实通过字符串相似度取判断两个字符串是不是一个城市是不对的！！！）</p>
+<p>这里就记录一下我计算字符串(英文字符串)相似度的方法吧～</p>
+<p>参考文档：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/06370a33e1ee">python_levenshtein 的安装和使用</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zz_dd_yy/article/details/51926305">相似度算法之余弦相似度</a></li>
+</ul>
+<h3 id="Levenshtein"><a href="#Levenshtein" class="headerlink" title="Levenshtein"></a><strong>Levenshtein</strong></h3><ul>
+<li><p>Levenshtein.hamming(str1, str2)</p>
+<p>计算汉明距离。要求str1和str2必须长度一致。是描述两个等长字串之间对应位置上不同字符的个数。</p>
+<p>用法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; import Levenshtein</span>     </span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Levenshtein.hamming(<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;cba&#x27;</span>)</span></span><br><span class="line">2</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Levenshtein.hamming(<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;def&#x27;</span>)</span></span><br><span class="line">3</span><br></pre></td></tr></table></figure></li>
+<li><p>Levenshtein.distance(str1, str2)</p>
+<p>计算编辑距离（也成Levenshtein距离）。是描述由一个字串转化成另一个字串最少的操作次数，在其中的操作包括插入、删除、替换。</p>
+<p>用法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Levenshtein.distance(<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;ab&#x27;</span>)</span></span><br><span class="line">1</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Levenshtein.distance(<span class="string">&#x27;cxy&#x27;</span>, <span class="string">&#x27;ab&#x27;</span>)</span></span><br><span class="line">3</span><br></pre></td></tr></table></figure></li>
+<li><p>Levenshtein.ratio(str1, str2)</p>
+<p>计算莱文斯坦比。计算公式 r = (sum - ldist) / sum, 其中sum是指str1 和 str2 字串的长度总和，ldist是类编辑距离</p>
+<p>注意：这里的类编辑距离不是<code>Levenshtein.distance(str1, str2)</code>所说的编辑距离，<code>Levenshtein.distance(str1, str2)</code>中三种操作中每个操作+1，而在此处，删除、插入依然+1，但是替换+2<br>这样设计的目的：ratio(‘a’, ‘c’)，sum=2,按2中计算为（2-1）/2 = 0.5,’a’,’c’没有重合，显然不合算，但是替换操作+2，就可以解决这个问题。</p>
+<p>用法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; Levenshtein.ratio(<span class="string">&#x27;a,cdsf&#x27;</span>, <span class="string">&#x27;abcd&#x27;</span>)</span>		      </span><br><span class="line">0.6</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="difflib"><a href="#difflib" class="headerlink" title="difflib"></a><strong>difflib</strong></h3><p>我主要用的是<code>SequenceMatcher</code>， 因此，本次只介绍<code>SequenceMatcher</code>.</p>
+<p><code>SequenceMatcher</code>是可以对两个可序列化的对象进行比较的类</p>
+<p>官网上的用法是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; s = SequenceMatcher(lambda x: x == <span class="string">&quot; &quot;</span>,</span></span><br><span class="line">   ...                     &quot;private Thread currentThread;&quot;,</span><br><span class="line">   ...                     &quot;private volatile Thread currentThread;&quot;)</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(round(s.ratio(), 3))</span></span><br><span class="line">   0.866</span><br></pre></td></tr></table></figure>
+
+<p>第一个参数为一个函数，主要用来去掉自己不想算在内的元素；如果没有，可以写<code>None</code><br>后面两个参数就是需要比较的两个对象了</p>
+<h3 id="余弦定理"><a href="#余弦定理" class="headerlink" title="余弦定理"></a><strong>余弦定理</strong></h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zz_dd_yy/article/details/51926305">相似度算法之余弦相似度</a></p>
+<p>通过阅读上面的文章，我们可以简单总结计算相似度的几个步骤：</p>
+<ol>
+<li><p>列出所有出现的字母，并分别统计两个字符串出现这些字母的次数。这里我是这样写的，利用<code>from collections import Counter, OrderedDict</code></p>
+<p> 方法：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; from collections import Counter, OrderedDict</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; from copy import deepcopy</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; a = <span class="string">&#x27;abc&#x27;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; b = <span class="string">&#x27;bcde&#x27;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; item = <span class="built_in">set</span>(a) | <span class="built_in">set</span>(b)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; item</span></span><br><span class="line">&#123;&#x27;b&#x27;, &#x27;c&#x27;, &#x27;e&#x27;, &#x27;d&#x27;, &#x27;a&#x27;&#125;</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; model = OrderedDict().fromkeys(item)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; model</span></span><br><span class="line">OrderedDict([(&#x27;b&#x27;, None), (&#x27;c&#x27;, None), (&#x27;e&#x27;, None), (&#x27;d&#x27;, None), (&#x27;a&#x27;, None)])</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; model1 = deepcopy(model)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; model2 = deepcopy(model)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; model1.update(Counter(a))</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; model1</span></span><br><span class="line">OrderedDict([(&#x27;b&#x27;, 1), (&#x27;c&#x27;, 1), (&#x27;e&#x27;, None), (&#x27;d&#x27;, None), (&#x27;a&#x27;, 1)])</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; model2.update(Counter(b))</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; model2</span></span><br><span class="line">OrderedDict([(&#x27;b&#x27;, 1), (&#x27;c&#x27;, 1), (&#x27;e&#x27;, 1), (&#x27;d&#x27;, 1), (&#x27;a&#x27;, None)])</span><br></pre></td></tr></table></figure>
+
+<p> 这样写的原因是，在比较词频的时候，要保证每个字母的顺序是一样的～</p>
+</li>
+<li><p>利用余弦公式计算相似度</p>
+<p> 方法：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; import math</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; sum = 0	<span class="comment">#分子</span></span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; q1 = 0	<span class="comment">#分母</span></span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; q2 = 0	<span class="comment">#分母</span></span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> item:</span></span><br><span class="line">a = model1[i] if type(model1[i]) != type(None) else 0</span><br><span class="line">b = model2[i] if type(model2[i]) != type(None) else 0</span><br><span class="line">sum += a * b</span><br><span class="line">q1 += pow(a, 2)</span><br><span class="line">q2 += pow(b, 2)</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; sum</span></span><br><span class="line">   2</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; q1</span></span><br><span class="line">   3</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; q2</span></span><br><span class="line">   4</span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; result = <span class="built_in">float</span>(sum) / (math.sqrt(q1) * math.sqrt(q2))</span></span><br><span class="line"><span class="meta">   &gt;</span><span class="bash">&gt;&gt; result</span></span><br><span class="line">   0.5773502691896258</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>这样就算出相似度啦～</p>
+<p>ps：本文说的计算的字符串，全是英文字符串～～</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/09/30/%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/" data-id="ckpqq95aj002tykjdc69q1ueq" data-title="计算字符串相似度的一些方法" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-py3.7标准库-collections-OrderedDict" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/14/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-OrderedDict/" class="article-date">
+  <time class="dt-published" datetime="2018-09-14T16:19:05.000Z" itemprop="datePublished">2018-09-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/09/14/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-OrderedDict/">py3.7标准库-collections-OrderedDict</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h2 id="OrderedDict"><a href="#OrderedDict" class="headerlink" title="OrderedDict"></a><strong>OrderedDict</strong></h2><p>OrderedDict和Dict一样，但是它记住了item插入到字典的顺序。当对有序字典进行迭代时，item会按照第一次插入到字典的顺序返回。</p>
+<p>实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">collections</span>.<span class="title">OrderedDict</span>(<span class="params">[items]</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>OrderedDict是dict的子类，支持dict的方法。OrderedDict是一个能记住插入key的顺序的dict。如果有新的item覆盖现有item时，位置不变。但如果是删除该item，再次插入后，将会移到最后。</p>
+<ul>
+<li><p><strong>popitem(last=True)</strong></p>
+<p>该方法返回key-value键值对，并删除该键值对。当<code>last</code>为<code>True</code>时，是按照LIFO(后进先出)的顺序弹出；如果<code>last</code>为<code>False</code>，是按照FIFO(先进先出)的顺序弹出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from collections import OrderedDict</span><br><span class="line">&gt;&gt;&gt; od = OrderedDict(a=1, b=2)</span><br><span class="line">&gt;&gt;&gt; od</span><br><span class="line">OrderedDict([(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2)])</span><br><span class="line">&gt;&gt;&gt; od.popitem(last=True)</span><br><span class="line">(&#x27;b&#x27;, 2)</span><br><span class="line">&gt;&gt;&gt; od = OrderedDict(a=1, b=2)</span><br><span class="line">&gt;&gt;&gt; od</span><br><span class="line">OrderedDict([(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2)])</span><br><span class="line">&gt;&gt;&gt; od.popitem(last=False)</span><br><span class="line">(&#x27;a&#x27;, 1)</span><br><span class="line">&gt;&gt;&gt; od</span><br><span class="line">OrderedDict([(&#x27;b&#x27;, 2)])</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>move_to_end(key, last=True)</strong></p>
+<p>将现有键移动到有序字典的任一端。 如果<code>last</code>为<code>True</code>（默认值），则将item移动到右端;如果<code>last</code>为<code>False</code>，则将item移动到开头。 如果key不存在，则引发<code>KeyError</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; d = OrderedDict.fromkeys(&#x27;abcde&#x27;)</span><br><span class="line">&gt;&gt;&gt; d</span><br><span class="line">OrderedDict([(&#x27;a&#x27;, None), (&#x27;b&#x27;, None), (&#x27;c&#x27;, None), (&#x27;d&#x27;, None), (&#x27;e&#x27;, None)])</span><br><span class="line">&gt;&gt;&gt; d.move_to_end(&#x27;b&#x27;)</span><br><span class="line">&gt;&gt;&gt; d</span><br><span class="line">OrderedDict([(&#x27;a&#x27;, None), (&#x27;c&#x27;, None), (&#x27;d&#x27;, None), (&#x27;e&#x27;, None), (&#x27;b&#x27;, None)])</span><br><span class="line">&gt;&gt;&gt; d.move_to_end(&#x27;b&#x27;, last=False)</span><br><span class="line">&gt;&gt;&gt; d</span><br><span class="line">OrderedDict([(&#x27;b&#x27;, None), (&#x27;a&#x27;, None), (&#x27;c&#x27;, None), (&#x27;d&#x27;, None), (&#x27;e&#x27;, None)])</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>除了常用方法外，OrderedDict还支持<code>reversed()</code>来反转</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">reversed</span>(d)</span><br><span class="line">&lt;odict_iterator <span class="built_in">object</span> at <span class="number">0x10f813888</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(d):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">e</span><br><span class="line">d</span><br><span class="line">c</span><br><span class="line">a</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
+
+<p>由于OrderedDict会记住插入的顺序，因此它可以结合排序一起使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;<span class="string">&#x27;banana&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;apple&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;pear&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;orange&#x27;</span>: <span class="number">2</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t = [<span class="number">1</span>, -<span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>OrderedDict(<span class="built_in">sorted</span>(d.items(), key=<span class="keyword">lambda</span> t: t[<span class="number">0</span>]))</span><br><span class="line">OrderedDict([(<span class="string">&#x27;apple&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;banana&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;orange&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;pear&#x27;</span>, <span class="number">1</span>)])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>OrderedDict(<span class="built_in">sorted</span>(d.items(), key=<span class="keyword">lambda</span> t: t[<span class="number">1</span>]))</span><br><span class="line">OrderedDict([(<span class="string">&#x27;pear&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;orange&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;banana&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;apple&#x27;</span>, <span class="number">4</span>)])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>OrderedDict(<span class="built_in">sorted</span>(d.items(), key=<span class="keyword">lambda</span> t: <span class="built_in">len</span>(t[<span class="number">0</span>])))</span><br><span class="line">OrderedDict([(<span class="string">&#x27;pear&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;apple&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;banana&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;orange&#x27;</span>, <span class="number">2</span>)])</span><br></pre></td></tr></table></figure>
+
+<p>当删除排序后的OrderedDict的item时，顺序不会变；但如果是插入新的item到OrderedDict中，item会直接加在最后，并不会根据排序插入。</p>
+<p>如果想自定义一个OrderedDict，当出现key值相同的item想插入时，希望可以插入，而不是覆盖，可以这样写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LastUpdatedOrderedDict</span>(<span class="params">OrderedDict</span>):</span></span><br><span class="line">    <span class="string">&#x27;Store items in the order the keys were last added&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span>(<span class="params">self, key, value</span>):</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self:</span><br><span class="line">            <span class="keyword">del</span> self[key]</span><br><span class="line">        OrderedDict.__setitem__(self, key, value)</span><br></pre></td></tr></table></figure>
+
+<p>我们也可以同时继承<code>Counter</code>和<code>OrderedDict</code>。通过这个多继承，可以实现一个根据第一次遇到的不同元素的顺序来对元素进行计数。可能这样说起来有些绕嘴也很糊涂，还是上代码吧：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> ChainMap, Counter, OrderedDict</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrderedCounter</span>(<span class="params">Counter, OrderedDict</span>):</span></span><br><span class="line">    <span class="string">&#x27;Counter that remembers the order elements are first encountered&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;%s(%r)&#x27;</span> % (self.__class__.__name__, OrderedDict(self))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__reduce__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.__class__, (OrderedDict(self),)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    oc = OrderedCounter(<span class="string">&#x27;adddddbracadabra&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(oc)</span><br><span class="line"></span><br><span class="line">OrderedCounter(OrderedDict([(<span class="string">&#x27;a&#x27;</span>, <span class="number">5</span>), (<span class="string">&#x27;d&#x27;</span>, <span class="number">6</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;r&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;c&#x27;</span>, <span class="number">1</span>)]))</span><br></pre></td></tr></table></figure>
+
+<p>原理是这样的：</p>
+<p>调用类方法时，Python必须找到要执行的正确方法。有一个定义了搜索类顺序的一个排序，称为方法解析顺序或<code>mro</code>。<code>mro</code>可以通过<code>__mro__</code>查看：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(OrderedCounter.__mro__)</span><br><span class="line"></span><br><span class="line">(&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">__main__</span>.<span class="title">OrderedCounter</span>&#x27;&gt;, &lt;<span class="title">class</span> &#x27;<span class="title">collections</span>.<span class="title">Counter</span>&#x27;&gt;, &lt;<span class="title">class</span> &#x27;<span class="title">collections</span>.<span class="title">OrderedDict</span>&#x27;&gt;, &lt;<span class="title">class</span> &#x27;<span class="title">dict</span>&#x27;&gt;, &lt;<span class="title">class</span> &#x27;<span class="title">object</span>&#x27;&gt;)</span></span><br></pre></td></tr></table></figure>
+
+<p>当OrderedDict的实例调用<code>__setitem __()</code>时，它按顺序搜索类：<code>OrderedCounter</code>，<code>Counter</code>，<code>OrderedDict</code>(在这个类找到了调用的方法)。 所以像<code>oc[&#39;a&#39;] = 0</code>这样的语句最终会调用<code>OrderedDict.__setitem__()</code>。</p>
+<p>相反，<code>__getitem__</code>不会被<code>mro</code>中的任何子类覆盖，因此<code>count = oc[&#39;a&#39;]</code>由<code>dict.__getitem__()</code>处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oc = OrderedCounter()    </span><br><span class="line">oc[<span class="string">&#x27;a&#x27;</span>] = <span class="number">1</span>             <span class="comment"># this call uses OrderedDict.__setitem__</span></span><br><span class="line">count = oc[<span class="string">&#x27;a&#x27;</span>]         <span class="comment"># this call uses dict.__getitem__</span></span><br></pre></td></tr></table></figure>
+
+<p>对于像<code>oc.update(&#39;foobar&#39;)</code>这样的语句，会发生更有趣的调用序列。首先，调用<code>Counter.update()</code>。<code>Counter.update()</code>的代码使用<code>self[elem] = count + self_get(elem, 0)</code>，然后它变成对<code>OrderedDict.__setitem__()</code>的调用。 并且该代码调用<code>dict.__setitem__()</code>。</p>
+<p>注意:如果基类顺序颠倒，则不再有效。因为mro不同，从而导致调用过程中会调用错误的方法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/09/14/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-OrderedDict/" data-id="ckpqq959y001yykjdekafcbf7" data-title="py3.7标准库-collections-OrderedDict" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; zurück</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

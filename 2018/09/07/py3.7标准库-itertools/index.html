@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>py3.7标准库-itertools | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Python的内建模块itertools提供了非常有用的用于操作迭代对象的函数。 itertools.count(start&#x3D;0, step&#x3D;1)创建一个迭代器，生成从n开始的连续整数，如果忽略n，则从0开始计算（注意：此迭代器不支持长整数) 如果超出了sys.maxint，计数器将溢出并继续从-sys.maxint-1开始计算。 当使用浮点数进行计数时，有时可以通过替换乘法代码来实现更高的准">
+<meta property="og:type" content="article">
+<meta property="og:title" content="py3.7标准库-itertools">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2018/09/07/py3.7%E6%A0%87%E5%87%86%E5%BA%93-itertools/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="Python的内建模块itertools提供了非常有用的用于操作迭代对象的函数。 itertools.count(start&#x3D;0, step&#x3D;1)创建一个迭代器，生成从n开始的连续整数，如果忽略n，则从0开始计算（注意：此迭代器不支持长整数) 如果超出了sys.maxint，计数器将溢出并继续从-sys.maxint-1开始计算。 当使用浮点数进行计数时，有时可以通过替换乘法代码来实现更高的准">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-09-07T08:47:06.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="python python python3.7标准库 python3.7标准库">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-py3.7标准库-itertools" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/07/py3.7%E6%A0%87%E5%87%86%E5%BA%93-itertools/" class="article-date">
+  <time class="dt-published" datetime="2018-09-07T08:47:06.000Z" itemprop="datePublished">2018-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      py3.7标准库-itertools
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>Python的内建模块itertools提供了非常有用的用于操作迭代对象的函数。</p>
+<h3 id="itertools-count-start-0-step-1"><a href="#itertools-count-start-0-step-1" class="headerlink" title="itertools.count(start=0, step=1)"></a><strong>itertools.count(start=0, step=1)</strong></h3><p>创建一个迭代器，生成从n开始的连续整数，如果忽略n，则从0开始计算（注意：此迭代器不支持长整数)</p>
+<p>如果超出了sys.maxint，计数器将溢出并继续从-sys.maxint-1开始计算。</p>
+<p>当使用浮点数进行计数时，有时可以通过替换乘法代码来实现更高的准确率，例如：<code>(start + step * i for i in count())</code></p>
+<p>该方法等价于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count</span>(<span class="params">start=<span class="number">0</span>, step=<span class="number">1</span></span>):</span></span><br><span class="line">    <span class="comment"># count(10) --&gt; 10 11 12 13 14 ...</span></span><br><span class="line">    <span class="comment"># count(2.5, 0.5) -&gt; 2.5 3.0 3.5 ...</span></span><br><span class="line">    n = start</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">yield</span> n</span><br><span class="line">        n += step</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-cycle-iterable"><a href="#itertools-cycle-iterable" class="headerlink" title="itertools.cycle(iterable)"></a><strong>itertools.cycle(iterable)</strong></h3><p>创造一个迭代器，复制从当前迭代器返回的每一个元素并将其保存到创建的迭代器中。当当前迭代器耗尽时，从创造的迭代器循环返回元素。</p>
+<p>简单理解就是，传入一个序列，无限循环下去</p>
+<p>大致相当于:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cycle</span>(<span class="params">iterable</span>):</span></span><br><span class="line">    <span class="comment"># cycle(&#x27;ABCD&#x27;) --&gt; A B C D A B C D A B C D ...</span></span><br><span class="line">    saved = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> iterable:</span><br><span class="line">        <span class="keyword">yield</span> element</span><br><span class="line">        saved.append(element)</span><br><span class="line">    <span class="keyword">while</span> saved:</span><br><span class="line">        <span class="keyword">for</span> element <span class="keyword">in</span> saved:</span><br><span class="line">              <span class="keyword">yield</span> element</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-repeat-object-times"><a href="#itertools-repeat-object-times" class="headerlink" title="itertools.repeat(object[, times])"></a><strong>itertools.repeat(object[, times])</strong></h3><p>让迭代器一次又一次地返回对象。无限运行，除非指定了<code>times</code>参数控制重复次数</p>
+<p>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">repeat</span>(<span class="params"><span class="built_in">object</span>, times=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="comment"># repeat(10, 3) --&gt; 10 10 10</span></span><br><span class="line">    <span class="keyword">if</span> times <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">yield</span> <span class="built_in">object</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(times):</span><br><span class="line">            <span class="keyword">yield</span> <span class="built_in">object</span></span><br></pre></td></tr></table></figure>
+
+<p>repeat的一个常见用法是提供一个用于map或zip的常数流:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; list(map(pow, range(10), repeat(2)))</span><br><span class="line">[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-accumulate-iterable-func"><a href="#itertools-accumulate-iterable-func" class="headerlink" title="itertools.accumulate(iterable[, func])"></a><strong>itertools.accumulate(iterable[, func])</strong></h3><p>创建一个迭代器，它返回计算的累积和，或其他二进制函数的计算结果（这个二进制函数可以通过func参数指定）。如果指定了func参数，必须保证这个参数对应的函数可以接收两个参数。</p>
+<p>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">accumulate</span>(<span class="params">iterable, func=operator.add</span>):</span></span><br><span class="line">    <span class="string">&#x27;Return running totals&#x27;</span></span><br><span class="line">    <span class="comment"># accumulate([1,2,3,4,5]) --&gt; 1 3 6 10 15</span></span><br><span class="line">    <span class="comment"># accumulate([1,2,3,4,5], operator.mul) --&gt; 1 2 6 24 120</span></span><br><span class="line">    it = <span class="built_in">iter</span>(iterable)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        total = <span class="built_in">next</span>(it)</span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">yield</span> total</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> it:</span><br><span class="line">        total = func(total, element)</span><br><span class="line">        <span class="keyword">yield</span> total</span><br></pre></td></tr></table></figure>
+
+<p>如果很难理解，可以这样理解：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于默认func来说，结果就是[p0, p0+p1, p0+p1+p2, …]</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-chain-iterables"><a href="#itertools-chain-iterables" class="headerlink" title="itertools.chain(*iterables)"></a><strong>itertools.chain(*iterables)</strong></h3><p>创建一个迭代器，该迭代器从第一个迭代返回元素，直到它被耗尽，然后继续到下一个迭代，直到所有的迭代都被耗尽。用于将连续序列视为单个序列。<br>大致相当于:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chain</span>(<span class="params">*iterables</span>):</span></span><br><span class="line">    <span class="comment"># chain(&#x27;ABC&#x27;, &#x27;DEF&#x27;) --&gt; A B C D E F</span></span><br><span class="line">    <span class="keyword">for</span> it <span class="keyword">in</span> iterables:</span><br><span class="line">        <span class="keyword">for</span> element <span class="keyword">in</span> it:</span><br><span class="line">            <span class="keyword">yield</span> element</span><br></pre></td></tr></table></figure>
+
+<h3 id="classmethod-chain-from-iterable-iterable"><a href="#classmethod-chain-from-iterable-iterable" class="headerlink" title="classmethod chain.from_iterable(iterable)"></a><strong>classmethod chain.from_iterable(iterable)</strong></h3><p>改变<code>chain()</code>的结构，从一个懒加载的可迭代对象中获取输入值。大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">from_iterable</span>(<span class="params">iterables</span>):</span></span><br><span class="line">    <span class="comment"># chain.from_iterable([&#x27;ABC&#x27;, &#x27;DEF&#x27;]) --&gt; A B C D E F</span></span><br><span class="line">    <span class="keyword">for</span> it <span class="keyword">in</span> iterables:</span><br><span class="line">        <span class="keyword">for</span> element <span class="keyword">in</span> it:</span><br><span class="line">            <span class="keyword">yield</span> element</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-compress-data-selectors"><a href="#itertools-compress-data-selectors" class="headerlink" title="itertools.compress(data, selectors)"></a><strong>itertools.compress(data, selectors)</strong></h3><p>过滤迭代器中的元素，只返回在selectors中计算为<code>True</code>的对应元素。当迭代器或选择器结束后，就停止。<br>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compress</span>(<span class="params">data, selectors</span>):</span></span><br><span class="line">    <span class="comment"># compress(&#x27;ABCDEF&#x27;, [1,0,1,0,1,1]) --&gt; A C E F</span></span><br><span class="line">    <span class="keyword">return</span> (d <span class="keyword">for</span> d, s <span class="keyword">in</span> <span class="built_in">zip</span>(data, selectors) <span class="keyword">if</span> s)</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-dropwhile-predicate-iterable"><a href="#itertools-dropwhile-predicate-iterable" class="headerlink" title="itertools.dropwhile(predicate, iterable)"></a><strong>itertools.dropwhile(predicate, iterable)</strong></h3><p>去除predicate为true的元素，当第一次遇到predicate为false的情况时，直接将其与后面的全都一起返回<br>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dropwhile</span>(<span class="params">predicate, iterable</span>):</span></span><br><span class="line">    <span class="comment"># dropwhile(lambda x: x&lt;5, [1,4,6,4,1]) --&gt; 6 4 1</span></span><br><span class="line">    iterable = <span class="built_in">iter</span>(iterable)</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iterable:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> predicate(x):</span><br><span class="line">            <span class="keyword">yield</span> x</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iterable:</span><br><span class="line">        <span class="keyword">yield</span> x</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-filterfalse-predicate-iterable"><a href="#itertools-filterfalse-predicate-iterable" class="headerlink" title="itertools.filterfalse(predicate, iterable)"></a><strong>itertools.filterfalse(predicate, iterable)</strong></h3><p>从迭代器中过滤出所有使predicate为<code>False</code>的元素，并返回<br>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">filterfalse</span>(<span class="params">predicate, iterable</span>):</span></span><br><span class="line">    <span class="comment"># filterfalse(lambda x: x%2, range(10)) --&gt; 0 2 4 6 8</span></span><br><span class="line">    <span class="keyword">if</span> predicate <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        predicate = <span class="built_in">bool</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iterable:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> predicate(x):</span><br><span class="line">            <span class="keyword">yield</span> x</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-groupby-iterable-key-None"><a href="#itertools-groupby-iterable-key-None" class="headerlink" title="itertools.groupby(iterable, key=None)"></a><strong>itertools.groupby(iterable, key=None)</strong></h3><p>创建一个从迭代中返回连续键和组的迭代器。 关键是计算每个元素的键值的函数。 如果未指定或为None，则键默认为标识函数并返回元素不变。 通常，迭代需要在相同的键函数上排序。</p>
+<p>groupby（）的操作类似于Unix中的uniq过滤器。 每次键函数的值发生变化时，它都会生成一个中断或新组（这就是为什么通常需要使用相同的键函数对数据进行排序）。 这种行为不同于SQL的GROUP BY，它聚合了常见元素而不管它们的输入顺序如何。</p>
+<p>返回的组本身是一个迭代器，它与groupby（）共享底层的iterable。 由于源是共享的，因此当groupby（）对象被迭代时，前一个组被迭代的将不再可见。 因此，如果以后需要该数据，则应将其存储为列表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">groups = []</span><br><span class="line">uniquekeys = []</span><br><span class="line">data = <span class="built_in">sorted</span>(data, key=keyfunc)</span><br><span class="line"><span class="keyword">for</span> k, g <span class="keyword">in</span> groupby(data, keyfunc):</span><br><span class="line">    groups.append(<span class="built_in">list</span>(g))      <span class="comment"># Store group iterator as a list</span></span><br><span class="line">    uniquekeys.append(k)</span><br></pre></td></tr></table></figure>
+
+<p><code>groupby()</code>相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">groupby</span>:</span></span><br><span class="line">    <span class="comment"># [k for k, g in groupby(&#x27;AAAABBBCCDAABBB&#x27;)] --&gt; A B C D A B</span></span><br><span class="line">    <span class="comment"># [list(g) for k, g in groupby(&#x27;AAAABBBCCD&#x27;)] --&gt; AAAA BBB CC D</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, iterable, key=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            key = <span class="keyword">lambda</span> x: x</span><br><span class="line">        self.keyfunc = key</span><br><span class="line">        self.it = <span class="built_in">iter</span>(iterable)</span><br><span class="line">        self.tgtkey = self.currkey = self.currvalue = <span class="built_in">object</span>()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__next__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.<span class="built_in">id</span> = <span class="built_in">object</span>()</span><br><span class="line">        <span class="keyword">while</span> self.currkey == self.tgtkey:</span><br><span class="line">            self.currvalue = <span class="built_in">next</span>(self.it)    <span class="comment"># Exit on StopIteration</span></span><br><span class="line">            self.currkey = self.keyfunc(self.currvalue)</span><br><span class="line">        self.tgtkey = self.currkey</span><br><span class="line">        <span class="keyword">return</span> (self.currkey, self._grouper(self.tgtkey, self.<span class="built_in">id</span>))</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_grouper</span>(<span class="params">self, tgtkey, <span class="built_in">id</span></span>):</span></span><br><span class="line">        <span class="keyword">while</span> self.<span class="built_in">id</span> <span class="keyword">is</span> <span class="built_in">id</span> <span class="keyword">and</span> self.currkey == tgtkey:</span><br><span class="line">            <span class="keyword">yield</span> self.currvalue</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                self.currvalue = <span class="built_in">next</span>(self.it)</span><br><span class="line">            <span class="keyword">except</span> StopIteration:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            self.currkey = self.keyfunc(self.currvalue)</span><br></pre></td></tr></table></figure>
+
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> groupby</span><br><span class="line">qs = [&#123;<span class="string">&#x27;date&#x27;</span> : <span class="number">1</span>&#125;,&#123;<span class="string">&#x27;date&#x27;</span> : <span class="number">2</span>&#125;]</span><br><span class="line">[(name, <span class="built_in">list</span>(group)) <span class="keyword">for</span> name, group <span class="keyword">in</span> itertools.groupby(qs, <span class="keyword">lambda</span> p:p[<span class="string">&#x27;date&#x27;</span>])]</span><br><span class="line"></span><br><span class="line">Out[<span class="number">77</span>]: [(<span class="number">1</span>, [&#123;<span class="string">&#x27;date&#x27;</span>: <span class="number">1</span>&#125;]), (<span class="number">2</span>, [&#123;<span class="string">&#x27;date&#x27;</span>: <span class="number">2</span>&#125;])]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> itertools <span class="keyword">import</span> *</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="string">&#x27;aa&#x27;</span>, <span class="string">&#x27;ab&#x27;</span>, <span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;bcd&#x27;</span>, <span class="string">&#x27;abcde&#x27;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i, k <span class="keyword">in</span> groupby(a, <span class="built_in">len</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span> i, <span class="built_in">list</span>(k)</span><br><span class="line">...</span><br><span class="line"><span class="number">2</span> [<span class="string">&#x27;aa&#x27;</span>, <span class="string">&#x27;ab&#x27;</span>]</span><br><span class="line"><span class="number">3</span> [<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;bcd&#x27;</span>]</span><br><span class="line"><span class="number">5</span> [<span class="string">&#x27;abcde&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-islice-iterable-start-stop-step-和itertools-islice-iterable-stop"><a href="#itertools-islice-iterable-start-stop-step-和itertools-islice-iterable-stop" class="headerlink" title="itertools.islice(iterable, start, stop[, step])和itertools.islice(iterable, stop)"></a><strong>itertools.islice(iterable, start, stop[, step])<strong>和</strong>itertools.islice(iterable, stop)</strong></h3><p>创建一个迭代器，该迭代器从iterable返回选中的元素。如果start是非零的，则跳过可迭代的元素，直到到达start为止。之后，元素会连续返回，除非step设置得比step高，这会导致跳过项。如果stop为None，则继续迭代，直到迭代器耗尽为止;否则，它将在指定位置停止。与常规切片不同，islice（）不支持start，stop或step的负值。可以用于从内部结构已被扁平化的数据中提取相关字段(例如，多行报告可能每隔一行列出一个name字段)。<br>大致相当于:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">islice</span>(<span class="params">iterable, *args</span>):</span></span><br><span class="line">    <span class="comment"># islice(&#x27;ABCDEFG&#x27;, 2) --&gt; A B</span></span><br><span class="line">    <span class="comment"># islice(&#x27;ABCDEFG&#x27;, 2, 4) --&gt; C D</span></span><br><span class="line">    <span class="comment"># islice(&#x27;ABCDEFG&#x27;, 2, None) --&gt; C D E F G</span></span><br><span class="line">    <span class="comment"># islice(&#x27;ABCDEFG&#x27;, 0, None, 2) --&gt; A C E G</span></span><br><span class="line">    s = <span class="built_in">slice</span>(*args)</span><br><span class="line">    start, stop, step = s.start <span class="keyword">or</span> <span class="number">0</span>, s.stop <span class="keyword">or</span> sys.maxsize, s.step <span class="keyword">or</span> <span class="number">1</span></span><br><span class="line">    it = <span class="built_in">iter</span>(<span class="built_in">range</span>(start, stop, step))</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        nexti = <span class="built_in">next</span>(it)</span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line">        <span class="comment"># Consume *iterable* up to the *start* position.</span></span><br><span class="line">        <span class="keyword">for</span> i, element <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="built_in">range</span>(start), iterable):</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">for</span> i, element <span class="keyword">in</span> <span class="built_in">enumerate</span>(iterable):</span><br><span class="line">            <span class="keyword">if</span> i == nexti:</span><br><span class="line">                <span class="keyword">yield</span> element</span><br><span class="line">                nexti = <span class="built_in">next</span>(it)</span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line">        <span class="comment"># Consume to *stop*.</span></span><br><span class="line">        <span class="keyword">for</span> i, element <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="built_in">range</span>(i + <span class="number">1</span>, stop), iterable):</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>如果start为None，那么迭代从0开始。如果step是None，那么step默认为1。</p>
+<h3 id="itertools-starmap-function-iterable"><a href="#itertools-starmap-function-iterable" class="headerlink" title="itertools.starmap(function, iterable)"></a><strong>itertools.starmap(function, iterable)</strong></h3><p>将<code>iterable</code>中的每一项，映射到<code>function</code>中，并执行<code>function</code><br>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">starmap</span>(<span class="params">function, iterable</span>):</span></span><br><span class="line">    <span class="comment"># starmap(pow, [(2,5), (3,2), (10,3)]) --&gt; 32 9 1000</span></span><br><span class="line">    <span class="keyword">for</span> args <span class="keyword">in</span> iterable:</span><br><span class="line">        <span class="keyword">yield</span> function(*args)</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-takewhile-predicate-iterable"><a href="#itertools-takewhile-predicate-iterable" class="headerlink" title="itertools.takewhile(predicate, iterable)"></a><strong>itertools.takewhile(predicate, iterable)</strong></h3><p>只要使<code>predicate</code>为true，就返回。当遇到第一个为<code>False</code>的值就停止。与<a href="#dropwhile"><code>dropwhile</code></a>相反<br>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">takewhile</span>(<span class="params">predicate, iterable</span>):</span></span><br><span class="line">    <span class="comment"># takewhile(lambda x: x&lt;5, [1,4,6,4,1]) --&gt; 1 4</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> iterable:</span><br><span class="line">        <span class="keyword">if</span> predicate(x):</span><br><span class="line">            <span class="keyword">yield</span> x</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-tee-iterable-n-2"><a href="#itertools-tee-iterable-n-2" class="headerlink" title="itertools.tee(iterable, n=2)"></a><strong>itertools.tee(iterable, n=2)</strong></h3><p>从一个可迭代对象中返回n个独立的可迭代对象。</p>
+<p>下面的代码会解释<code>tee</code>做了什么（虽然实际的解释会更复杂一些，并且只是用了一个单独的FIFO先进先出队列）。<br>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tee</span>(<span class="params">iterable, n=<span class="number">2</span></span>):</span></span><br><span class="line">    it = <span class="built_in">iter</span>(iterable)</span><br><span class="line">    deques = [collections.deque() <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gen</span>(<span class="params">mydeque</span>):</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> mydeque:             <span class="comment"># when the local deque is empty</span></span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    newval = <span class="built_in">next</span>(it)   <span class="comment"># fetch a new value and</span></span><br><span class="line">                <span class="keyword">except</span> StopIteration:</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">for</span> d <span class="keyword">in</span> deques:        <span class="comment"># load it to all the deques</span></span><br><span class="line">                    d.append(newval)</span><br><span class="line">            <span class="keyword">yield</span> mydeque.popleft()</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">tuple</span>(gen(d) <span class="keyword">for</span> d <span class="keyword">in</span> deques)</span><br></pre></td></tr></table></figure>
+
+<p>实际这样用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> tee</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(tee([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="number">3</span>))  <span class="comment"># ==&gt;(&lt;itertools._tee object at 0x10cf787c8&gt;, &lt;itertools._tee object at 0x10cf78808&gt;, &lt;itertools._tee object at 0x10cf78848&gt;)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> tee([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="number">3</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">        <span class="built_in">print</span>(i, end=<span class="string">&quot; &quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>()</span><br><span class="line"><span class="comment">#    1 2 3                  </span></span><br><span class="line"><span class="comment">#    1 2 3 </span></span><br><span class="line"><span class="comment">#    1 2 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> a, b, c <span class="keyword">in</span> tee([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="number">3</span>):</span><br><span class="line">    <span class="built_in">print</span>(a, b, c)</span><br><span class="line"><span class="comment">#    1 2 3                  </span></span><br><span class="line"><span class="comment">#    1 2 3 </span></span><br><span class="line"><span class="comment">#    1 2 3</span></span><br></pre></td></tr></table></figure>
+
+<p>一旦tee（）进行了拆分，原始的iteable不应该在其他任何地方使用; 否则，迭代可以在没有通知tee对象的情况下进行。</p>
+<p>这个itertool可能需要大量的辅助存储（取决于需要存储多少临时数据）。 通常，如果一个迭代器在另一个迭代器启动之前使用大部分或全部数据，则使用list（）而不是tee（）会更快。</p>
+<h3 id="itertools-zip-longest-iterables-fillvalue-None"><a href="#itertools-zip-longest-iterables-fillvalue-None" class="headerlink" title="itertools.zip_longest(*iterables, fillvalue=None)"></a><strong>itertools.zip_longest(*iterables, fillvalue=None)</strong></h3><p>聚合每一个可迭代对象的元素。如果迭代的长度不均匀，则使用<code>fillvalue</code>填充缺失值。 迭代继续，直到最长的可迭代用尽。<br>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">zip_longest</span>(<span class="params">*args, fillvalue=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="comment"># zip_longest(&#x27;ABCD&#x27;, &#x27;xy&#x27;, fillvalue=&#x27;-&#x27;) --&gt; Ax By C- D-</span></span><br><span class="line">    iterators = [<span class="built_in">iter</span>(it) <span class="keyword">for</span> it <span class="keyword">in</span> args]</span><br><span class="line">    num_active = <span class="built_in">len</span>(iterators)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> num_active:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        values = []</span><br><span class="line">        <span class="keyword">for</span> i, it <span class="keyword">in</span> <span class="built_in">enumerate</span>(iterators):</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                value = <span class="built_in">next</span>(it)</span><br><span class="line">            <span class="keyword">except</span> StopIteration:</span><br><span class="line">                num_active -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> num_active:</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                iterators[i] = repeat(fillvalue)</span><br><span class="line">                value = fillvalue</span><br><span class="line">            values.append(value)</span><br><span class="line">        <span class="keyword">yield</span> <span class="built_in">tuple</span>(values)</span><br></pre></td></tr></table></figure>
+
+<p>如果其中一个iterables可能是无限的，那么<code>zip_longest()</code>函数应该包含一些限制调用次数的东西（例如<code>islice()</code>或<code>takewhile()</code>）。 如果未指定，则fillvalue默认为None。</p>
+<h3 id="itertools-product-iterables-repeat-1"><a href="#itertools-product-iterables-repeat-1" class="headerlink" title="itertools.product(*iterables, repeat=1)"></a><strong>itertools.product(*iterables, repeat=1)</strong></h3><p>对放入的可迭代对象进行笛卡尔积运算。</p>
+<p>大致相当于生成器表达式中的嵌套for循环。例如，<code>product(A, B)</code>的返回和<code>((x,y) for x in A for y in B)</code>一样</p>
+<p>要计算iterable与其自身的乘积，请使用可选的repeat关键字参数指定重复次数。 例如，<code>product(A, repeat=4)</code>相当于<code>product(A, A, A, A)</code></p>
+<p>此函数大致等同于以下代码，但实际实现不会在内存中构建中间结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">product</span>(<span class="params">*args, repeat=<span class="number">1</span></span>):</span></span><br><span class="line">    <span class="comment"># product(&#x27;ABCD&#x27;, &#x27;xy&#x27;) --&gt; Ax Ay Bx By Cx Cy Dx Dy</span></span><br><span class="line">    <span class="comment"># product(range(2), repeat=3) --&gt; 000 001 010 011 100 101 110 111</span></span><br><span class="line">    pools = [<span class="built_in">tuple</span>(pool) <span class="keyword">for</span> pool <span class="keyword">in</span> args] * repeat</span><br><span class="line">    result = [[]]</span><br><span class="line">    <span class="keyword">for</span> pool <span class="keyword">in</span> pools:</span><br><span class="line">        result = [x+[y] <span class="keyword">for</span> x <span class="keyword">in</span> result <span class="keyword">for</span> y <span class="keyword">in</span> pool]</span><br><span class="line">    <span class="keyword">for</span> prod <span class="keyword">in</span> result:</span><br><span class="line">        <span class="keyword">yield</span> <span class="built_in">tuple</span>(prod)</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-permutations-iterable-r-None"><a href="#itertools-permutations-iterable-r-None" class="headerlink" title="itertools.permutations(iterable, r=None)"></a><strong>itertools.permutations(iterable, r=None)</strong></h3><p>对可迭代对象进行组合排列，组合长度为<code>r</code><br>大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">permutations</span>(<span class="params">iterable, r=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="comment"># permutations(&#x27;ABCD&#x27;, 2) --&gt; AB AC AD BA BC BD CA CB CD DA DB DC</span></span><br><span class="line">    <span class="comment"># permutations(range(3)) --&gt; 012 021 102 120 201 210</span></span><br><span class="line">    pool = <span class="built_in">tuple</span>(iterable)</span><br><span class="line">    n = <span class="built_in">len</span>(pool)</span><br><span class="line">    r = n <span class="keyword">if</span> r <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> r</span><br><span class="line">    <span class="keyword">if</span> r &gt; n:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    indices = <span class="built_in">list</span>(<span class="built_in">range</span>(n))</span><br><span class="line">    cycles = <span class="built_in">list</span>(<span class="built_in">range</span>(n, n-r, -<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices[:r])</span><br><span class="line">    <span class="keyword">while</span> n:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(r)):</span><br><span class="line">            cycles[i] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> cycles[i] == <span class="number">0</span>:</span><br><span class="line">                indices[i:] = indices[i+<span class="number">1</span>:] + indices[i:i+<span class="number">1</span>]</span><br><span class="line">                cycles[i] = n - i</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                j = cycles[i]</span><br><span class="line">                indices[i], indices[-j] = indices[-j], indices[i]</span><br><span class="line">                <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices[:r])</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-combinations-iterable-r"><a href="#itertools-combinations-iterable-r" class="headerlink" title="itertools.combinations(iterable, r)"></a><strong>itertools.combinations(iterable, r)</strong></h3><p>和<a href="#permutations"><code>permutations</code></a>类似。但是不同的是，不会有忽略元素顺序的相同的组合</p>
+<p>其相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinations</span>(<span class="params">iterable, r</span>):</span></span><br><span class="line">    <span class="comment"># combinations(&#x27;ABCD&#x27;, 2) --&gt; AB AC AD BC BD CD</span></span><br><span class="line">    <span class="comment"># combinations(range(4), 3) --&gt; 012 013 023 123</span></span><br><span class="line">    pool = <span class="built_in">tuple</span>(iterable)</span><br><span class="line">    n = <span class="built_in">len</span>(pool)</span><br><span class="line">    <span class="keyword">if</span> r &gt; n:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    indices = <span class="built_in">list</span>(<span class="built_in">range</span>(r))</span><br><span class="line">    <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(r)):</span><br><span class="line">            <span class="keyword">if</span> indices[i] != i + n - r:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        indices[i] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>, r):</span><br><span class="line">            indices[j] = indices[j-<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">        <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-combinations-with-replacement-iterable-r"><a href="#itertools-combinations-with-replacement-iterable-r" class="headerlink" title="itertools.combinations_with_replacement(iterable, r)"></a><strong>itertools.combinations_with_replacement(iterable, r)</strong></h3><p>和<a href="combinations"><code>combinations</code></a>相似。但不同的是，此方法返回的组合中，会有相同元素<br>其大致相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinations_with_replacement</span>(<span class="params">iterable, r</span>):</span></span><br><span class="line">    <span class="comment"># combinations_with_replacement(&#x27;ABC&#x27;, 2) --&gt; AA AB AC BB BC CC</span></span><br><span class="line">    pool = <span class="built_in">tuple</span>(iterable)</span><br><span class="line">    n = <span class="built_in">len</span>(pool)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> n <span class="keyword">and</span> r:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    indices = [<span class="number">0</span>] * r</span><br><span class="line">    <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(r)):</span><br><span class="line">            <span class="keyword">if</span> indices[i] != n - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        indices[i:] = [indices[i] + <span class="number">1</span>] * (r - i)</span><br><span class="line">        <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/09/07/py3.7%E6%A0%87%E5%87%86%E5%BA%93-itertools/" data-id="ckpqq95a40027ykjda0ufffed" data-title="py3.7标准库-itertools" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/10/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-namedtuple/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          py3.7标准库-collections-namedtuple
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/06/py3.7%E6%A0%87%E5%87%86%E5%BA%93-functools/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">py3.7标准库-functools</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

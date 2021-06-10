@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Python中的上下文管理器和with语句 | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="转载来自：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ybjourney&#x2F;p&#x2F;8859519.html Python2.5之后引入了上下文管理器（context manager），算是Python的黑魔法之一，它用于规定某个对象的使用范围。本文是针对于该功能的思考总结。 为什么需要上下文管理器？首先，需要思索下为什么需要引入上下文管理器。在正常情况下，管理各种系统资源（如文件）、数据库连接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中的上下文管理器和with语句">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2018/08/09/Python%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8%E5%92%8Cwith%E8%AF%AD%E5%8F%A5/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="转载来自：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ybjourney&#x2F;p&#x2F;8859519.html Python2.5之后引入了上下文管理器（context manager），算是Python的黑魔法之一，它用于规定某个对象的使用范围。本文是针对于该功能的思考总结。 为什么需要上下文管理器？首先，需要思索下为什么需要引入上下文管理器。在正常情况下，管理各种系统资源（如文件）、数据库连接">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-08-09T02:04:35.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Python中的上下文管理器和with语句" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/08/09/Python%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8%E5%92%8Cwith%E8%AF%AD%E5%8F%A5/" class="article-date">
+  <time class="dt-published" datetime="2018-08-09T02:04:35.000Z" itemprop="datePublished">2018-08-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Python中的上下文管理器和with语句
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>转载来自：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ybjourney/p/8859519.html">https://www.cnblogs.com/ybjourney/p/8859519.html</a></p>
+<p>Python2.5之后引入了上下文管理器（context manager），算是Python的黑魔法之一，它用于规定某个对象的使用范围。本文是针对于该功能的思考总结。</p>
+<h2 id="为什么需要上下文管理器？"><a href="#为什么需要上下文管理器？" class="headerlink" title="为什么需要上下文管理器？"></a>为什么需要上下文管理器？</h2><p>首先，需要思索下为什么需要引入上下文管理器。<br>在正常情况下，管理各种系统资源（如文件）、数据库连接时，通常是先打开这些资源，执行完相应的业务逻辑，最后关闭资源。<br>举两个例子:</p>
+<blockquote>
+<ul>
+<li>使用Python打开一个文件写入内容，之后需要关闭这个文件。如果不正常关闭的话可能会在文件操作时出现异常，因为系统允许你打开的文件的最大数是有限的。</li>
+<li>在数据库连接时也是存在类似问题，数据库的连接算是一种比较昂贵的资源，若连接过多而没有及时关闭的话，就可能出现不能继续连接的异常错误。</li>
+</ul>
+</blockquote>
+<p>但是，很多程序员经常会忘记关闭文件，或者关闭数据库的连接。这时候就引入了上下文管理器，它可以在你不需要该对象的时候，自动关闭它。</p>
+<h2 id="上下文管理器怎么使用？"><a href="#上下文管理器怎么使用？" class="headerlink" title="上下文管理器怎么使用？"></a>上下文管理器怎么使用？</h2><p>上下文管理器的语法是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with...as...</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例：文件操作</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> <span class="string">&quot;不使用上下文管理器&quot;</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;*&quot;</span> * <span class="number">30</span></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;file.py&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> f.closed</span><br><span class="line">f.write(<span class="string">&quot;# Hello World&quot;</span>)</span><br><span class="line">f.close()</span><br><span class="line"><span class="built_in">print</span> f.closed</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;\n使用上下文管理器&quot;</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;*&quot;</span> * <span class="number">30</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;file.py&quot;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">print</span> f.closed</span><br><span class="line">    f.write(<span class="string">&#x27;# Hello Python&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> f.closed</span><br></pre></td></tr></table></figure>
+
+<p>这里通过.closed比较，我们可以看到上下文管理器可以自动关闭文件，对于上下文管理器而言，有隶属于它的程序块，当隶属于它的程序块执行结束的时候（判断缩进），上下文管理器将自动关闭文件。<br>上述实例，也可以使用try…except…来实现，同样可以很直观的看到使用with…as…语句之后，代码确实相对更加简洁。</p>
+<h2 id="上下文管理实现机制"><a href="#上下文管理实现机制" class="headerlink" title="上下文管理实现机制"></a>上下文管理实现机制</h2><p>因为文件对象是Python的内置对象，内置了上下文管理的特殊方法，所以它可以使用with语句。在Python中，任何对象，只要实现了上下文管理，就可以使用with语句，实现上下文管理需要通过<strong>enter</strong>和<strong>exit</strong>这两个方法来实现。<br>关于这两个方法：</p>
+<ul>
+<li>   enter(self)：进入该对象时调用此方法，返回值将放入with…as…语句中的as说明的变量中</li>
+<li>   exit(self, type, value, tb):离开上下文管理器时调用该方法，如果有异常出现，返回False，type、value和tb将分别表示异常的类型、值和追踪信息，传递出上下文显示；如果没有异常，则三个变量的值均为None。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with 上下文管理器：</span><br><span class="line">    语法体</span><br></pre></td></tr></table></figure>
+
+<p>当with语句遇到上下文管理器时，就会在执行语法体之前，先执行<strong>enter</strong>方法，然后再执行语法体，执行完语法体之后，执行<strong>exit</strong>方法。</p>
+<h2 id="上下文管理器实现"><a href="#上下文管理器实现" class="headerlink" title="上下文管理器实现"></a>上下文管理器实现</h2><p>使用Python2.7X实现一个上下文管理器:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Context</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;实例化一个对象&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;获取该对象&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span>(<span class="params">self, exc_type, exc_val, exc_tb</span>):</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;退出该对象&quot;</span></span><br><span class="line"></span><br><span class="line">temp = Context()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> temp:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;执行体&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，<strong>enter</strong>方法和<strong>exit</strong>方法的调用过程就很明晰。</p>
+<h2 id="contextLib"><a href="#contextLib" class="headerlink" title="contextLib"></a>contextLib</h2><p>在contextlib中，提供了contextmanager装饰器，通过yield返回函数将函数分隔为两部分，yield之前的语句在<strong>enter</strong>中执行，yield之后的语句在<strong>exit</strong>中执行，简化了上下文管理器的实现方式：</p>
+<p>总结：通过上下文管理器，我们可以更好的控制对象在不同区间的特性，并且可以使用with语句替代try…except方法，使得代码更加的简洁，主要的使用场景是访问资源，可以保证不管过程中是否发生错误或者异常都会执行相应的清理操作，释放出访问的资源。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/08/09/Python%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8%E5%92%8Cwith%E8%AF%AD%E5%8F%A5/" data-id="ckpqq95900005ykjd53q2ei6z" data-title="Python中的上下文管理器和with语句" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/31/django-rest-framework%E6%96%87%E6%A1%A3%E6%95%B4%E7%90%86%E2%80%94%E2%80%94Serialization%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          django-rest-framework文档整理——Serialization（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/08/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">django项目开发实战——博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

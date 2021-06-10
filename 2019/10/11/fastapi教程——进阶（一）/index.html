@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>fastapi教程——进阶（一） | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一个简单的栗子12345678from fastapi import FastAPIapp &#x3D; FastAPI()@app.get(&quot;&#x2F;&quot;)async def root():    return &amp;#123;&quot;message&quot;: &quot;Hello World&quot;&amp;#125;   FASTAPI继承Starlette，因此在Starlette">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fastapi教程——进阶（一）">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2019/10/11/fastapi%E6%95%99%E7%A8%8B%E2%80%94%E2%80%94%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="一个简单的栗子12345678from fastapi import FastAPIapp &#x3D; FastAPI()@app.get(&quot;&#x2F;&quot;)async def root():    return &amp;#123;&quot;message&quot;: &quot;Hello World&quot;&amp;#125;   FASTAPI继承Starlette，因此在Starlette">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191011113101177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2019-10-11T06:58:29.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="fastapi python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191011113101177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-fastapi教程——进阶（一）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/11/fastapi%E6%95%99%E7%A8%8B%E2%80%94%E2%80%94%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2019-10-11T06:58:29.000Z" itemprop="datePublished">2019-10-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/fastapi/">fastapi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      fastapi教程——进阶（一）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h2 id="一个简单的栗子"><a href="#一个简单的栗子" class="headerlink" title="一个简单的栗子"></a>一个简单的栗子</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">root</span>():</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>FASTAPI继承Starlette，因此在Starlette中的所有可调用的对象在FASTAPI中可以直接引用</p>
+</blockquote>
+<h2 id="编写步骤"><a href="#编写步骤" class="headerlink" title="编写步骤"></a>编写步骤</h2><p><strong>步骤一</strong>：导入FastAPI</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤二</strong>：创建FastAPI实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app = FastAPI()</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤三</strong>：创建访问路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>这个路径告诉FastAPI，该装饰器下的方法是用来处理路径是<code>“/”</code>的<code>GET</code>请求<br>步骤四：定义方法，处理请求</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">root</span>():</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤五</strong>：返回响应信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤六</strong>：运行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uvicorn main:app --reload</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取路径参数"><a href="#获取路径参数" class="headerlink" title="获取路径参数"></a>获取路径参数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id</span>):</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<p>路径中的<code>item_id</code>将会被解析，传递给方法中的<code>item_id</code>。请求<code>http://127.0.0.1:8000/items/foo</code>会返回如下结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;item_id&quot;</span>:<span class="string">&quot;foo&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以在方法中定义参数类型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id: <span class="built_in">int</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<p>继续请求<code>http://127.0.0.1:8000/items/3</code>，会返回</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;item_id&quot;</span>:<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时的<code>item_id</code>是<code>int</code>类型的3，而不是<code>string</code>类型，这是因为FastAPI在解析请求时，自动根据声明的类型进行了解析<br>如果请求<code>http://127.0.0.1:8000/items/foo</code>，此时会返回：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;detail&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;loc&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;path&quot;</span>,</span><br><span class="line">                <span class="string">&quot;item_id&quot;</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="string">&quot;msg&quot;</span>: <span class="string">&quot;value is not a valid integer&quot;</span>,</span><br><span class="line">            <span class="string">&quot;type&quot;</span>: <span class="string">&quot;type_error.integer&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是因为<code>foo</code>并不能转换成<code>int</code>类型。请求<code>http://127.0.0.1:8000/items/4.2</code>也会出现上述错误</p>
+<blockquote>
+<p>所有的数据类型验证，都是通过<code>Pydantic</code>完成的</p>
+</blockquote>
+<p>如果想对路径参数做一个<code>预定义</code>，可以使用<code>Enum</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ModelName</span>(<span class="params"><span class="built_in">str</span>, Enum</span>):</span></span><br><span class="line">    alexnet = <span class="string">&quot;alexnet&quot;</span></span><br><span class="line">    resnet = <span class="string">&quot;resnet&quot;</span></span><br><span class="line">    lenet = <span class="string">&quot;lenet&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/model/&#123;model_name&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">get_model</span>(<span class="params">model_name: ModelName</span>):</span></span><br><span class="line">    <span class="keyword">if</span> model_name == ModelName.alexnet:</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;model_name&quot;</span>: model_name, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Deep Learning FTW!&quot;</span>&#125;</span><br><span class="line">    <span class="keyword">if</span> model_name.value == <span class="string">&quot;lenet&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;model_name&quot;</span>: model_name, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;LeCNN all the images&quot;</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;model_name&quot;</span>: model_name, <span class="string">&quot;message&quot;</span>: <span class="string">&quot;Have some residuals&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打开<code>http://127.0.0.1:8000/docs</code>:<br><img src="https://img-blog.csdnimg.cn/20191011113101177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>除此之外，假如想接收一个路径参数，它本身就是一个路径，就像<code>/files/&#123;file_path&#125;</code>，而这个file_path是<code>home/johndoe/myfile.txt</code>时，可以写成<code>/files/&#123;file_path:path&#125;</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/files/&#123;file_path:path&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_user_me</span>(<span class="params">file_path: <span class="built_in">str</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;file_path&quot;</span>: file_path&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OpenAPI本身不支持在路径参数包含路径，但是可以当作Starlette内部的一个使用方法</p>
+</blockquote>
+<p>此时访问<code>http://127.0.0.1:8000/files/home/johndoe/myfile.txt</code>，返回：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;file_path&quot;</span>:<span class="string">&quot;home/johndoe/myfile.txt&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果将路径改为<code>/files/&#123;file_path&#125;</code>，会返回：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;detail&quot;</span>:<span class="string">&quot;Not Found&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取查询参数"><a href="#获取查询参数" class="headerlink" title="获取查询参数"></a>获取查询参数</h2><p>这里依旧是一个栗子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line">fake_items_db = [&#123;<span class="string">&quot;item_name&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_name&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;, &#123;<span class="string">&quot;item_name&quot;</span>: <span class="string">&quot;Baz&quot;</span>&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">skip: <span class="built_in">int</span> = <span class="number">0</span>, limit: <span class="built_in">int</span> = <span class="number">10</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> fake_items_db[skip : skip + limit]</span><br></pre></td></tr></table></figure>
+
+<p>尝试访问<code>http://127.0.0.1:8000/items/?skip=0&amp;limit=2</code>，返回：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;<span class="string">&quot;item_name&quot;</span>:<span class="string">&quot;Foo&quot;</span>&#125;,&#123;<span class="string">&quot;item_name&quot;</span>:<span class="string">&quot;Bar&quot;</span>&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>尝试访问<code>http://127.0.0.1:8000/items/</code>，返回：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;<span class="string">&quot;item_name&quot;</span>:<span class="string">&quot;Foo&quot;</span>&#125;,&#123;<span class="string">&quot;item_name&quot;</span>:<span class="string">&quot;Bar&quot;</span>&#125;,&#123;<span class="string">&quot;item_name&quot;</span>:<span class="string">&quot;Baz&quot;</span>&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>由于我们在定义方法的时候，分别赋予<code>skip</code>和<code>limit</code>默认值，当不添加querystring时，会使用默认值。当然，我们也可以将默认值赋值为<code>None</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id: <span class="built_in">str</span>, q: <span class="built_in">str</span> = <span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id, <span class="string">&quot;q&quot;</span>: q&#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时，我们请求<code>http://127.0.0.1:8000/items/1?q=qqq</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;item_id&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;q&quot;</span>:<span class="string">&quot;qqq&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>值得放心的一点是，FastAPI很聪明，他知道参数来自哪里～</p>
+</blockquote>
+<p>假如，我们不给参数默认值会发生什么情况呢？这里还是一个栗子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_user_item</span>(<span class="params">item_id: <span class="built_in">str</span>, needy: <span class="built_in">str</span></span>):</span></span><br><span class="line">    item = &#123;<span class="string">&quot;item_id&quot;</span>: item_id, <span class="string">&quot;needy&quot;</span>: needy&#125;</span><br><span class="line">    <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+<p>继续请求<code>http://127.0.0.1:8000/items/1</code>，会发现，返回报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;detail&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;loc&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;query&quot;</span>,</span><br><span class="line">        <span class="string">&quot;needy&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">&quot;msg&quot;</span>: <span class="string">&quot;field required&quot;</span>,</span><br><span class="line">      <span class="string">&quot;type&quot;</span>: <span class="string">&quot;value_error.missing&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上述栗子均放到git上啦，地址：<a target="_blank" rel="noopener" href="https://github.com/ChuXiaoYi/fastapi">戳这里</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2019/10/11/fastapi%E6%95%99%E7%A8%8B%E2%80%94%E2%80%94%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckpqq959o001fykjdemw2h4sj" data-title="fastapi教程——进阶（一）" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/11/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          二进制求和
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/26/fastapi%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">fastapi——快速入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

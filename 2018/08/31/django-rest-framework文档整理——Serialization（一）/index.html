@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>django-rest-framework文档整理——Serialization（一） | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="注意： 该笔记主要翻译自官方文档 入门首先，创建新项目 12django-admin.py startproject tutorialcd tutorial  完成后，我们可以创建一个我们将用于创建简单Web API的应用程序。 1.&#x2F;manage.py startapp snippets  我们需要添加我们的新 snippets 应用和 rest_framework 应用 INSTALLED">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django-rest-framework文档整理——Serialization（一）">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2018/08/31/django-rest-framework%E6%96%87%E6%A1%A3%E6%95%B4%E7%90%86%E2%80%94%E2%80%94Serialization%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="注意： 该笔记主要翻译自官方文档 入门首先，创建新项目 12django-admin.py startproject tutorialcd tutorial  完成后，我们可以创建一个我们将用于创建简单Web API的应用程序。 1.&#x2F;manage.py startapp snippets  我们需要添加我们的新 snippets 应用和 rest_framework 应用 INSTALLED">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-08-31T09:18:44.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="django django rest">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-django-rest-framework文档整理——Serialization（一）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/08/31/django-rest-framework%E6%96%87%E6%A1%A3%E6%95%B4%E7%90%86%E2%80%94%E2%80%94Serialization%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2018-08-31T09:18:44.000Z" itemprop="datePublished">2018-08-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      django-rest-framework文档整理——Serialization（一）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>注意： 该笔记主要翻译自<a target="_blank" rel="noopener" href="http://www.django-rest-framework.org/tutorial/1-serialization/">官方文档</a></p>
+<h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><p>首先，创建新项目</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">django-admin.py startproject tutorial</span><br><span class="line">cd tutorial</span><br></pre></td></tr></table></figure>
+
+<p>完成后，我们可以创建一个我们将用于创建简单Web API的应用程序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./manage.py startapp snippets</span><br></pre></td></tr></table></figure>
+
+<p>我们需要添加我们的新 <code>snippets</code> 应用和 <code>rest_framework</code> 应用 <code>INSTALLED_APPS</code> 。让我们编辑 <code>tutorial/settings.py</code> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = (</span><br><span class="line">    ...</span><br><span class="line">    &#x27;rest_framework&#x27;,</span><br><span class="line">    &#x27;snippets.apps.SnippetsConfig&#x27;,</span><br><span class="line">) </span><br></pre></td></tr></table></figure>
+
+<p>好的，我们已经准备好了。</p>
+<h1 id="创建一个模型"><a href="#创建一个模型" class="headerlink" title="创建一个模型"></a>创建一个模型</h1><p>首先，创建一个 <code>Snippet</code> 用于存储代码片段的简单model。继续编辑 <code>snippets/models.py</code> 文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> pygments.lexers <span class="keyword">import</span> get_all_lexers</span><br><span class="line"><span class="keyword">from</span> pygments.styles <span class="keyword">import</span> get_all_styles</span><br><span class="line"></span><br><span class="line">LEXERS = [item <span class="keyword">for</span> item <span class="keyword">in</span> get_all_lexers() <span class="keyword">if</span> item[<span class="number">1</span>]]</span><br><span class="line">LANGUAGE_CHOICES = <span class="built_in">sorted</span>([(item[<span class="number">1</span>][<span class="number">0</span>], item[<span class="number">0</span>]) <span class="keyword">for</span> item <span class="keyword">in</span> LEXERS])</span><br><span class="line">STYLE_CHOICES = <span class="built_in">sorted</span>((item, item) <span class="keyword">for</span> item <span class="keyword">in</span> get_all_styles())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Snippet</span>(<span class="params">models.Model</span>):</span></span><br><span class="line">    created = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">100</span>, blank=<span class="literal">True</span>, default=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    code = models.TextField()</span><br><span class="line">    linenos = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    language = models.CharField(choices=LANGUAGE_CHOICES, default=<span class="string">&#x27;python&#x27;</span>, max_length=<span class="number">100</span>)</span><br><span class="line">    style = models.CharField(choices=STYLE_CHOICES, default=<span class="string">&#x27;friendly&#x27;</span>, max_length=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ordering = (<span class="string">&#x27;created&#x27;</span>,)</span><br></pre></td></tr></table></figure>
+
+<p>我们还需要为我们的代码段模型创建初始迁移，并首次同步数据库。(这里使用的是默认的sqlite)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./manage.py makemigrations snippets</span><br><span class="line">./manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建一个Serializer类"><a href="#创建一个Serializer类" class="headerlink" title="创建一个Serializer类"></a>创建一个Serializer类</h1><p>我们需要做的第一件事就是提供一个序列化和反序列化 <code>snippet</code> 实例的方法，并把它放到例如 <code>json</code> 中。我们可以通过声明与Django表单非常相似的序列化器来完成此操作。在 <code>snippets</code> 名为的目录中创建一个文件 <code>serializers.py</code> 并添加以下内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet, LANGUAGE_CHOICES, STYLE_CHOICES</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span>(<span class="params">serializers.Serializer</span>):</span></span><br><span class="line">    <span class="built_in">id</span> = serializers.IntegerField(read_only=<span class="literal">True</span>)</span><br><span class="line">    title = serializers.CharField(required=<span class="literal">False</span>, allow_blank=<span class="literal">True</span>, max_length=<span class="number">100</span>)</span><br><span class="line">    code = serializers.CharField(style=&#123;<span class="string">&#x27;base_template&#x27;</span>: <span class="string">&#x27;textarea.html&#x27;</span>&#125;)</span><br><span class="line">    linenos = serializers.BooleanField(required=<span class="literal">False</span>)</span><br><span class="line">    language = serializers.ChoiceField(choices=LANGUAGE_CHOICES, default=<span class="string">&#x27;python&#x27;</span>)</span><br><span class="line">    style = serializers.ChoiceField(choices=STYLE_CHOICES, default=<span class="string">&#x27;friendly&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">self, validated_data</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Create and return a new `Snippet` instance, given the validated data.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> Snippet.objects.create(**validated_data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span>(<span class="params">self, instance, validated_data</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Update and return an existing `Snippet` instance, given the validated data.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        instance.title = validated_data.get(<span class="string">&#x27;title&#x27;</span>, instance.title)</span><br><span class="line">        instance.code = validated_data.get(<span class="string">&#x27;code&#x27;</span>, instance.code)</span><br><span class="line">        instance.linenos = validated_data.get(<span class="string">&#x27;linenos&#x27;</span>, instance.linenos)</span><br><span class="line">        instance.language = validated_data.get(<span class="string">&#x27;language&#x27;</span>, instance.language)</span><br><span class="line">        instance.style = validated_data.get(<span class="string">&#x27;style&#x27;</span>, instance.style)</span><br><span class="line">        instance.save()</span><br><span class="line">        <span class="keyword">return</span> instance</span><br></pre></td></tr></table></figure>
+
+<p>serializer类定义了序列化/反序列化的字段。<code>create()</code> 和 <code>update()</code> 方法定义了在调用 <code>serializer.save()</code> 时实例如何被创建或修改</p>
+<p>serializer类和django <code>Form</code> 类很相似，并且在各个字段上包含类似的验证标志，例如 <code>required</code> , <code>max_length</code> 和 <code>default</code>。</p>
+<p>字段标志还可以控制在某些情况下应该如何显示序列化程序，例如在渲染HTML时。<code>&#123;&#39;base_template&#39;: &#39;textarea.html&#39;&#125;</code> 相当于在django <code>Form</code>类中使用 <code>widget=widgets.Textarea</code> 。这对于控制可浏览API的显示方式特别有用，我们将在本教程后面看到。</p>
+<p>我们实际上也可以通过使用 <code>ModelSerializer</code> 类来节省一些时间，我们稍后会看到，但是现在我们先保持我们定义的serializer</p>
+<h1 id="使用Serializers"><a href="#使用Serializers" class="headerlink" title="使用Serializers"></a>使用Serializers</h1><p>在进一步深入之前，我们将熟悉如何使用新的Serializer类。让我们进入Django shell。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br></pre></td></tr></table></figure>
+
+<p>好的，一旦我们完成了一些导入，让我们创建几个代码片段来处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet</span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer</span><br><span class="line"><span class="keyword">from</span> rest_framework.renderers <span class="keyword">import</span> JSONRenderer</span><br><span class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParser</span><br><span class="line"></span><br><span class="line">snippet = Snippet(code=<span class="string">&#x27;foo = &quot;bar&quot;\n&#x27;</span>)</span><br><span class="line">snippet.save()</span><br><span class="line"></span><br><span class="line">snippet = Snippet(code=<span class="string">&#x27;print &quot;hello, world&quot;\n&#x27;</span>)</span><br><span class="line">snippet.save()</span><br></pre></td></tr></table></figure>
+
+<p>我们现在有几个snippet实例可供使用。我们来看看序列化其中一个实例。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">serializer = SnippetSerializer(snippet)</span><br><span class="line">serializer.data</span><br><span class="line"># &#123;&#x27;id&#x27;: 2, &#x27;title&#x27;: u&#x27;&#x27;, &#x27;code&#x27;: u&#x27;print &quot;hello, world&quot;\n&#x27;, &#x27;linenos&#x27;: False, &#x27;language&#x27;: u&#x27;python&#x27;, &#x27;style&#x27;: u&#x27;friendly&#x27;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时我们已将model实例转换为Python自然数据类型。为了完成序列化过程，我们将数据渲染到 <code>json</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">content = JSONRenderer().render(serializer.data)</span><br><span class="line">content</span><br><span class="line"># &#x27;&#123;&quot;id&quot;: 2, &quot;title&quot;: &quot;&quot;, &quot;code&quot;: &quot;print \\&quot;hello, world\\&quot;\\n&quot;, &quot;linenos&quot;: false, &quot;language&quot;: &quot;python&quot;, &quot;style&quot;: &quot;friendly&quot;&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>反序列化是类似的。首先，我们将流解析为Python数据类型…</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.utils.six <span class="keyword">import</span> BytesIO</span><br><span class="line"></span><br><span class="line">stream = BytesIO(content)</span><br><span class="line">data = JSONParser().parse(stream)</span><br></pre></td></tr></table></figure>
+
+<p>…然后我们将解析后的数据类型还原为完全填充的对象实例。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">serializer = SnippetSerializer(data=data)</span><br><span class="line">serializer.is_valid()</span><br><span class="line"># True</span><br><span class="line">serializer.validated_data</span><br><span class="line"># OrderedDict([(&#x27;title&#x27;, &#x27;&#x27;), (&#x27;code&#x27;, &#x27;print &quot;hello, world&quot;\n&#x27;), (&#x27;linenos&#x27;, False), (&#x27;language&#x27;, &#x27;python&#x27;), (&#x27;style&#x27;, &#x27;friendly&#x27;)])</span><br><span class="line">serializer.save()</span><br><span class="line"># &lt;Snippet: Snippet object&gt;</span><br></pre></td></tr></table></figure>
+
+<p>请注意API与表单的相似程度。当我们开始编写使用序列化器的视图时，相似性应该变得更加明显。</p>
+<p>我们还可以序列化querysets而不是model实例。为此，我们只需在序列化类中添加参数 <code>many=True</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">serializer = SnippetSerializer(Snippet.objects.all(), many=True)</span><br><span class="line">serializer.data</span><br><span class="line"># [OrderedDict([(&#x27;id&#x27;, 1), (&#x27;title&#x27;, u&#x27;&#x27;), (&#x27;code&#x27;, u&#x27;foo = &quot;bar&quot;\n&#x27;), (&#x27;linenos&#x27;, False), (&#x27;language&#x27;, &#x27;python&#x27;), (&#x27;style&#x27;, &#x27;friendly&#x27;)]), OrderedDict([(&#x27;id&#x27;, 2), (&#x27;title&#x27;, u&#x27;&#x27;), (&#x27;code&#x27;, u&#x27;print &quot;hello, world&quot;\n&#x27;), (&#x27;linenos&#x27;, False), (&#x27;language&#x27;, &#x27;python&#x27;), (&#x27;style&#x27;, &#x27;friendly&#x27;)]), OrderedDict([(&#x27;id&#x27;, 3), (&#x27;title&#x27;, u&#x27;&#x27;), (&#x27;code&#x27;, u&#x27;print &quot;hello, world&quot;&#x27;), (&#x27;linenos&#x27;, False), (&#x27;language&#x27;, &#x27;python&#x27;), (&#x27;style&#x27;, &#x27;friendly&#x27;)])]</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用ModelSerializers"><a href="#使用ModelSerializers" class="headerlink" title="使用ModelSerializers"></a>使用ModelSerializers</h1><p><code>SnippetSerializer</code> 类复制了很多信息，这些都包含在 <code>Snippet</code> 模型中。如果我们能够使代码更简洁，那将是很好的。</p>
+<p>与Django提供 <code>Form</code> 类和 <code>ModelForm</code> 类的方式相同，REST框架包括 <code>Serializer</code> 类和 <code>ModelSerializer</code> 类。</p>
+<p>让我们看看使用 <code>ModelSerializer</code> 类重构我们的序列化程序。再次打开 <code>snippets/serializers.py</code> 文件，并使用以下内容替换 <code>SnippetSerializer</code> 类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span>(<span class="params">serializers.ModelSerializer</span>):</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Snippet</span><br><span class="line">        fields = (<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;title&#x27;</span>, <span class="string">&#x27;code&#x27;</span>, <span class="string">&#x27;linenos&#x27;</span>, <span class="string">&#x27;language&#x27;</span>, <span class="string">&#x27;style&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>序列化程序具有的一个不错的属性是，您可以通过打印其对象来检查序列化程序实例中的所有字段。打开Django shell <code>python manage.py shell</code> ，然后尝试以下操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from snippets.serializers import SnippetSerializer</span><br><span class="line">serializer = SnippetSerializer()</span><br><span class="line">print(repr(serializer))</span><br><span class="line"># SnippetSerializer():</span><br><span class="line">#    id = IntegerField(label=&#x27;ID&#x27;, read_only=True)</span><br><span class="line">#    title = CharField(allow_blank=True, max_length=100, required=False)</span><br><span class="line">#    code = CharField(style=&#123;&#x27;base_template&#x27;: &#x27;textarea.html&#x27;&#125;)</span><br><span class="line">#    linenos = BooleanField(required=False)</span><br><span class="line">#    language = ChoiceField(choices=[(&#x27;Clipper&#x27;, &#x27;FoxPro&#x27;), (&#x27;Cucumber&#x27;, &#x27;Gherkin&#x27;), (&#x27;RobotFramework&#x27;, &#x27;RobotFramework&#x27;), (&#x27;abap&#x27;, &#x27;ABAP&#x27;), (&#x27;ada&#x27;, &#x27;Ada&#x27;)...</span><br><span class="line">#    style = ChoiceField(choices=[(&#x27;autumn&#x27;, &#x27;autumn&#x27;), (&#x27;borland&#x27;, &#x27;borland&#x27;), (&#x27;bw&#x27;, &#x27;bw&#x27;), (&#x27;colorful&#x27;, &#x27;colorful&#x27;)...</span><br></pre></td></tr></table></figure>
+
+<p>重要的是要记住 <code>ModelSerializer</code> 类没有做任何特别神奇的事情，它们只是创建序列化程序类的快捷方式：</p>
+<ul>
+<li>自动确定字段集。</li>
+<li><code>create()</code> 和 <code>update()</code>方法的简单默认实现。</li>
+</ul>
+<h1 id="使用我们的Serializer编写常规Django视图"><a href="#使用我们的Serializer编写常规Django视图" class="headerlink" title="使用我们的Serializer编写常规Django视图"></a>使用我们的Serializer编写常规Django视图</h1><p>让我们看看如何使用我们的新Serializer类编写一些API视图。目前我们不会使用任何REST框架的其他功能，我们只会将视图写为常规Django视图。<br>编辑 <code>snippets/views.py</code>文件，然后添加以下内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, JsonResponse</span><br><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt</span><br><span class="line"><span class="keyword">from</span> rest_framework.renderers <span class="keyword">import</span> JSONRenderer</span><br><span class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParser</span><br><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet</span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer</span><br></pre></td></tr></table></figure>
+
+<p>我们API的核心是一个支持列出所有存在的snippets，或创建一个新snippets的视图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@csrf_exempt</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">snippet_list</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    List all code snippets, or create a new snippet.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        snippets = Snippet.objects.<span class="built_in">all</span>()</span><br><span class="line">        serializer = SnippetSerializer(snippets, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.data, safe=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        data = JSONParser().parse(request)</span><br><span class="line">        serializer = SnippetSerializer(data=data)</span><br><span class="line">        <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">            serializer.save()</span><br><span class="line">            <span class="keyword">return</span> JsonResponse(serializer.data, status=<span class="number">201</span>)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.errors, status=<span class="number">400</span>)</span><br></pre></td></tr></table></figure>
+
+<p>请注意，因为我们希望能够从没有CSRF令牌的客户端POST到此视图，所以我们需要将视图标记为 <code>csrf_exempt</code> 。这不是您通常想要做的事情，REST框架视图实际上使用的行为比这更明智，但它现在可以用于我们的目的</p>
+<p>我们还需要一个与单个snippet相对应的视图，并可用于检索，更新或删除代码段。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@csrf_exempt</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">snippet_detail</span>(<span class="params">request, pk</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Retrieve, update or delete a code snippet.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        snippet = Snippet.objects.get(pk=pk)</span><br><span class="line">    <span class="keyword">except</span> Snippet.DoesNotExist:</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(status=<span class="number">404</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        serializer = SnippetSerializer(snippet)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.data)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> request.method == <span class="string">&#x27;PUT&#x27;</span>:</span><br><span class="line">        data = JSONParser().parse(request)</span><br><span class="line">        serializer = SnippetSerializer(snippet, data=data)</span><br><span class="line">        <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">            serializer.save()</span><br><span class="line">            <span class="keyword">return</span> JsonResponse(serializer.data)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.errors, status=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> request.method == <span class="string">&#x27;DELETE&#x27;</span>:</span><br><span class="line">        snippet.delete()</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(status=<span class="number">204</span>)</span><br></pre></td></tr></table></figure>
+
+<p>最后，我们需要链接这些视图。创建 <code>snippets/urls.py</code> 文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> snippets <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r&#x27;^snippets/$&#x27;</span>, views.snippet_list),</span><br><span class="line">    url(<span class="string">r&#x27;^snippets/(?P&lt;pk&gt;[0-9]+)/$&#x27;</span>, views.snippet_detail),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>我们还需要链接tutorial/urls.py文件中的根urlconf ，以包含我们的snippet应用的URL。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r&#x27;^&#x27;</span>, include(<span class="string">&#x27;snippets.urls&#x27;</span>)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，目前还有一些我们没有正确处理的边缘情况。如果我们发送错误的json，或者如果使用视图无法处理的方法发出请求，那么我们最终将得到500“服务器错误”响应。不过，现在这样做。</p>
+<h1 id="测试我们对Web-API的第一次尝试"><a href="#测试我们对Web-API的第一次尝试" class="headerlink" title="测试我们对Web API的第一次尝试"></a>测试我们对Web API的第一次尝试</h1><p>现在我们启动服务器<br>退出shell。。。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quit()</span><br></pre></td></tr></table></figure>
+
+<p>并启动django服务器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./manage.py runserver</span><br><span class="line"></span><br><span class="line">Validating models...</span><br><span class="line"></span><br><span class="line">0 errors found</span><br><span class="line">Django version 1.11, using settings &#x27;tutorial.settings&#x27;</span><br><span class="line">Development server is running at http://127.0.0.1:8000/</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
+
+<p>在另一个终端窗口中，我们可以测试服务器。</p>
+<p>我们可以使用<a target="_blank" rel="noopener" href="https://curl.haxx.se/">curl</a>或<a target="_blank" rel="noopener" href="https://github.com/jakubroztocil/httpie#installation">httpie</a>测试我们的API 。Httpie是一个用Python编写的用户友好的http客户端。我们安装一下吧。</p>
+<p>您可以使用pip安装httpie：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install httpie</span><br></pre></td></tr></table></figure>
+
+<p>最后，我们可以获取所有snippets的列表信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets/</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">...</span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;id&quot;: 1,</span><br><span class="line">    &quot;title&quot;: &quot;&quot;,</span><br><span class="line">    &quot;code&quot;: &quot;foo = \&quot;bar\&quot;\n&quot;,</span><br><span class="line">    &quot;linenos&quot;: false,</span><br><span class="line">    &quot;language&quot;: &quot;python&quot;,</span><br><span class="line">    &quot;style&quot;: &quot;friendly&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;id&quot;: 2,</span><br><span class="line">    &quot;title&quot;: &quot;&quot;,</span><br><span class="line">    &quot;code&quot;: &quot;print \&quot;hello, world\&quot;\n&quot;,</span><br><span class="line">    &quot;linenos&quot;: false,</span><br><span class="line">    &quot;language&quot;: &quot;python&quot;,</span><br><span class="line">    &quot;style&quot;: &quot;friendly&quot;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>或者我们可以通过引用其id来获取特定snippet：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets/2/</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">...</span><br><span class="line">&#123;</span><br><span class="line">  &quot;id&quot;: 2,</span><br><span class="line">  &quot;title&quot;: &quot;&quot;,</span><br><span class="line">  &quot;code&quot;: &quot;print \&quot;hello, world\&quot;\n&quot;,</span><br><span class="line">  &quot;linenos&quot;: false,</span><br><span class="line">  &quot;language&quot;: &quot;python&quot;,</span><br><span class="line">  &quot;style&quot;: &quot;friendly&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样，您可以通过在Web浏览器中访问这些URL来显示相同​​的json。</p>
+<h1 id="我们现在在哪"><a href="#我们现在在哪" class="headerlink" title="我们现在在哪"></a>我们现在在哪</h1><p>到目前为止我们做得还不错，我们有一个序列化API，感觉非常类似于Django的Forms API，以及一些常规的Django视图。</p>
+<p>我们的API视图目前没有做任何特别特别的事情，除了提供json响应之外，还有一些我们仍想清理的错误处理边缘情况，但它是一个正常运行的Web API。</p>
+<p>我们将在本教程的第2部分中看到如何开始改进。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/08/31/django-rest-framework%E6%96%87%E6%A1%A3%E6%95%B4%E7%90%86%E2%80%94%E2%80%94Serialization%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckpqq9596000iykjd19id0uzl" data-title="django-rest-framework文档整理——Serialization（一）" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/03/django-rest-framework%E6%96%87%E6%A1%A3%E6%95%B4%E7%90%86%E2%80%94%E2%80%94Request%20and%20Response%EF%BC%88%E4%BA%8C%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          django-rest-framework文档整理——Request and Response（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/09/Python%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8%E5%92%8Cwith%E8%AF%AD%E5%8F%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Python中的上下文管理器和with语句</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

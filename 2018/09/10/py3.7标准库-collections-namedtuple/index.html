@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>py3.7标准库-collections-namedtuple | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="collection模块实现了专门的容器数据类型，为Python的通用内置容器dict，list，set和tuple提供了替代方案。接下来，将分别介绍他们。 namedtuple()包含命名字段的元组工厂方法命名元组为元组中的每个位置赋予含义，并允许更可读，自文档代码。它们可以在使用常规元组的任何地方使用，并且它们添加了按名称而不是位置索引访问字段的功能。 实现： 1collections.n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="py3.7标准库-collections-namedtuple">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2018/09/10/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-namedtuple/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="collection模块实现了专门的容器数据类型，为Python的通用内置容器dict，list，set和tuple提供了替代方案。接下来，将分别介绍他们。 namedtuple()包含命名字段的元组工厂方法命名元组为元组中的每个位置赋予含义，并允许更可读，自文档代码。它们可以在使用常规元组的任何地方使用，并且它们添加了按名称而不是位置索引访问字段的功能。 实现： 1collections.n">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-09-10T04:12:04.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="python3.7标准库 python python3.7标准库 python3.7标准库">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-py3.7标准库-collections-namedtuple" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/10/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-namedtuple/" class="article-date">
+  <time class="dt-published" datetime="2018-09-10T04:12:04.000Z" itemprop="datePublished">2018-09-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      py3.7标准库-collections-namedtuple
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>collection模块实现了专门的容器数据类型，为Python的通用内置容器<code>dict</code>，<code>list</code>，<code>set</code>和<code>tuple</code>提供了替代方案。接下来，将分别介绍他们。</p>
+<h2 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple()"></a><strong>namedtuple()</strong></h2><p>包含命名字段的元组工厂方法<br>命名元组为元组中的每个位置赋予含义，并允许更可读，自文档代码。<br>它们可以在使用常规元组的任何地方使用，并且它们添加了按名称而不是位置索引访问字段的功能。</p>
+<p>实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">collections.namedtuple(typename, field_names, *, rename=<span class="literal">False</span>, defaults=<span class="literal">None</span>, module=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>返回一个名为<code>typename</code>的新元组子类。 新子类用于创建类似元组的对象，这些对象具有可通过属性查找访问的字段以及可索引和可迭代的字段。 子类的实例还有一个有用的文档字符串（带有<code>typename</code>和<code>field_names</code>）和一个有用的<code>__repr __()</code>方法，它以<code>name = value</code>格式列出元组内容。</p>
+</li>
+<li><p><code>field_names</code>是一系列字符串，例如<code>[&#39;x&#39;，&#39;y&#39;]</code>。 或者，<code>field_names</code>可以是单个字符串，每个字段名由<code>空格</code>和<code>/</code>或<code>逗号</code>分隔，例如<code>&#39;x y&#39;</code>或<code>&#39;x，y&#39;</code>。</p>
+</li>
+<li><p>除了以下划线开头的名称外，任何有效的Python标识符都可用于字段名。有效标识符由字母，数字和下划线组成，但不以数字或下划线开头，也不能是类，for，return，global，pass或raise等关键字。</p>
+</li>
+<li><p>如果<code>rename</code>为<code>true</code>，则无效的字段名称将自动替换为位置名称。 例如，<code>[&#39;abc&#39;，&#39;def&#39;，&#39;ghi&#39;，&#39;abc&#39;]</code>被转换为<code>[&#39;abc&#39;，&#39;_1&#39;，&#39;ghi&#39;，&#39;_3&#39;]</code>，消除了关键字<code>def</code>和重复的字段名<code>abc</code>。</p>
+</li>
+<li><p><code>defaults</code>可以是None或可迭代的默认值。 由于具有默认值的字段必须位于没有默认值的任何字段之后，因此默认值将应用于最右侧的参数。 例如，如果字段名是[‘x’，’y’，’z’]并且默认值是（1,2），则x将是必需参数，y将默认为1，z将默认为2。</p>
+</li>
+<li><p>如果定义了<code>module</code>，则将命名元组的<code>__module__</code>属性设置为该值。</p>
+</li>
+<li><p>命名的元组实例没有每个实例的字典，因此它们是轻量级的，并且不需要比常规元组更多的内存。</p>
+</li>
+</ul>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Basic example</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Point = namedtuple(<span class="string">&#x27;Point&#x27;</span>, [<span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;y&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p = Point(<span class="number">11</span>, y=<span class="number">22</span>)     <span class="comment"># instantiate with positional or keyword arguments</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p[<span class="number">0</span>] + p[<span class="number">1</span>]             <span class="comment"># indexable like the plain tuple (11, 22)</span></span><br><span class="line"><span class="number">33</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x, y = p                <span class="comment"># unpack like a regular tuple</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x, y</span><br><span class="line">(<span class="number">11</span>, <span class="number">22</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p.x + p.y               <span class="comment"># fields also accessible by name</span></span><br><span class="line"><span class="number">33</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p                       <span class="comment"># readable __repr__ with a name=value style</span></span><br><span class="line">Point(x=<span class="number">11</span>, y=<span class="number">22</span>)</span><br></pre></td></tr></table></figure>
+
+<p>命名元组对于将字段名称分配给csv或sqlite3模块返回的结果元组特别有用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">EmployeeRecord = namedtuple(<span class="string">&#x27;EmployeeRecord&#x27;</span>, <span class="string">&#x27;name, age, title, department, paygrade&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">for</span> emp <span class="keyword">in</span> <span class="built_in">map</span>(EmployeeRecord._make, csv.reader(<span class="built_in">open</span>(<span class="string">&quot;employees.csv&quot;</span>, <span class="string">&quot;rb&quot;</span>))):</span><br><span class="line">    <span class="built_in">print</span>(emp.name, emp.title)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line">conn = sqlite3.connect(<span class="string">&#x27;/companydata&#x27;</span>)</span><br><span class="line">cursor = conn.cursor()</span><br><span class="line">cursor.execute(<span class="string">&#x27;SELECT name, age, title, department, paygrade FROM employees&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> emp <span class="keyword">in</span> <span class="built_in">map</span>(EmployeeRecord._make, cursor.fetchall()):</span><br><span class="line">    <span class="built_in">print</span>(emp.name, emp.title)</span><br></pre></td></tr></table></figure>
+
+<p>除了从元组继承的方法之外，命名元组还支持三个额外的方法和两个属性。 为防止与字段名称冲突，方法和属性名称以下划线开头。</p>
+<ul>
+<li><p><strong>classmethod somenamedtuple._make(iterable)</strong></p>
+<p>从现有序列或可迭代对象生成新的实例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t = [11, 22]</span><br><span class="line">&gt;&gt;&gt; Point._make(t)</span><br><span class="line">Point(x=11, y=22)</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>somenamedtuple._asdict()</strong></p>
+<p>返回一个新的OrderedDict，它将字段名称映射到它们对应的值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; p = Point(x=11, y=22)</span><br><span class="line">&gt;&gt;&gt; p._asdict()</span><br><span class="line">OrderedDict([(&#x27;x&#x27;, 11), (&#x27;y&#x27;, 22)])</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>somenamedtuple._replace(**kwargs)</strong></p>
+<p>返回namedtuple的新实例，用新值替换特定字段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; p = Point(x=11, y=22)</span><br><span class="line">&gt;&gt;&gt; p._replace(x=33)</span><br><span class="line">Point(x=33, y=22)</span><br><span class="line">&gt;&gt;&gt;id(p._replace(x=66))</span><br><span class="line">4572244008</span><br><span class="line">&gt;&gt;&gt;id(p)</span><br><span class="line">4569821544</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>somenamedtuple._fields</strong></p>
+<p>列出字段名称的字符串元组。 用于内省和从现有命名元组创建新的命名元组类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;p._fields            # view the field names</span><br><span class="line">(&#x27;x&#x27;, &#x27;y&#x27;)</span><br><span class="line">&gt;&gt;&gt; Color = namedtuple(&#x27;Color&#x27;, &#x27;red green blue&#x27;)</span><br><span class="line">&gt;&gt;&gt; Pixel = namedtuple(&#x27;Pixel&#x27;, Point._fields + Color._fields)</span><br><span class="line">&gt;&gt;&gt; Pixel(11, 22, 128, 255, 0)</span><br><span class="line">Pixel(x=11, y=22, red=128, green=255, blue=0)</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>somenamedtuple._fields_defaults</strong></p>
+<p>字典将字段名称映射到默认值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Account = namedtuple(&#x27;Account&#x27;, [&#x27;type&#x27;, &#x27;balance&#x27;], defaults=[0])</span><br><span class="line">&gt;&gt;&gt; Account._fields_defaults</span><br><span class="line">&#123;&#x27;balance&#x27;: 0&#125;</span><br><span class="line">&gt;&gt;&gt; Account(&#x27;premium&#x27;)</span><br><span class="line">Account(type=&#x27;premium&#x27;, balance=0)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>要检索一个对象的字段，使用<code>getattr()</code>方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">getattr</span>(p, <span class="string">&#x27;x&#x27;</span>)</span><br><span class="line"><span class="number">11</span></span><br></pre></td></tr></table></figure>
+
+<p>要将字典转化为一个命名元组，使用<code>**x</code>的方式赋值:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = &#123;<span class="string">&#x27;x&#x27;</span>: <span class="number">11</span>, <span class="string">&#x27;y&#x27;</span>: <span class="number">22</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Point(**d)</span><br><span class="line">Point(x=<span class="number">11</span>, y=<span class="number">22</span>)</span><br></pre></td></tr></table></figure>
+
+<p>由于命名元组是常规Python类，因此很容易使用子类添加或更改功能。 以下是添加计算字段和固定宽度打印格式的方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; class Point(namedtuple(&#x27;Point&#x27;, [&#x27;x&#x27;, &#x27;y&#x27;])):</span><br><span class="line">...     __slots__ = ()</span><br><span class="line">...     @property</span><br><span class="line">...     def hypot(self):</span><br><span class="line">...         return (self.x ** 2 + self.y ** 2) ** 0.5</span><br><span class="line">...     def __str__(self):</span><br><span class="line">...         return &#x27;Point: x=%6.3f  y=%6.3f  hypot=%6.3f&#x27; % (self.x, self.y, self.hypot)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; for p in Point(3, 4), Point(14, 5/7):</span><br><span class="line">...     print(p)</span><br><span class="line">Point: x= 3.000  y= 4.000  hypot= 5.000</span><br><span class="line">Point: x=14.000  y= 0.714  hypot=14.018</span><br></pre></td></tr></table></figure>
+
+<p>上面显示的子类将<strong>slots</strong>设置为空元组。 这有助于防止创建实例字典，从而降低内存需求。</p>
+<p>子类化对于添加新的存储字段没有用。 相反，只需从_fields属性创建一个新的命名元组类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Point3D = namedtuple(&#x27;Point3D&#x27;, Point._fields + (&#x27;z&#x27;,))</span><br></pre></td></tr></table></figure>
+
+<p>可以通过直接分配<code>__doc__</code>字段来自定义文档字符串：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Book = namedtuple(&#x27;Book&#x27;, [&#x27;id&#x27;, &#x27;title&#x27;, &#x27;authors&#x27;])</span><br><span class="line">&gt;&gt;&gt; Book.__doc__ += &#x27;: Hardcover book in active collection&#x27;</span><br><span class="line">&gt;&gt;&gt; Book.id.__doc__ = &#x27;13-digit ISBN&#x27;</span><br><span class="line">&gt;&gt;&gt; Book.title.__doc__ = &#x27;Title of first printing&#x27;</span><br><span class="line">&gt;&gt;&gt; Book.authors.__doc__ = &#x27;List of authors sorted by last name&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>通过使用<code>_replace()</code>对定制的已经有默认值的原型实例进行改造</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Account = namedtuple(&#x27;Account&#x27;, &#x27;owner balance transaction_count&#x27;)</span><br><span class="line">&gt;&gt;&gt; default_account = Account(&#x27;&lt;owner name&gt;&#x27;, 0.0, 0)</span><br><span class="line">&gt;&gt;&gt; johns_account = default_account._replace(owner=&#x27;John&#x27;)</span><br><span class="line">&gt;&gt;&gt; janes_account = default_account._replace(owner=&#x27;Jane&#x27;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/09/10/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-namedtuple/" data-id="ckpqq95a20024ykjdcu2mc75a" data-title="py3.7标准库-collections-namedtuple" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/10/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-deque/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          py3.7标准库-collections-deque
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/07/py3.7%E6%A0%87%E5%87%86%E5%BA%93-itertools/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">py3.7标准库-itertools</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

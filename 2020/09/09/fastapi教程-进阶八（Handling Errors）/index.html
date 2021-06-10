@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>fastapi教程-进阶八（Handling Errors） | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="参考内容：  https:&#x2F;&#x2F;fastapi.tiangolo.com&#x2F;  在很多情况下，在服务端出现错误时，我们需要告诉客户端出现了什么错误，例如：  客户端没有足够的权限进行该操作。 客户端无权访问该资源。 客户端尝试访问的项目不存在。  这时，我们需要返回给客户端400-499范围内的HTTP状态码。接下来介绍如何通过fastapi对服务端错误进行处理并返回给客户端HTTP状态码 HTT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fastapi教程-进阶八（Handling Errors）">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="参考内容：  https:&#x2F;&#x2F;fastapi.tiangolo.com&#x2F;  在很多情况下，在服务端出现错误时，我们需要告诉客户端出现了什么错误，例如：  客户端没有足够的权限进行该操作。 客户端无权访问该资源。 客户端尝试访问的项目不存在。  这时，我们需要返回给客户端400-499范围内的HTTP状态码。接下来介绍如何通过fastapi对服务端错误进行处理并返回给客户端HTTP状态码 HTT">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020090915000151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200909150431329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200909150446458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200909150759733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-09-09T07:05:44.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="python fastapi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020090915000151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-fastapi教程-进阶八（Handling Errors）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2020-09-09T07:05:44.000Z" itemprop="datePublished">2020-09-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/fastapi/">fastapi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      fastapi教程-进阶八（Handling Errors）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p><strong>参考内容</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></li>
+</ul>
+<p>在很多情况下，在服务端出现错误时，我们需要告诉客户端出现了什么错误，例如：</p>
+<ul>
+<li>客户端没有足够的权限进行该操作。</li>
+<li>客户端无权访问该资源。</li>
+<li>客户端尝试访问的项目不存在。</li>
+</ul>
+<p>这时，我们需要返回给客户端400-499范围内的HTTP状态码。接下来介绍如何通过fastapi对服务端错误进行处理并返回给客户端HTTP状态码</p>
+<h2 id="HTTPException"><a href="#HTTPException" class="headerlink" title="HTTPException"></a>HTTPException</h2><p>如果希望将错误返回给客户端，可以使用<code>HTTPException</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, HTTPException</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line">items = &#123;<span class="string">&quot;foo&quot;</span>: <span class="string">&quot;The Foo Wrestlers&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id: <span class="built_in">str</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> item_id <span class="keyword">not</span> <span class="keyword">in</span> items:</span><br><span class="line">        <span class="keyword">raise</span> HTTPException(status_code=<span class="number">404</span>, detail=<span class="string">&quot;Item not found&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item&quot;</span>: items[item_id]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面这个代码的含义是希望当查询的item_id不存在时，返回404状态码，并告诉客户端查询的id不存在。</p>
+<p>我们先尝试请求<code>http://127.0.0.1:8000/items/a</code>，看看服务端会响应什么:<br><img src="https://img-blog.csdnimg.cn/2020090915000151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-3i6smyYE-1599634775682)(evernotecid://FBE381A3-17C7-41D9-AA37-9C5F29FAB396/appyinxiangcom/20545635/ENResource/p221)]"></p>
+<p>回到代码中，我们注意到这里的<code>HTTPException</code>使用了<code>raise</code>，而不是<code>return</code>，这是为什么呢？</p>
+<p>因为<code>HTTPException</code>本身是python的异常类，异常我们通常都是需要将它抛出，所以用了<code>raise</code>。这也就意味着，当我们触发了<code>HTTPException</code>这个异常，余下的代码将不会再执行，并且服务端会直接将错误通过<code>HTTPException</code>响应给客户端。</p>
+<p>另外，当我们抛出<code>HTTPException</code>时，服务端会返回给我们:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;Item not found&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们想返回更具体的错误信息，可以对<code>detail</code>进行修改，它不仅可以接收字符串，也可以是json、dict、list等结构，例如我们修改代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, HTTPException</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line">items = &#123;<span class="string">&quot;foo&quot;</span>: <span class="string">&quot;The Foo Wrestlers&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id: <span class="built_in">str</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> item_id <span class="keyword">not</span> <span class="keyword">in</span> items:</span><br><span class="line">        <span class="keyword">raise</span> HTTPException(status_code=<span class="number">404</span>, detail=&#123;<span class="string">&#x27;msg&#x27;</span>: <span class="string">&quot;Item not found&quot;</span>&#125;)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item&quot;</span>: items[item_id]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再次请求<code>http://127.0.0.1:8000/items/a</code>，此时的响应就发生了变化：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;detail&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;msg&quot;</span>: <span class="string">&quot;Item not found&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，<code>HTTPException</code>还可以添加响应头：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, HTTPException</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line">items = &#123;<span class="string">&quot;foo&quot;</span>: <span class="string">&quot;The Foo Wrestlers&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items-header/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item_header</span>(<span class="params">item_id: <span class="built_in">str</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> item_id <span class="keyword">not</span> <span class="keyword">in</span> items:</span><br><span class="line">        <span class="keyword">raise</span> HTTPException(</span><br><span class="line">            status_code=<span class="number">404</span>,</span><br><span class="line">            detail=<span class="string">&quot;Item not found&quot;</span>,</span><br><span class="line">            headers=&#123;<span class="string">&quot;X-Error&quot;</span>: <span class="string">&quot;There goes my error&quot;</span>&#125;,</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item&quot;</span>: items[item_id]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再次请求<code>http://127.0.0.1:8000/items/a</code>，此时的响应头增加了<code>X-Error</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">content-length: 27</span><br><span class="line">content-type: application/json</span><br><span class="line">date: Tue, 08 Sep 2020 09:15:21 GMT</span><br><span class="line">server: uvicorn</span><br><span class="line">x-error: There goes my error</span><br></pre></td></tr></table></figure>
+
+<h2 id="exception-handlers"><a href="#exception-handlers" class="headerlink" title="exception handlers"></a>exception handlers</h2><p>上面我们介绍了如何在一个接口中，抛出错误信息给客户端，如果此时有多个接口都抛出了异常响应，并且我们希望可以对全局的错误异常响应做统一的处理呢。这时候我们需要用到<code>@app.exception_handler()</code>这个装饰器:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Request</span><br><span class="line"><span class="keyword">from</span> fastapi.responses <span class="keyword">import</span> JSONResponse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnicornException</span>(<span class="params">Exception</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name: <span class="built_in">str</span></span>):</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.exception_handler(<span class="params">UnicornException</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">unicorn_exception_handler</span>(<span class="params">request: Request, exc: UnicornException</span>):</span></span><br><span class="line">    <span class="keyword">return</span> JSONResponse(</span><br><span class="line">        status_code=<span class="number">418</span>,</span><br><span class="line">        content=&#123;<span class="string">&quot;message&quot;</span>: <span class="string">f&quot;Oops! <span class="subst">&#123;exc.name&#125;</span> did something. There goes a rainbow...&quot;</span>&#125;,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/unicorns/&#123;name&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_unicorn</span>(<span class="params">name: <span class="built_in">str</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> name == <span class="string">&quot;yolo&quot;</span>:</span><br><span class="line">        <span class="keyword">raise</span> UnicornException(name=name)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;unicorn_name&quot;</span>: name&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尝试请求<code>http://127.0.0.1:8000/unicorns/yolo</code>，会响应:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;Oops! yolo did something. There goes a rainbow...&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子自定义了异常类<code>UnicornException</code>，当请求的name=yolo时，会抛出<code>UnicornException</code>。但是并不会立刻响应给客户端，而是先经过<code>unicorn_exception_handler</code>处理成统一的格式，最后才会响应给客户端，也就是我们上面看到的响应。</p>
+<h2 id="重写默认的exception-handlers"><a href="#重写默认的exception-handlers" class="headerlink" title="重写默认的exception handlers"></a>重写默认的exception handlers</h2><p>fastapi有很多默认的异常处理器。这些处理器负责在引发HTTPException以及请求中包含无效数据时返回默认的JSON响应。</p>
+<p>我们可以使用自己的方法重写这些异常处理器，下面我们来重写<code>RequestValidationError</code>和<code>HTTPException</code>的异常处理器:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, HTTPException</span><br><span class="line"><span class="keyword">from</span> fastapi.exceptions <span class="keyword">import</span> RequestValidationError</span><br><span class="line"><span class="keyword">from</span> fastapi.responses <span class="keyword">import</span> PlainTextResponse</span><br><span class="line"><span class="keyword">from</span> starlette.exceptions <span class="keyword">import</span> HTTPException <span class="keyword">as</span> StarletteHTTPException</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.exception_handler(<span class="params">StarletteHTTPException</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">http_exception_handler</span>(<span class="params">request, exc</span>):</span></span><br><span class="line">    <span class="keyword">return</span> PlainTextResponse(<span class="built_in">str</span>(exc.detail), status_code=exc.status_code)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.exception_handler(<span class="params">RequestValidationError</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">validation_exception_handler</span>(<span class="params">request, exc</span>):</span></span><br><span class="line">    <span class="keyword">return</span> PlainTextResponse(<span class="built_in">str</span>(exc), status_code=<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id: <span class="built_in">int</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> item_id == <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">raise</span> HTTPException(status_code=<span class="number">418</span>, detail=<span class="string">&quot;Nope! I don&#x27;t like 3.&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当请求的参数是非法参数时，fastapi会主动抛出<code>RequestValidationError</code>，此时会通过<code>validation_exception_handler</code>处理这个异常，处理的结果是响应文本格式的结果，并设置状态码为400，我们尝试请求<code>http://127.0.0.1:8000/items/foo</code>，此时会返回：<br><img src="https://img-blog.csdnimg.cn/20200909150431329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-LmkcvBcZ-1599634775699)(evernotecid://FBE381A3-17C7-41D9-AA37-9C5F29FAB396/appyinxiangcom/20545635/ENResource/p223)]"></p>
+<p>当请求参数item_id=3时，会触发<code>HTTPException</code>，并通过<code>http_exception_handler</code>响应文本格式的信息，并设置状态码为418，尝试请求<code>http://127.0.0.1:8000/items/3</code>，此时会返回：<br><img src="https://img-blog.csdnimg.cn/20200909150446458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-tXVpVvNu-1599634775703)(evernotecid://FBE381A3-17C7-41D9-AA37-9C5F29FAB396/appyinxiangcom/20545635/ENResource/p225)]"></p>
+<h4 id="如何利用RequestValidationError结构体"><a href="#如何利用RequestValidationError结构体" class="headerlink" title="如何利用RequestValidationError结构体"></a>如何利用<code>RequestValidationError</code>结构体</h4><p>当我们希望可以知道出现错误的请求体以便可以记日志或debug时，我们可以使用<code>RequestValidationError</code>的<code>body</code>属性：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Request, status</span><br><span class="line"><span class="keyword">from</span> fastapi.encoders <span class="keyword">import</span> jsonable_encoder</span><br><span class="line"><span class="keyword">from</span> fastapi.exceptions <span class="keyword">import</span> RequestValidationError</span><br><span class="line"><span class="keyword">from</span> fastapi.responses <span class="keyword">import</span> JSONResponse</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.exception_handler(<span class="params">RequestValidationError</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">validation_exception_handler</span>(<span class="params">request: Request, exc: RequestValidationError</span>):</span></span><br><span class="line">    <span class="keyword">return</span> JSONResponse(</span><br><span class="line">        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,</span><br><span class="line">        content=jsonable_encoder(&#123;<span class="string">&quot;detail&quot;</span>: exc.errors(), <span class="string">&quot;body&quot;</span>: exc.body&#125;),</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span>(<span class="params">BaseModel</span>):</span></span><br><span class="line">    title: <span class="built_in">str</span></span><br><span class="line">    size: <span class="built_in">int</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">create_item</span>(<span class="params">item: Item</span>):</span></span><br><span class="line">    <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+<p>尝试向<code>http://127.0.0.1:8000/items/</code>发送一个非法的请求体：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;string&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;size&quot;</span>: <span class="string">&quot;aaa&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来看看会响应什么：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;detail&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;loc&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;body&quot;</span>,</span><br><span class="line">        <span class="string">&quot;size&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;msg&quot;</span>: <span class="string">&quot;value is not a valid integer&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;type_error.integer&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">&quot;body&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;string&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;size&quot;</span>: <span class="string">&quot;aaa&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="FastAPI’s-HTTPException-vs-Starlette’s-HTTPException"><a href="#FastAPI’s-HTTPException-vs-Starlette’s-HTTPException" class="headerlink" title="FastAPI’s HTTPException vs Starlette’s HTTPException"></a>FastAPI’s HTTPException vs Starlette’s HTTPException</h4><p>通过上面的例子我们可以注意到有的例子用了<code>from fastapi import HTTPException</code>也有用<code>from starlette.exceptions import HTTPException as StarletteHTTPException</code>，那么这两种用法有什么区别呢？</p>
+<p><img src="https://img-blog.csdnimg.cn/20200909150759733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-2XIDY2Nb-1599634775711)(evernotecid://FBE381A3-17C7-41D9-AA37-9C5F29FAB396/appyinxiangcom/20545635/ENResource/p226)]"></p>
+<p>上面的源码告诉了我们，虽然FastAPI的HTTPException继承自Starlette的HTTPException，但是FastAPI的HTTPException允许添加响应头。<br>一般情况下，我们可以使用<code>from fastapi import HTTPException</code>，但是当我们去重写<code>HTTPException</code>处理器的时候，建议还是使用<code>from starlette.exceptions import HTTPException as StarletteHTTPException</code>。原因是，如果是starlette内部代码或相关插件引发了HTTPException，我们可以通过处理器捕捉到它。</p>
+<h2 id="重用fastapi的exception-handlers"><a href="#重用fastapi的exception-handlers" class="headerlink" title="重用fastapi的exception handlers"></a>重用fastapi的exception handlers</h2><p>如果我们想用默认的异常处理器，但是希望在这之前加一些自己的东西，比如，在默认处理器之前打印一下错误信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, HTTPException</span><br><span class="line"><span class="keyword">from</span> fastapi.exception_handlers <span class="keyword">import</span> (</span><br><span class="line">    http_exception_handler,</span><br><span class="line">    request_validation_exception_handler,</span><br><span class="line">)</span><br><span class="line"><span class="keyword">from</span> fastapi.exceptions <span class="keyword">import</span> RequestValidationError</span><br><span class="line"><span class="keyword">from</span> starlette.exceptions <span class="keyword">import</span> HTTPException <span class="keyword">as</span> StarletteHTTPException</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.exception_handler(<span class="params">StarletteHTTPException</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">custom_http_exception_handler</span>(<span class="params">request, exc</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;OMG! An HTTP error!: <span class="subst">&#123;<span class="built_in">repr</span>(exc)&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> http_exception_handler(request, exc)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.exception_handler(<span class="params">RequestValidationError</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">validation_exception_handler</span>(<span class="params">request, exc</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;OMG! The client sent invalid data!: <span class="subst">&#123;exc&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> request_validation_exception_handler(request, exc)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id: <span class="built_in">int</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> item_id == <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">raise</span> HTTPException(status_code=<span class="number">418</span>, detail=<span class="string">&quot;Nope! I don&#x27;t like 3.&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>返回<code>HTTPException</code>时，要用<code>raise</code>，不要用<code>return</code></li>
+<li>我们可以自定义异常响应处理器，使用<code>@app.exception_handler()</code>来装饰处理器方法</li>
+<li>我们也可以通过重写fastapi已有的异常响应处理器来达到我们的目的</li>
+<li>注意FastAPI的HTTPException继承自Starlette的HTTPException的区别，防止出错的话，直接使用<code>from starlette.exceptions import HTTPException as StarletteHTTPException</code></li>
+</ul>
+<blockquote>
+<p>上述栗子均放到git上啦，地址：<a target="_blank" rel="noopener" href="https://github.com/ChuXiaoYi/fastapi">戳这里</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/" data-id="ckpqq959h0011ykjd31rd0gbl" data-title="fastapi教程-进阶八（Handling Errors）" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          fastapi教程-进阶九（Dependencies-1）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">fastapi教程-进阶七（Request Forms and Files）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

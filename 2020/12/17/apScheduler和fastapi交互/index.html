@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>apScheduler和fastapi交互 | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="参考文档:  官方文档 python定时任务最强框架APScheduler详细教程 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;zhangliang91&#x2F;p&#x2F;12468871.html  基本介绍APScheduler(Advanced Python Scheduler)是一个python的任务调度器，他可以使任务定期执行，同时我们可以动态的添加或删除任务。如果我们希望任务在下次程序启动时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="apScheduler和fastapi交互">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="参考文档:  官方文档 python定时任务最强框架APScheduler详细教程 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;zhangliang91&#x2F;p&#x2F;12468871.html  基本介绍APScheduler(Advanced Python Scheduler)是一个python的任务调度器，他可以使任务定期执行，同时我们可以动态的添加或删除任务。如果我们希望任务在下次程序启动时">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020121715471558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201217155259313.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201217155306332.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201217155321258.png">
+<meta property="article:published_time" content="2020-12-17T07:55:50.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="python apScheduler">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020121715471558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-apScheduler和fastapi交互" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/" class="article-date">
+  <time class="dt-published" datetime="2020-12-17T07:55:50.000Z" itemprop="datePublished">2020-12-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/fastapi/">fastapi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      apScheduler和fastapi交互
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>参考文档:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://apscheduler.readthedocs.io/en/latest/userguide.html">官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/144506204">python定时任务最强框架APScheduler详细教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhangliang91/p/12468871.html">https://www.cnblogs.com/zhangliang91/p/12468871.html</a></li>
+</ul>
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>APScheduler(Advanced Python Scheduler)是一个python的任务调度器，他可以使任务定期执行，同时我们可以动态的添加或删除任务。如果我们希望任务在下次程序启动时继续执行，那么他还支持持久化任务。除此之外，他也是跨平台的。需要注意的是，APScheduler并不是一个守护进程或单独服务，他是依托于现有服务或程序运行。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install apscheduler</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">poetry add apscheduler</span><br></pre></td></tr></table></figure>
+
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> apscheduler.schedulers.blocking <span class="keyword">import</span> BlockingScheduler</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">job</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;datetime.now()&#125;</span>执行了&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    scheduler = BlockingScheduler()</span><br><span class="line">    scheduler.add_job(func=job, trigger=<span class="string">&#x27;interval&#x27;</span>, seconds=<span class="number">3</span>)</span><br><span class="line">    scheduler.start()</span><br></pre></td></tr></table></figure>
+
+<p>这个栗子做了一件事：每三秒执行一次任务。<br>首先，初始化调度器，这里的BlockingScheduler是阻塞性的调度器，当调用start方法时，会阻塞当前进程；然后，向调度器中添加任务，这里的任务是job方法，每执行一次任务会打印文字；这里采用的是interval(间隔执行)的方式，每三秒执行一次</p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>APScheduler具有四个基本组件：</p>
+<ul>
+<li><strong>triggers</strong>（触发器）：包含调度逻辑。每个作业都有自己的触发器，该触发器确定下一步应在何时运行该作业。除了其初始配置外，触发器完全是无状态的。</li>
+<li><strong>job stores</strong>（任务存储器）：任务存储器是可以存储任务的地方，默认情况下任务保存在内存，也可将任务保存在各种数据库中。任务存储进去后，会进行序列化，然后也可以反序列化提取出来，继续执行。</li>
+<li><strong>executors</strong>（执行器）：执行器会将任务放到进程或线程中执行，任务执行完成后，执行程序会通知调度器，然后触发一些事件</li>
+<li><strong>schedulers</strong>（调度器）：任务调度器是属于整个调度的总指挥官。他会合理安排作业存储器、执行器、触发器进行工作，并进行添加和删除任务等。调度器通常是只有一个的。<br><img src="https://img-blog.csdnimg.cn/2020121715471558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+<h3 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h3><p>APScheduler有很多调度器，不同的调度器适合不同的环境：</p>
+<ul>
+<li><strong>BlockingScheduler</strong>：适用于当前进程只有这一个调度器在工作</li>
+<li><strong>BackgroundScheduler</strong>：适用于在程序后台运行</li>
+<li><strong>AsyncIOScheduler</strong>：适用于使用了asyncio的模块</li>
+<li><strong>GeventScheduler</strong>：适用于使用了gevent的模块</li>
+<li><strong>TornadoScheduler</strong>：适用于用tornado构建的应用</li>
+<li><strong>TwistedScheduler</strong>：适用于用twisted构建的应用</li>
+<li><strong>QtScheduler</strong>：适用于构建QT应用</li>
+</ul>
+<h3 id="任务存储器"><a href="#任务存储器" class="headerlink" title="任务存储器"></a>任务存储器</h3><p>任务存储器的选择取决于是否需要任务持久化。如果每次任务启动的时候都重新创建任务，那么可以使用内存存储器(MemoryJobStore)。如果需要任务持久化，可以使用和项目匹配的数据库存储器，这样即使是程序崩溃，重启后任务依旧可以继续执行。存储器可以有以下几种：</p>
+<ul>
+<li><strong>MemoryJobStore</strong>：任务保存在内存中</li>
+<li><strong>SQLAlchemyJobStore</strong>：使用sqlalchemy作为存储框架，官方建议数据库使用PostgreSQL</li>
+<li><strong>MongoDBJobStore</strong>：使用 mongodb作为存储器</li>
+<li><strong>RedisJobStore</strong>：使用 redis作为存储器</li>
+</ul>
+<h3 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h3><p>执行器的选择取决于程序使用了什么框架，默认情况下使用ThreadPoolExecutor。如果任务涉及了计算密集型操作，可以考虑使用ProcessPoolExecutor。APScheduler针对不同的程序或架构，有以下几种执行器：</p>
+<ul>
+<li><strong>ThreadPoolExecutor</strong>：线程池执行器；</li>
+<li><strong>ProcessPoolExecutor</strong>：进程池执行器；</li>
+<li><strong>GeventExecutor</strong>： Gevent程序执行器；</li>
+<li><strong>TornadoExecutor</strong>： Tornado程序执行器；</li>
+<li><strong>TwistedExecutor</strong>： Twisted程序执行器；</li>
+<li><strong>AsyncIOExecutor</strong>： asyncio程序执行器；</li>
+</ul>
+<h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><p>APScheduler内置了三种触发器：</p>
+<ul>
+<li><strong>date</strong>：特定时间仅运行一次</li>
+<li><strong>interval</strong>：固定时间间隔运行</li>
+<li><strong>cron</strong>：某个时间周期运行</li>
+</ul>
+<h2 id="构建调度程序"><a href="#构建调度程序" class="headerlink" title="构建调度程序"></a>构建调度程序</h2><h3 id="构建调度器"><a href="#构建调度器" class="headerlink" title="构建调度器"></a>构建调度器</h3><p>假设构建一个使用默认存储器和默认执行器的阻塞调度器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> apscheduler.schedulers.blocking <span class="keyword">import</span> BlockingScheduler</span><br><span class="line">scheduler = BlockingScheduler()</span><br></pre></td></tr></table></figure>
+
+<p>通过查看源码可以发现，默认存储器使用的是MemoryJobStore，默认执行器使用的是ThreadPoolExecutor</p>
+<p>除了默认的配置，APScheduler也提供了许多不同的方式来配置调度器。假设现在我们希望构造一个：</p>
+<ul>
+<li>   一个名为“ redis”的MemoryJobStore</li>
+<li>   一个名为“ default”的RedisJobStore</li>
+<li>   一个名为“ default”的ThreadPoolExecutor，其最大线程数为20</li>
+<li>   一个名为“ processpool”的ProcessPoolExecutor，其最大进程数为5</li>
+<li>   UTC作为调度程序的时区</li>
+<li>   默认情况下，对新作业关闭合并</li>
+<li>新作业的默认最大实例限制为3<br>方法一：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pytz <span class="keyword">import</span> utc</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> apscheduler.schedulers.background <span class="keyword">import</span> BackgroundScheduler</span><br><span class="line"><span class="keyword">from</span> apscheduler.jobstores.redis <span class="keyword">import</span> RedisJobStore</span><br><span class="line"><span class="keyword">from</span> apscheduler.jobstores.memory <span class="keyword">import</span> MemoryJobStore</span><br><span class="line"><span class="keyword">from</span> apscheduler.executors.pool <span class="keyword">import</span> ThreadPoolExecutor, ProcessPoolExecutor</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">jobstores = &#123;</span><br><span class="line">    <span class="string">&#x27;redis&#x27;</span>: RedisJobStore(),</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: MemoryJobStore()</span><br><span class="line">&#125;</span><br><span class="line">executors = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: ThreadPoolExecutor(<span class="number">20</span>),</span><br><span class="line">    <span class="string">&#x27;processpool&#x27;</span>: ProcessPoolExecutor(<span class="number">5</span>)</span><br><span class="line">&#125;</span><br><span class="line">job_defaults = &#123;</span><br><span class="line">    <span class="string">&#x27;coalesce&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">    <span class="string">&#x27;max_instances&#x27;</span>: <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line">scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">scheduler = BackgroundScheduler(&#123;</span><br><span class="line">    <span class="string">&#x27;apscheduler.jobstores.redis&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;redis&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;url&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;apscheduler.jobstores.default&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;memory&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;apscheduler.executors.default&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;class&#x27;</span>: <span class="string">&#x27;apscheduler.executors.pool:ThreadPoolExecutor&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;max_workers&#x27;</span>: <span class="string">&#x27;20&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;apscheduler.executors.processpool&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;processpool&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;max_workers&#x27;</span>: <span class="string">&#x27;5&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;apscheduler.job_defaults.coalesce&#x27;</span>: <span class="string">&#x27;false&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;apscheduler.job_defaults.max_instances&#x27;</span>: <span class="string">&#x27;3&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;apscheduler.timezone&#x27;</span>: <span class="string">&#x27;UTC&#x27;</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>方法三：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pytz <span class="keyword">import</span> utc</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> apscheduler.schedulers.background <span class="keyword">import</span> BackgroundScheduler</span><br><span class="line"><span class="keyword">from</span> apscheduler.jobstores.redis <span class="keyword">import</span> RedisJobStore</span><br><span class="line"><span class="keyword">from</span> apscheduler.executors.pool <span class="keyword">import</span> ProcessPoolExecutor</span><br><span class="line"></span><br><span class="line">jobstores = &#123;</span><br><span class="line">    <span class="string">&#x27;redis&#x27;</span>: RedisJobStore(),</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;<span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;memory&#x27;</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line">executors = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;<span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;threadpool&#x27;</span>, <span class="string">&#x27;max_workers&#x27;</span>: <span class="number">20</span>&#125;,</span><br><span class="line">    <span class="string">&#x27;processpool&#x27;</span>: ProcessPoolExecutor(max_workers=<span class="number">5</span>)</span><br><span class="line">&#125;</span><br><span class="line">job_defaults = &#123;</span><br><span class="line">    <span class="string">&#x27;coalesce&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">    <span class="string">&#x27;max_instances&#x27;</span>: <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line">scheduler = BackgroundScheduler()</span><br><span class="line">scheduler.configure(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动调度器"><a href="#启动调度器" class="headerlink" title="启动调度器"></a>启动调度器</h3><p>除了BlockingScheduler，其他调度器启动后会立即返回，继续执行程序其他操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduler.start()</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加任务"><a href="#添加任务" class="headerlink" title="添加任务"></a>添加任务</h3><p>APScheduler支持两种添加任务的方式：</p>
+<ul>
+<li>调用<code>add_job()</code><br>调用add_job方法之后，会返回<code>apscheduler.job.Job</code>对象，这个对象可以用来更新或删除</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduler.add_job(func=job, trigger=<span class="string">&#x27;interval&#x27;</span>, seconds=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>   使用<code>scheduled_job()</code>装饰器</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@scheduler.scheduled_job(<span class="params">trigger=<span class="string">&#x27;interval&#x27;</span>, seconds=<span class="number">3</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">job</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;datetime.now()&#125;</span>执行了&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>我们可以在任何时候安排工作给调度器，如果添加工作的时候调度器还木有启动，那么工作会暂停，并在调度器开始工作后才开始</p>
+<h3 id="删除任务"><a href="#删除任务" class="headerlink" title="删除任务"></a>删除任务</h3><ul>
+<li>   调用<code>remove()</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">job = scheduler.add_job(job, <span class="string">&#x27;interval&#x27;</span>, minutes=<span class="number">2</span>)</span><br><span class="line">job.remove()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>   调用<code>remove_job()</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scheduler.add_job(job, <span class="string">&#x27;interval&#x27;</span>, minutes=<span class="number">2</span>, <span class="built_in">id</span>=<span class="string">&#x27;my_job_id&#x27;</span>)</span><br><span class="line">scheduler.remove_job(<span class="string">&#x27;my_job_id&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="暂停和恢复任务"><a href="#暂停和恢复任务" class="headerlink" title="暂停和恢复任务"></a>暂停和恢复任务</h3><p>暂停：</p>
+<ul>
+<li><code>apscheduler.job.Job.pause()</code></li>
+<li><code>apscheduler.schedulers.base.BaseScheduler.pause_job()</code></li>
+</ul>
+<p>恢复：</p>
+<ul>
+<li><code>apscheduler.job.Job.resume()</code></li>
+<li><code>apscheduler.schedulers.base.BaseScheduler.resume_job()</code></li>
+</ul>
+<h3 id="更新任务"><a href="#更新任务" class="headerlink" title="更新任务"></a>更新任务</h3><ul>
+<li><code>modify_job()</code></li>
+<li><code>apscheduler.job.Job.modify()</code></li>
+<li><code>reschedule_job()</code></li>
+<li><code>apscheduler.job.Job.reschedule()</code></li>
+</ul>
+<h3 id="关闭调度程序"><a href="#关闭调度程序" class="headerlink" title="关闭调度程序"></a>关闭调度程序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduler.shutdown()</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，调度程序关闭其作业存储和执行程序，并等待直到所有当前正在执行的作业完成。如果不想等待，可以执行以下操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduler.shutdown(wait=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="APScheduler和fastapi实战"><a href="#APScheduler和fastapi实战" class="headerlink" title="APScheduler和fastapi实战"></a>APScheduler和fastapi实战</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> uvicorn</span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Body</span><br><span class="line"><span class="keyword">from</span> apscheduler.schedulers.background <span class="keyword">import</span> BackgroundScheduler</span><br><span class="line"><span class="keyword">from</span> apscheduler.jobstores.redis <span class="keyword">import</span> RedisJobStore</span><br><span class="line"><span class="keyword">from</span> apscheduler.executors.pool <span class="keyword">import</span> ThreadPoolExecutor</span><br><span class="line"></span><br><span class="line">app = FastAPI(title=<span class="string">&#x27;fast-api&#x27;</span>)</span><br><span class="line"></span><br><span class="line">scheduler = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">job</span>(<span class="params">job_id=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;datetime.datetime.now()&#125;</span>执行了<span class="subst">&#123;job_id&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.on_event(<span class="params"><span class="string">&#x27;startup&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_scheduler</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;初始化&quot;&quot;&quot;</span></span><br><span class="line">    redis_job_store = RedisJobStore(host=<span class="string">&#x27;127.0.0.1&#x27;</span>, port=<span class="string">&#x27;6379&#x27;</span>)</span><br><span class="line">    executor = ThreadPoolExecutor()</span><br><span class="line"></span><br><span class="line">    jobstores = &#123;</span><br><span class="line">        <span class="string">&#x27;default&#x27;</span>: redis_job_store</span><br><span class="line">    &#125;</span><br><span class="line">    executors = &#123;</span><br><span class="line">        <span class="string">&#x27;default&#x27;</span>: executor,</span><br><span class="line">    &#125;</span><br><span class="line">    job_defaults = &#123;</span><br><span class="line">        <span class="string">&#x27;coalesce&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">&#x27;max_instance&#x27;</span>: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">global</span> scheduler</span><br><span class="line">    scheduler = BackgroundScheduler()</span><br><span class="line">    scheduler.configure(jobstores=jobstores, executors=executors, job_defaults=job_defaults)</span><br><span class="line">    scheduler.add_job(job, <span class="string">&#x27;interval&#x27;</span>, seconds=<span class="number">3</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;启动调度器...&quot;</span>)</span><br><span class="line">    scheduler.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&#x27;/add-job&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">add_job</span>(<span class="params">job_id: <span class="built_in">str</span> = Body(<span class="params">...</span>)</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;添加job&quot;&quot;&quot;</span></span><br><span class="line">    scheduler.add_job(<span class="built_in">id</span>=job_id, func=job, args=(job_id,), trigger=<span class="string">&#x27;interval&#x27;</span>, seconds=<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;msg&quot;</span>: <span class="string">&quot;success!&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&#x27;/remove-job&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">remove_job</span>(<span class="params">job_id: <span class="built_in">str</span> = Body(<span class="params">..., embed=<span class="literal">True</span></span>)</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;移除job&quot;&quot;&quot;</span></span><br><span class="line">    scheduler.remove_job(job_id)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;msg&quot;</span>: <span class="string">&quot;success!&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    uvicorn.run(app, host=<span class="string">&#x27;127.0.0.1&#x27;</span>, port=<span class="number">5566</span>)</span><br></pre></td></tr></table></figure>
+
+<p>项目启动后，可以看到调度器开始工作，并开始执行任务<br><img src="https://img-blog.csdnimg.cn/20201217155259313.png" alt="在这里插入图片描述"><br>这时添加一个job_id=1的任务，可以看到两个任务在执行</p>
+<p><img src="https://img-blog.csdnimg.cn/20201217155306332.png" alt="在这里插入图片描述"><br>删除job_id=1的任务，可以看到只剩下一个任务在执行<br><img src="https://img-blog.csdnimg.cn/20201217155321258.png" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/" data-id="ckpqq95910006ykjd19ke6ual" data-title="apScheduler和fastapi交互" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">fastapi教程-进阶九（Dependencies-1）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Django项目——数据库管理 | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近有一个需求。是可以通过可视化界面分别操作测试环境&#x2F;生产环境的数据库。这里我使用了Django框架。在这里记录一下重点知识点&gt;.&lt; 具体需求是：   可以查看&#x2F;修改数据库  不同的人员有不同的权限  可以查看修改历史，方便回滚  我的实现方式是：   开发环境：python3.7 + django2.1  直接利用django的admin，以及内置权限进行操作  django连接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django项目——数据库管理">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2019/03/21/Django%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="最近有一个需求。是可以通过可视化界面分别操作测试环境&#x2F;生产环境的数据库。这里我使用了Django框架。在这里记录一下重点知识点&gt;.&lt; 具体需求是：   可以查看&#x2F;修改数据库  不同的人员有不同的权限  可以查看修改历史，方便回滚  我的实现方式是：   开发环境：python3.7 + django2.1  直接利用django的admin，以及内置权限进行操作  django连接">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-03-21T04:12:18.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="python django">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Django项目——数据库管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/21/Django%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2019-03-21T04:12:18.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/django/">django</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Django项目——数据库管理
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>最近有一个需求。是可以通过可视化界面分别操作测试环境/生产环境的数据库。这里我使用了Django框架。在这里记录一下重点知识点&gt;.&lt;</p>
+<p>具体需求是：</p>
+<ol>
+<li> 可以查看/修改数据库</li>
+<li> 不同的人员有不同的权限</li>
+<li> 可以查看修改历史，方便回滚</li>
+</ol>
+<p>我的实现方式是：</p>
+<ol start="0">
+<li> 开发环境：python3.7 + django2.1</li>
+<li> 直接利用django的admin，以及内置权限进行操作</li>
+<li> django连接多数据库</li>
+<li> 通过继承django的LogEntry编写History类，从而达到记录修改历史的作用</li>
+</ol>
+<h2 id="多数据库"><a href="#多数据库" class="headerlink" title="多数据库"></a>多数据库</h2><p>因为需要分别操作线上和测试的数据库，所以我采用<strong>多app对应多数据库</strong>的方式。我们需要做以下工作（假设这里已经创建好了三个app）:</p>
+<p><strong>需要在app的model中指定<code>app_label</code>:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SourceTest</span>(<span class="params">models.Model</span>):</span></span><br><span class="line">	············</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ··············</span><br><span class="line">        app_label = <span class="string">&#x27;TestApp&#x27;</span>	<span class="comment"># 这个app_label会在Setting文件和路由中用到</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>在<code>setting.py</code>文件中添加：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.mysql&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;Default&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">        <span class="string">&quot;HOST&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">        <span class="string">&quot;PORT&quot;</span>: <span class="string">&quot;3306&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;test&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.mysql&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;Test&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">            <span class="string">&quot;HOST&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">            <span class="string">&quot;PORT&quot;</span>: <span class="string">&quot;3306&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    <span class="string">&#x27;online&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.mysql&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;Online&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;xxxx&#x27;</span>,</span><br><span class="line">            <span class="string">&quot;HOST&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">            <span class="string">&quot;PORT&quot;</span>: <span class="string">&quot;3306&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DATABASE_ROUTERS = [<span class="string">&#x27;SqlManageer.database_router.DatabaseAppsRouter&#x27;</span>]</span><br><span class="line">DATABASE_APPS_MAPPING = &#123;</span><br><span class="line">    <span class="string">&#x27;TestApp&#x27;</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;OnlineApp&#x27;</span>: <span class="string">&#x27;online&#x27;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>DATABASE_APPS_MAPPING</code>参数可以看出我的app对应的数据库。之前也提到过，要记录操作历史(UserHistory)，这里我没有指定UserHistory这个app对应的数据库，那么他会默认到default的数据库。这里这样设计的原因是：UserHistory需要用user_id作为外键，Django目前不支持跨数据库外键，那么就需要将UserHistory和user放到同一个数据库。</p>
+<p><strong>在与工程同名的文件夹下创建<code>database_router.py</code>:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line">DATABASE_MAPPING = settings.DATABASE_APPS_MAPPING</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DatabaseAppsRouter</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    A router to control all database operations on models for different</span></span><br><span class="line"><span class="string">    databases.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    In case an app is not set in settings.DATABASE_APPS_MAPPING, the router</span></span><br><span class="line"><span class="string">    will fallback to the `default` database.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Settings example:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    DATABASE_APPS_MAPPING = &#123;&#x27;app1&#x27;: &#x27;db1&#x27;, &#x27;app2&#x27;: &#x27;db2&#x27;&#125;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">db_for_read</span>(<span class="params">self, model, **hints</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;&quot;Point all read operations to the specific database.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> model._meta.app_label <span class="keyword">in</span> DATABASE_MAPPING:</span><br><span class="line">            <span class="keyword">return</span> DATABASE_MAPPING[model._meta.app_label]</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">db_for_write</span>(<span class="params">self, model, **hints</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;Point all write operations to the specific database.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> model._meta.app_label <span class="keyword">in</span> DATABASE_MAPPING:</span><br><span class="line">            <span class="keyword">return</span> DATABASE_MAPPING[model._meta.app_label]</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">allow_relation</span>(<span class="params">self, obj1, obj2, **hints</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;Allow any relation between apps that use the same database.&quot;&quot;&quot;</span></span><br><span class="line">        db_obj1 = DATABASE_MAPPING.get(obj1._meta.app_label)</span><br><span class="line">        db_obj2 = DATABASE_MAPPING.get(obj2._meta.app_label)</span><br><span class="line">        <span class="keyword">if</span> db_obj1 <span class="keyword">and</span> db_obj2:</span><br><span class="line">            <span class="keyword">if</span> db_obj1 == db_obj2:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Django 1.7 - Django 1.11</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">allow_migrate</span>(<span class="params">self, db, app_label, model_name=<span class="literal">None</span>, **hints</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(db, app_label, model_name, hints)</span><br><span class="line">        <span class="keyword">if</span> db <span class="keyword">in</span> DATABASE_MAPPING.values():</span><br><span class="line">            <span class="keyword">return</span> DATABASE_MAPPING.get(app_label) == db</span><br><span class="line">        <span class="keyword">elif</span> app_label <span class="keyword">in</span> DATABASE_MAPPING:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>数据库迁移</strong><br>我们可以通过指定app或数据库进行迁移：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">./manage.py makemigrations 	<span class="comment"># 这个命令会对所有的数据进行预迁移</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以指定数据库进行迁移，不指定默认到default</span></span><br><span class="line">./manage.py migrate --database=test</span><br><span class="line">./manage.py migrate --database=online</span><br><span class="line"><span class="comment"># 也可以同时指定数据库和app</span></span><br><span class="line">./manage.py migrate --database=test TestApp</span><br><span class="line">./manage.py migrate --database=online OnlineApp</span><br><span class="line">./manage.py migrate UserHistor</span><br></pre></td></tr></table></figure>
+
+<h2 id="History类编写"><a href="#History类编写" class="headerlink" title="History类编写"></a>History类编写</h2><p>通过阅读源码（<a target="_blank" rel="noopener" href="http://django.contrib.admin.options.py/">django.contrib.admin.options.py</a>）可以发现，当发生增删改操作的时候，django内部都会记录日志，具体的方法是就是下面这三个方法了。可以看出，django就是通过在发生相关操作时，将操作的信息记录到LogEntry模块中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ModelAdmin</span>(<span class="params">BaseModelAdmin</span>):</span></span><br><span class="line">	    <span class="function"><span class="keyword">def</span> <span class="title">log_addition</span>(<span class="params">self, request, <span class="built_in">object</span>, message</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Log that an object has been successfully added.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        The default implementation creates an admin LogEntry object.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">from</span> django.contrib.admin.models <span class="keyword">import</span> LogEntry, ADDITION</span><br><span class="line">        <span class="keyword">return</span> LogEntry.objects.log_action(</span><br><span class="line">            user_id=request.user.pk,</span><br><span class="line">            content_type_id=get_content_type_for_model(<span class="built_in">object</span>).pk,</span><br><span class="line">            object_id=<span class="built_in">object</span>.pk,</span><br><span class="line">            object_repr=<span class="built_in">str</span>(<span class="built_in">object</span>),</span><br><span class="line">            action_flag=ADDITION,</span><br><span class="line">            change_message=message,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">log_change</span>(<span class="params">self, request, <span class="built_in">object</span>, message</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Log that an object has been successfully changed.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        The default implementation creates an admin LogEntry object.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">from</span> django.contrib.admin.models <span class="keyword">import</span> LogEntry, CHANGE</span><br><span class="line">        <span class="keyword">return</span> LogEntry.objects.log_action(</span><br><span class="line">            user_id=request.user.pk,</span><br><span class="line">            content_type_id=get_content_type_for_model(<span class="built_in">object</span>).pk,</span><br><span class="line">            object_id=<span class="built_in">object</span>.pk,</span><br><span class="line">            object_repr=<span class="built_in">str</span>(<span class="built_in">object</span>),</span><br><span class="line">            action_flag=CHANGE,</span><br><span class="line">            change_message=message,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">log_deletion</span>(<span class="params">self, request, <span class="built_in">object</span>, object_repr</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Log that an object will be deleted. Note that this method must be</span></span><br><span class="line"><span class="string">        called before the deletion.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        The default implementation creates an admin LogEntry object.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">from</span> django.contrib.admin.models <span class="keyword">import</span> LogEntry, DELETION</span><br><span class="line">        <span class="keyword">return</span> LogEntry.objects.log_action(</span><br><span class="line">            user_id=request.user.pk,</span><br><span class="line">            content_type_id=get_content_type_for_model(<span class="built_in">object</span>).pk,</span><br><span class="line">            object_id=<span class="built_in">object</span>.pk,</span><br><span class="line">            object_repr=object_repr,</span><br><span class="line">            action_flag=DELETION,</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<p>利用这一特点。我们可以知道，只需要app在发生增删改操作的时候，将操作信息记录到我们自己定义的History中就可以了。因此，我继承了<code>admin.ModelAdmin</code>,重写了相关操作:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewBaseAdmin</span>(<span class="params">admin.ModelAdmin</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">log_addition</span>(<span class="params">self, request, <span class="built_in">object</span>, message</span>):</span></span><br><span class="line">        <span class="keyword">from</span> django.contrib.admin.models <span class="keyword">import</span> ADDITION</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># 下面四行是为了将修改后的结果也记录到History中</span></span><br><span class="line">        req_k = request._post.<span class="built_in">dict</span>().keys()</span><br><span class="line">        model_k = [item.column.lower() <span class="keyword">for</span> item <span class="keyword">in</span> <span class="built_in">object</span>._meta.fields]</span><br><span class="line">        k = req_k &amp; model_k</span><br><span class="line">        model_field = &#123;item: <span class="built_in">object</span>.__dict__[item] <span class="keyword">for</span> item <span class="keyword">in</span> k&#125;</span><br><span class="line">		</span><br><span class="line">        <span class="keyword">return</span> History.objects.log_action(</span><br><span class="line">            user_id=request.user.pk,</span><br><span class="line">            content_type_id=get_content_type_for_model(<span class="built_in">object</span>).pk,</span><br><span class="line">            object_id=<span class="built_in">object</span>.pk,</span><br><span class="line">            object_repr=<span class="built_in">str</span>(<span class="built_in">object</span>),</span><br><span class="line">            action_flag=ADDITION,</span><br><span class="line">            change_message=message,</span><br><span class="line">            **model_field</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">log_change</span>(<span class="params">self, request, <span class="built_in">object</span>, message</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Log that an object has been successfully changed.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        The default implementation creates an admin LogEntry object.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">from</span> django.contrib.admin.models <span class="keyword">import</span> CHANGE</span><br><span class="line">        req_k = request._post.<span class="built_in">dict</span>().keys()</span><br><span class="line">        model_k = [item.column <span class="keyword">for</span> item <span class="keyword">in</span> <span class="built_in">object</span>._meta.fields]</span><br><span class="line">        k = req_k &amp; model_k</span><br><span class="line">        model_field = &#123;item: <span class="built_in">object</span>.__dict__[item] <span class="keyword">for</span> item <span class="keyword">in</span> k&#125;</span><br><span class="line"></span><br><span class="line">        action = History.objects.log_action(</span><br><span class="line">            user_id=request.user.pk,</span><br><span class="line">            content_type_id=get_content_type_for_model(<span class="built_in">object</span>).pk,</span><br><span class="line">            object_id=<span class="built_in">object</span>.pk,</span><br><span class="line">            object_repr=<span class="built_in">str</span>(<span class="built_in">object</span>),</span><br><span class="line">            action_flag=CHANGE,</span><br><span class="line">            change_message=message,</span><br><span class="line">            **model_field</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">return</span> action</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">log_deletion</span>(<span class="params">self, request, <span class="built_in">object</span>, object_repr</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Log that an object will be deleted. Note that this method must be</span></span><br><span class="line"><span class="string">        called before the deletion.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        The default implementation creates an admin LogEntry object.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">from</span> django.contrib.admin.models <span class="keyword">import</span> DELETION</span><br><span class="line">        req_k = request._post.<span class="built_in">dict</span>().keys()</span><br><span class="line">        model_k = [item.column.lower() <span class="keyword">for</span> item <span class="keyword">in</span> <span class="built_in">object</span>._meta.fields]</span><br><span class="line">        k = req_k &amp; model_k</span><br><span class="line">        model_field = &#123;item: <span class="built_in">object</span>.__dict__[item] <span class="keyword">for</span> item <span class="keyword">in</span> k&#125;</span><br><span class="line">        <span class="keyword">return</span> History.objects.log_action(</span><br><span class="line">            user_id=request.user.pk,</span><br><span class="line">            content_type_id=get_content_type_for_model(<span class="built_in">object</span>).pk,</span><br><span class="line">            object_id=<span class="built_in">object</span>.pk,</span><br><span class="line">            object_repr=object_repr,</span><br><span class="line">            action_flag=DELETION,</span><br><span class="line">            **model_field</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<p>上述代码编写过后，我们就可以在admin中直接继承我们新写的<code>NewBaseAdmin</code>了。而我们发现，LogEntry的log_action并没有记录我们History的字段：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LogEntryManager</span>(<span class="params">models.Manager</span>):</span></span><br><span class="line">    use_in_migrations = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">log_action</span>(<span class="params">self, user_id, content_type_id, object_id, object_repr, action_flag, change_message=<span class="string">&#x27;&#x27;</span></span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(change_message, <span class="built_in">list</span>):</span><br><span class="line">            change_message = json.dumps(change_message)</span><br><span class="line">        <span class="keyword">return</span> self.model.objects.create(</span><br><span class="line">            user_id=user_id,</span><br><span class="line">            content_type_id=content_type_id,</span><br><span class="line">            object_id=<span class="built_in">str</span>(object_id),</span><br><span class="line">            object_repr=object_repr[:<span class="number">200</span>],</span><br><span class="line">            action_flag=action_flag,</span><br><span class="line">            change_message=change_message,</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<p>因此，我们需要重新定义History的manager，就像下面这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewLogEntryManager</span>(<span class="params">models.Manager</span>):</span></span><br><span class="line">    use_in_migrations = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">log_action</span>(<span class="params">self, user_id, content_type_id, object_id, object_repr, action_flag, change_message=<span class="string">&#x27;&#x27;</span>, **kwargs</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(change_message, <span class="built_in">list</span>):</span><br><span class="line">            change_message = json.dumps(change_message)</span><br><span class="line">        <span class="keyword">return</span> self.model.objects.create(</span><br><span class="line">            user_id=user_id,</span><br><span class="line">            content_type_id=content_type_id,</span><br><span class="line">            object_id=<span class="built_in">str</span>(object_id),</span><br><span class="line">            object_repr=object_repr[:<span class="number">200</span>],</span><br><span class="line">            action_flag=action_flag,</span><br><span class="line">            change_message=change_message,</span><br><span class="line">            **kwargs</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">History</span>(<span class="params">LogEntry</span>):</span></span><br><span class="line">	·······</span><br><span class="line">	objects = NewLogEntryManager()</span><br></pre></td></tr></table></figure>
+
+<p>这样一来，我们就可以实现，当对app进行增删改操作的时候，就会将相关操作及一些我们需要的字段记录到History中了。</p>
+<h2 id="关于utime时间戳的问题"><a href="#关于utime时间戳的问题" class="headerlink" title="关于utime时间戳的问题"></a>关于utime时间戳的问题</h2><p>在定义模型时，有一个字段是:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">utime = models.DateTimeField(<span class="string">&#x27;更新时间&#x27;</span>, auto_now=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在每一次操作过后，utime都会自动更新为本次操作的时间。但是查看utime发现，总是比本地时间少8小时，我的解决办法是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LANGUAGE_CODE = <span class="string">&#x27;zh-hans&#x27;</span></span><br><span class="line"></span><br><span class="line">TIME_ZONE = <span class="string">&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line"></span><br><span class="line">USE_I18N = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">USE_L10N = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">USE_TZ = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<p>因为具体字段涉及了公司内部的字段，这里就不贴出源码了。哪里说的不清楚，希望大家多多指出～</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2019/03/21/Django%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86/" data-id="ckpqq958v0001ykjdb6wh0tb8" data-title="Django项目——数据库管理" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/26/fastapi%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          fastapi——快速入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/26/tornado(%E4%BA%8C)%E2%80%94%E2%80%94%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">tornado(二)——源码分析（一）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

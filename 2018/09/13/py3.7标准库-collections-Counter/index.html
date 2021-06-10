@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>py3.7标准库-collections-Counter | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Counter实现： 1class collections.Counter([iterable-or-mapping])  源码中，简单介绍了一些用法： 12345678910111213141516171819202122232425262728293031323334353637&gt;&gt;&gt; c &#x3D; Counter(&amp;#x27;abcdeabcdabcaba&amp;#x27;)  #">
+<meta property="og:type" content="article">
+<meta property="og:title" content="py3.7标准库-collections-Counter">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2018/09/13/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-Counter/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="Counter实现： 1class collections.Counter([iterable-or-mapping])  源码中，简单介绍了一些用法： 12345678910111213141516171819202122232425262728293031323334353637&gt;&gt;&gt; c &#x3D; Counter(&amp;#x27;abcdeabcdabcaba&amp;#x27;)  #">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-09-13T11:17:16.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="python3.7标准库">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-py3.7标准库-collections-Counter" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/13/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-Counter/" class="article-date">
+  <time class="dt-published" datetime="2018-09-13T11:17:16.000Z" itemprop="datePublished">2018-09-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      py3.7标准库-collections-Counter
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h2 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a><strong>Counter</strong></h2><p>实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">collections</span>.<span class="title">Counter</span>(<span class="params">[iterable-<span class="keyword">or</span>-mapping]</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>源码中，简单介绍了一些用法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter(<span class="string">&#x27;abcdeabcdabcaba&#x27;</span>)  <span class="comment"># count elements from a string</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.most_common(<span class="number">3</span>)                <span class="comment"># three most common elements</span></span><br><span class="line">[(<span class="string">&#x27;a&#x27;</span>, <span class="number">5</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">sorted</span>(c)                       <span class="comment"># list all unique elements</span></span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#x27;</span>.join(<span class="built_in">sorted</span>(c.elements()))   <span class="comment"># list elements with repetitions</span></span><br><span class="line"><span class="string">&#x27;aaaaabbbbcccdde&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">sum</span>(c.values())                 <span class="comment"># total of all counts</span></span><br><span class="line"><span class="number">15</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;a&#x27;</span>]                          <span class="comment"># count of letter &#x27;a&#x27;</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> elem <span class="keyword">in</span> <span class="string">&#x27;shazam&#x27;</span>:           <span class="comment"># update counts from an iterable</span></span><br><span class="line"><span class="meta">... </span>    c[elem] += <span class="number">1</span>                <span class="comment"># by adding 1 to each element&#x27;s count</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;a&#x27;</span>]                          <span class="comment"># now there are seven &#x27;a&#x27;</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> c[<span class="string">&#x27;b&#x27;</span>]                      <span class="comment"># remove all &#x27;b&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;b&#x27;</span>]                          <span class="comment"># now there are zero &#x27;b&#x27;</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = Counter(<span class="string">&#x27;simsalabim&#x27;</span>)       <span class="comment"># make another counter</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.update(d)                     <span class="comment"># add in the second counter</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;a&#x27;</span>]                          <span class="comment"># now there are nine &#x27;a&#x27;</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.clear()                       <span class="comment"># empty the counter</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line">Counter()</span><br><span class="line"></span><br><span class="line">Note:  If a count <span class="keyword">is</span> <span class="built_in">set</span> to zero <span class="keyword">or</span> reduced to zero, it will remain</span><br><span class="line"><span class="keyword">in</span> the counter until the entry <span class="keyword">is</span> deleted <span class="keyword">or</span> the counter <span class="keyword">is</span> cleared:</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter(<span class="string">&#x27;aaabbc&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;b&#x27;</span>] -= <span class="number">2</span>                     <span class="comment"># reduce the count of &#x27;b&#x27; by two</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.most_common()                 <span class="comment"># &#x27;b&#x27; is still in, but its count is zero</span></span><br><span class="line">[(<span class="string">&#x27;a&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;c&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">0</span>)]</span><br></pre></td></tr></table></figure>
+
+<p><code>Counter</code>是dict的子类，可以用来计算可哈希对象的数量。它是一个无序的集合，并且元素作为dict的key，数量作为dict的value。数量可以是任意整数值，包括0和负数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter()                           <span class="comment"># a new, empty counter</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Counter(<span class="string">&quot;adfadf&quot;</span>)                       <span class="comment"># a new counter from an iterables</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;f&#x27;</span>: <span class="number">2</span>&#125;)           </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Counter(&#123;<span class="string">&#x27;red&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;blue&#x27;</span>: <span class="number">2</span>&#125;)          <span class="comment"># a new counter from a mapping</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;red&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;blue&#x27;</span>: <span class="number">2</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Counter(cats=<span class="number">4</span>, dogs=<span class="number">8</span>)                 <span class="comment"># a new counter from keyword args</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;dogs&#x27;</span>: <span class="number">8</span>, <span class="string">&#x27;cats&#x27;</span>: <span class="number">4</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>对于那些不存在的元素，如果想要获取它，Counter会返回0，而不会引发<code>KeyError</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter([<span class="string">&#x27;eggs&#x27;</span>, <span class="string">&#x27;ham&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;bacon&#x27;</span>]                              <span class="comment"># count of a missing element is zero</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>从源码中可以看出来为什么不引发<code>KeyError</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__missing__</span>(<span class="params">self, key</span>):</span></span><br><span class="line">    <span class="string">&#x27;The count of elements not in the Counter is zero.&#x27;</span></span><br><span class="line">    <span class="comment"># Needed so that self[missing_item] does not raise KeyError</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>如果count设置为零或减少为零，它将保留在counter中，直到删除该条目或清除计数器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;sausage&#x27;</span>] = <span class="number">0</span>                        <span class="comment"># counter entry with a zero count</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> c[<span class="string">&#x27;sausage&#x27;</span>]  </span><br></pre></td></tr></table></figure>
+
+<p>由于Counter是dict的子类，因此他具备dict的方法。除此之外，它还具备以下方法：</p>
+<ul>
+<li><p><strong>elements()</strong></p>
+<p>返回每一个元素，元素会根据个数重复count次，并且是以任意顺序返回的。如果元素的个数小于1(包括负值)，那么就会被忽略不返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; c = Counter(a=4, b=2, c=0, d=-2)</span><br><span class="line">&gt;&gt;&gt; sorted(c.elements())</span><br><span class="line">[&#x27;a&#x27;, &#x27;a&#x27;, &#x27;a&#x27;, &#x27;a&#x27;, &#x27;b&#x27;, &#x27;b&#x27;]</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>most_common([n])</strong></p>
+<p>返回n个最常见元素及其计数的列表，从最常见到最少。 如果省略n或None，则most_common（）返回计数器中的所有元素。 具有相同计数的元素是任意排序的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; Counter(&#x27;abracadabra&#x27;).most_common(3)  </span><br><span class="line">[(&#x27;a&#x27;, 5), (&#x27;r&#x27;, 2), (&#x27;b&#x27;, 2)]</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>subtract([iterable-or-mapping])</strong></p>
+<p>根据迭代器或映射中对当前元素进行加减操作。和<code>dict.update()</code>类似，但是注意，是操作，而不是替换。输入和输出可以为0或负数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; c = Counter(a=4, b=2, c=0, d=-2)</span><br><span class="line">&gt;&gt;&gt; d = Counter(a=1, b=2, c=3, d=4)</span><br><span class="line">&gt;&gt;&gt; c.subtract(d)</span><br><span class="line">&gt;&gt;&gt; c</span><br><span class="line">Counter(&#123;&#x27;a&#x27;: 3, &#x27;b&#x27;: 0, &#x27;c&#x27;: -3, &#x27;d&#x27;: -6&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>通常情况下，Counter对象和字典具有相同的方法。但是以下两个方法会有所不同：</p>
+<ul>
+<li><p><strong>fromkeys(iterable)</strong></p>
+<p>Counter类没有实现这个方法</p>
+</li>
+<li><p><strong>update([iterable-or-mapping])</strong></p>
+<p>和<code>dict.update()</code>相似，但是是进行加减操作，而不是替换。</p>
+<p>从源码看，更容易理解一些：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">  def update(*args, **kwds):</span><br><span class="line">&#x27;&#x27;&#x27;Like dict.update() but add counts instead of replacing them.</span><br><span class="line"></span><br><span class="line">Source can be an iterable, a dictionary, or another Counter instance.</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; c = Counter(&#x27;which&#x27;)</span><br><span class="line">&gt;&gt;&gt; c.update(&#x27;witch&#x27;)           # add elements from another iterable</span><br><span class="line">&gt;&gt;&gt; d = Counter(&#x27;watch&#x27;)</span><br><span class="line">&gt;&gt;&gt; c.update(d)                 # add elements from another counter</span><br><span class="line">&gt;&gt;&gt; c[&#x27;h&#x27;]                      # four &#x27;h&#x27; in which, witch, and watch</span><br><span class="line">4</span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"># The regular dict.update() operation makes no sense here because the</span><br><span class="line"># replace behavior results in the some of original untouched counts</span><br><span class="line"># being mixed-in with all of the other counts for a mismash that</span><br><span class="line"># doesn&#x27;t have a straight-forward interpretation in most counting</span><br><span class="line"># contexts.  Instead, we implement straight-addition.  Both the inputs</span><br><span class="line"># and outputs are allowed to contain zero and negative counts.</span><br><span class="line"></span><br><span class="line">if not args:</span><br><span class="line">  raise TypeError(&quot;descriptor &#x27;update&#x27; of &#x27;Counter&#x27; object &quot;</span><br><span class="line">                  &quot;needs an argument&quot;)</span><br><span class="line">self, *args = args</span><br><span class="line">if len(args) &gt; 1:</span><br><span class="line">  raise TypeError(&#x27;expected at most 1 arguments, got %d&#x27; % len(args))</span><br><span class="line">iterable = args[0] if args else None</span><br><span class="line">if iterable is not None:</span><br><span class="line">  if isinstance(iterable, _collections_abc.Mapping):</span><br><span class="line">      if self:</span><br><span class="line">          self_get = self.get</span><br><span class="line">          for elem, count in iterable.items():</span><br><span class="line">              self[elem] = count + self_get(elem, 0)</span><br><span class="line">      else:</span><br><span class="line">          super(Counter, self).update(iterable) # fast path when counter is empty</span><br><span class="line">  else:</span><br><span class="line">      _count_elements(self, iterable)</span><br><span class="line">if kwds:</span><br><span class="line">  self.update(kwds)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>官网给出一些常见操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sum</span>(c.values())                 <span class="comment"># total of all counts</span></span><br><span class="line">c.clear()                       <span class="comment"># reset all counts</span></span><br><span class="line"><span class="built_in">list</span>(c)                         <span class="comment"># list unique elements</span></span><br><span class="line"><span class="built_in">set</span>(c)                          <span class="comment"># convert to a set</span></span><br><span class="line"><span class="built_in">dict</span>(c)                         <span class="comment"># convert to a regular dictionary</span></span><br><span class="line">c.items()                       <span class="comment"># convert to a list of (elem, cnt) pairs</span></span><br><span class="line">Counter(<span class="built_in">dict</span>(list_of_pairs))    <span class="comment"># convert from a list of (elem, cnt) pairs</span></span><br><span class="line">c.most_common()[:-n-<span class="number">1</span>:-<span class="number">1</span>]       <span class="comment"># n least common elements</span></span><br><span class="line">+c                              <span class="comment"># remove zero and negative counts</span></span><br></pre></td></tr></table></figure>
+
+<p>提供了几个数学运算来组合Counter对象以生成多个集合（计数大于零的计数器）。 加法和减法通过添加或减去相应元素的计数来组合计数器。 &amp;和 | 返回相应计数的最小值和最大值。 每个操作都可以接受带有符号计数的输入，但输出将排除计数为零或更少的结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter(a=<span class="number">3</span>, b=<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = Counter(a=<span class="number">1</span>, b=<span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c + d                       <span class="comment"># add two counters together:  c[x] + d[x]</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">3</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c - d                       <span class="comment"># subtract (keeping only positive counts)</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">2</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c &amp; d                       <span class="comment"># intersection:  min(c[x], d[x]) </span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">1</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c | d                       <span class="comment"># union:  max(c[x], d[x])</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>一元加法和减法是用于添加空计数器或从空计数器中减去的快捷方式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter(a=<span class="number">2</span>, b=-<span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+c</span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">2</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>-c</span><br><span class="line">Counter(&#123;<span class="string">&#x27;b&#x27;</span>: <span class="number">4</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>注意 : Counter主要用于处理正整数的计数。但是也不要忘记考虑其他类型或负值的情况。Counter类继承自dict，对于key和value是没有限制的。value除了数字也可以存储其他。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/09/13/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-Counter/" data-id="ckpqq959w001uykjd01cl9qbj" data-title="py3.7标准库-collections-Counter" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/14/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-OrderedDict/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          py3.7标准库-collections-OrderedDict
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/13/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-ChainMap/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">py3.7标准库-collections-ChainMap</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

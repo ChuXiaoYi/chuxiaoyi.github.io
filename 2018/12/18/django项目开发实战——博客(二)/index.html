@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>django项目开发实战——博客(二) | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="参考文档：- Django 博客使用 Markdown 自动生成文章目录- Django Haystack 全文检索与关键词高亮 自从做了之前的django项目开发实战——博客之后，一直没有继续做下去。现在终于有时间把后面的笔记补起来了！(虽然还是一个很简陋滴&#x3D; &#x3D;) git地址：https:&#x2F;&#x2F;github.com&#x2F;ChuXiaoYi&#x2F;BlogWebSite&#x2F;tree&#x2F;test 先放图：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django项目开发实战——博客(二)">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2018/12/18/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%BA%8C)/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="参考文档：- Django 博客使用 Markdown 自动生成文章目录- Django Haystack 全文检索与关键词高亮 自从做了之前的django项目开发实战——博客之后，一直没有继续做下去。现在终于有时间把后面的笔记补起来了！(虽然还是一个很简陋滴&#x3D; &#x3D;) git地址：https:&#x2F;&#x2F;github.com&#x2F;ChuXiaoYi&#x2F;BlogWebSite&#x2F;tree&#x2F;test 先放图：">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2018121912245131">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2018121912245155">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2018121912245176">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181219111501584.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218183108452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181218183358167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181219120855412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2018121912092277.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181219121428191.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181219122427497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2018-12-18T09:22:11.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="django django">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2018121912245131">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-django项目开发实战——博客(二)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/12/18/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%BA%8C)/" class="article-date">
+  <time class="dt-published" datetime="2018-12-18T09:22:11.000Z" itemprop="datePublished">2018-12-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      django项目开发实战——博客(二)
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<p>参考文档：<br>- <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1099709">Django 博客使用 Markdown 自动生成文章目录</a><br>- <a target="_blank" rel="noopener" href="https://www.zmrenwu.com/post/45/">Django Haystack 全文检索与关键词高亮</a></p>
+<p>自从做了之前的<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40156487/article/details/81512807">django项目开发实战——博客</a>之后，一直没有继续做下去。现在终于有时间把后面的笔记补起来了！(虽然还是一个很简陋滴= =)</p>
+<p>git地址：<a target="_blank" rel="noopener" href="https://github.com/ChuXiaoYi/BlogWebSite/tree/test">https://github.com/ChuXiaoYi/BlogWebSite/tree/test</a></p>
+<p>先放图：<br><img src="https://img-blog.csdnimg.cn/2018121912245131" alt="image_1cv08semaqaa1d981p161p4n20km.png-164.9kB"></p>
+<p><img src="https://img-blog.csdnimg.cn/2018121912245155" alt="image_1cv091rb08sr1d3rvoj1vegm621j.png-234.6kB"></p>
+<h2 id="列表页"><a href="#列表页" class="headerlink" title="列表页"></a>列表页</h2><p>页面是扒的<a target="_blank" rel="noopener" href="https://templatemag.com/blog/">这个地址</a>，然后做了一些修改</p>
+<p>列表页主要说明一下<strong>分页</strong>和<strong>flash</strong>插件</p>
+<h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><p>判断是否有上一页下一页需要用<code>paginator</code>处理过的<code>post_list</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">view.py</span><br><span class="line"></span><br><span class="line">limit = <span class="number">3</span></span><br><span class="line">paginator = Paginator(post, limit)</span><br><span class="line">page = request.GET.get(<span class="string">&#x27;page&#x27;</span>, <span class="number">1</span>)</span><br><span class="line">result = paginator.page(page)</span><br><span class="line">context = &#123;</span><br><span class="line">    <span class="string">&quot;post_list&quot;</span>: result,</span><br><span class="line">    <span class="string">&quot;page&quot;</span>: page,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">list.html</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;pagination clearfix&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;pager&quot;</span>&gt;</span></span><br><span class="line">        &#123;% if post_list.has_previous %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;previous&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?page=&#123;&#123; post_list.previous_page_number &#125;&#125;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;larr;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> Newer<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% else %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;previous disabled&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;larr;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                Newer<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">        &#123;% if post_list.has_next %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;next&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;?page=&#123;&#123; post_list.next_page_number &#125;&#125;&quot;</span>&gt;</span>Older <span class="tag">&lt;<span class="name">span</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;rarr;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% else %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;next disabled&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>Older <span class="tag">&lt;<span class="name">span</span> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="symbol">&amp;rarr;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="flash插件"><a href="#flash插件" class="headerlink" title="flash插件"></a>flash插件</h4><p>这是一个国际友人写的一个js脚本。放到页面中可以直接用。这里我把它处理成html代码直接放到页面中了。<a target="_blank" rel="noopener" href="http://chabudai.org/blog/?s=honehoneclock">原地址戳这里</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">object</span> <span class="attr">classid</span>=<span class="string">&quot;clsid:d27cdb6e-ae6d-11cf-96b8-444553540000&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">codebase</span>=<span class="string">&quot;http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;auto&quot;</span> <span class="attr">id</span>=<span class="string">&quot;honehoneclock&quot;</span> <span class="attr">align</span>=<span class="string">&quot;middle&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;allowScriptAccess&quot;</span> <span class="attr">value</span>=<span class="string">&quot;always&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;movie&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">value</span>=<span class="string">&quot;http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.swf&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;quality&quot;</span> <span class="attr">value</span>=<span class="string">&quot;high&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;bgcolor&quot;</span> <span class="attr">value</span>=<span class="string">&quot;#ffffff&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;wmode&quot;</span> <span class="attr">value</span>=<span class="string">&quot;transparent&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;play&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">embed</span> <span class="attr">wmode</span>=<span class="string">&quot;transparent&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">src</span>=<span class="string">&quot;http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.swf&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">quality</span>=<span class="string">&quot;high&quot;</span> <span class="attr">bgcolor</span>=<span class="string">&quot;#ffffff&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;auto&quot;</span> <span class="attr">name</span>=<span class="string">&quot;honehoneclock&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">align</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">allowscriptaccess</span>=<span class="string">&quot;always&quot;</span> <span class="attr">type</span>=<span class="string">&quot;application/x-shockwave-flash&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">pluginspage</span>=<span class="string">&quot;http://www.macromedia.com/go/getflashplayer&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/2018121912245176" alt="image_1cv0acqik1534vs31h8s1gs91ts53q.png-12kB"></p>
+<p>如果想把背景改为透明的，修改<code>http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.swf</code>为<code>http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf</code>就可以啦～</p>
+<h2 id="详情页"><a href="#详情页" class="headerlink" title="详情页"></a>详情页</h2><p>这里主要有说明两个：<code>markdown生成目录</code>和<code>markdown高亮</code></p>
+<ol>
+<li><pre><code>首先，安装第三方包
+</code></pre>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mardkown</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><pre><code>在`view.py`中导入第三方包，并修改代码为：
+</code></pre>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">md = markdown.Markdown(extensions=[</span><br><span class="line">            <span class="string">&#x27;markdown.extensions.extra&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;markdown.extensions.codehilite&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;markdown.extensions.toc&#x27;</span>,</span><br><span class="line">        ])</span><br><span class="line">post.body = md.convert(post.body)</span><br><span class="line"></span><br><span class="line">comment_list = Comment.objects.<span class="built_in">filter</span>(post__id=pk)</span><br><span class="line"></span><br><span class="line">context = &#123;</span><br><span class="line">    <span class="string">&#x27;post&#x27;</span>: post,</span><br><span class="line">    <span class="string">&#x27;toc&#x27;</span>: md.toc,</span><br><span class="line">    <span class="string">&#x27;comment_list&#x27;</span>: comment_list</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意:这里使用的是<code>Markdown</code>实例化一个对象！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;markdown.extensions.toc&#x27;</span>,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;toc&#x27;</span>: md.toc,</span><br></pre></td></tr></table></figure>
+
+<p>如果想要自动生成目录，一定要写这两个！</p>
+<p>但是如果我们点击目录，发现url变得很不美观，接下来我们来优化一下</p>
+<p>将<code>markdown.extensions.toc</code>改为<code>TocExtension(slugify=slugify)</code>，但是在这之前，不要忘记引入两个必要的包<code>from django.utils.text import slugify</code>和<code>from markdown.extensions.toc import TocExtension</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">md = markdown.Markdown(extensions=[</span><br><span class="line">        <span class="string">&#x27;markdown.extensions.extra&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;markdown.extensions.codehilite&#x27;</span>,</span><br><span class="line">        TocExtension(slugify=slugify),</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure>
+
+<p><code>TocExtension</code>在实例化时其<code>slugify</code>参数可以接受一个函数作为参数，这个函数将被用于处理标题的锚点值。Markdown内置的处理方法不能处理中文标题，所以我们使用了<code>django.utils.text</code>中的<code>slugify</code>方法，该方法可以很好地处理中文.</p>
+<p>现在在看就可以发现，url变得好看多了<br><img src="https://img-blog.csdnimg.cn/20181219111501584.png" alt="在这里插入图片描述"></p>
+<p>但是，如果只是这样的话，并不能实现代码的高亮。接下来我们还需要做一些事情。</p>
+<ol start="3">
+<li><pre><code>安装Pygments
+</code></pre>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install Pygments </span><br></pre></td></tr></table></figure>
+
+<p>运行<code>pygmentize \-S default \-f html \-a .codehilite &gt; code.css</code>命令,将<code>code.css</code>放到你的静态文件目录下，并在html的头部添加<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;&#123;% static 'Post/css/code.css' %&#125;&quot;&gt;</code>(你的路径可能和我的不一样，不要错啦！)</p>
+<p>最后，千万不要忘记添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;markdown.extensions.codehilite&#x27;</span>,</span><br></pre></td></tr></table></figure>
+
+<p>如果步骤正确，你会看到这样滴：<br><img src="https://img-blog.csdnimg.cn/20181218183108452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>我很喜欢CSDN可以隐藏过长的文章。我也实现了一个<br><img src="https://img-blog.csdnimg.cn/20181218183358167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;hide-article-box text-center&quot;</span> <span class="attr">id</span>=<span class="string">&quot;hide-article-box&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">id</span>=<span class="string">&quot;btn-readmore&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;btnReadMore()&quot;</span>&gt;</span>阅读更多<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> readMore = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;btn-readmore&#x27;</span>);</span><br><span class="line">        <span class="keyword">var</span> hideArticleBox = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;hide-article-box&#x27;</span>);</span><br><span class="line">        <span class="keyword">var</span> content = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;entry-content&#x27;</span>);</span><br><span class="line">        readMore.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            content.style.height = <span class="string">&#x27;auto&#x27;</span>;</span><br><span class="line">            hideArticleBox.style.display = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="全文检索"><a href="#全文检索" class="headerlink" title="全文检索"></a>全文检索</h2><p>对于一个搜索引擎来说，至少应该能够根据用户的搜索关键词对搜索结果进行排序以及高亮关键字。这里使用的是<code>django-haystack</code>实现这些特性。</p>
+<p>django-haystack 是一个专门提供搜索功能的 django 第三方应用，它支持 Solr、Elasticsearch、Whoosh、Xapian 等多种搜索引擎，配合著名的中文自然语言处理库<code>jieba</code>分词，就可以为我们的博客提供一个效果不错的博客文章搜索系统。</p>
+<p><strong>首先，安装依赖包：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install whoosh django-haystack jieba</span><br></pre></td></tr></table></figure>
+
+<p>注意：不要同时安装<code>haystack</code>和<code>django-haystack</code>，会冲突的！！</p>
+<p><strong>配置setting</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.auth&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.contenttypes&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.sessions&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.messages&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;django.contrib.staticfiles&#x27;</span>,</span><br><span class="line">    <span class="comment"># 这里要写哦～</span></span><br><span class="line">    <span class="string">&#x27;haystack&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;Post&quot;</span>,</span><br><span class="line">    <span class="string">&quot;comment&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HAYSTACK_CONNECTIONS = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">        <span class="comment"># 指定了 django haystack 使用的搜索引擎，这里我们使用了 blog.whoosh_cn_backend.WhooshEngine，虽然目前这个引擎还不存在，但我们接下来会创建它。</span></span><br><span class="line">        <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;Post.whoosh_cn_backend.WhooshEngine&#x27;</span>,</span><br><span class="line">        <span class="comment"># PATH 指定了索引文件需要存放的位置，我们设置为项目根目录 BASE_DIR 下的 whoosh_index 文件夹（在建立索引是会自动创建）</span></span><br><span class="line">        <span class="string">&#x27;PATH&#x27;</span>: os.path.join(BASE_DIR, <span class="string">&#x27;whoosh_index&#x27;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 指定如何对搜索结果分页，这里设置为每 10 项结果为一页。</span></span><br><span class="line">HAYSTACK_SEARCH_RESULTS_PER_PAGE = <span class="number">10</span></span><br><span class="line"><span class="comment"># 指定什么时候更新索引，这里我们使用 haystack.signals.RealtimeSignalProcessor，作用是每当有文章更新时就更新索引。由于博客文章更新不会太频繁，因此实时更新没有问题。</span></span><br><span class="line">HAYSTACK_SIGNAL_PROCESSOR = <span class="string">&#x27;haystack.signals.RealtimeSignalProcessor&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>处理数据</strong></p>
+<p>接下来就要告诉 django haystack 使用那些数据建立索引以及如何存放索引。如果要对<code>Post</code>应用下的数据进行全文检索，做法是在<code>Post</code>应用下建立一个<code>search_indexes.py</code>文件，写上如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> haystack <span class="keyword">import</span> indexes</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Post</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PostIndex</span>(<span class="params">indexes.SearchIndex, indexes.Indexable</span>):</span></span><br><span class="line">    text = indexes.CharField(document=<span class="literal">True</span>, use_template=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_model</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> Post</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">index_queryset</span>(<span class="params">self, using=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.get_model().objects.<span class="built_in">all</span>()</span><br></pre></td></tr></table></figure>
+
+<p>路径：<br><img src="https://img-blog.csdnimg.cn/20181219120855412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>这是 django haystack 的规定。要相对某个 app 下的数据进行全文检索，就要在该 app 下创建一个 search_indexes.py 文件，然后创建一个 XXIndex 类（XX 为含有被检索数据的模型，如这里的 Post），并且继承 SearchIndex 和 Indexable。</p>
+<p>每个索引里面必须有且只能有一个字段为<code>document=True</code>，这代表 django haystack 和搜索引擎将使用此字段的内容作为索引进行检索(primary field)。注意，如果使用一个字段设置了<code>document=True</code>，则一般约定此字段名为<code>text</code>，这是在 SearchIndex 类里面一贯的命名，以防止后台混乱，当然名字你也可以随便改，不过不建议改。</p>
+<p>并且，haystack提供了<code>use_template=True</code>在text字段中这样就允许我们使用数据模板去建立搜索引擎索引的文件，说得通俗点就是索引里面需要存放一些什么东西，例如Post的title字段，这样我们可以通过 title 内容来检索 Post 数据了。举个例子，假如你搜索 Python ，那么就可以检索出title中含有 Python 的Post了，怎么样是不是很简单？数据模板的路径为 <code>templates/search/indexes/youapp/\&lt;model_name&gt;_text.txt</code>（例如 templates/search/indexes/blog/post_text.txt, model_name必须是小写的哦！)，其内容为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; <span class="built_in">object</span>.title &#125;&#125;</span><br><span class="line">&#123;&#123; <span class="built_in">object</span>.body &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>路径：<br><img src="https://img-blog.csdnimg.cn/2018121912092277.png" alt="在这里插入图片描述"></p>
+<p><strong>配置 URL</strong><br>在项目的<code>urls.py</code>中添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = [</span><br><span class="line">    re_path(<span class="string">&#x27;admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">    <span class="comment"># 在这里</span></span><br><span class="line">    re_path(<span class="string">r&#x27;^search/&#x27;</span>, include(<span class="string">&#x27;haystack.urls&#x27;</span>)),</span><br><span class="line">    re_path(<span class="string">r&#x27;&#x27;</span>, include(<span class="string">&#x27;Post.urls&#x27;</span>, namespace=<span class="string">&quot;Post&quot;</span>)),</span><br><span class="line">    re_path(<span class="string">r&#x27;&#x27;</span>, include(<span class="string">&#x27;comment.urls&#x27;</span>, namespace=<span class="string">&quot;comment&quot;</span>)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改搜索表单</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;input-group&quot;</span> <span class="attr">action</span>=<span class="string">&quot;&#123;% url &#x27;haystack_search&#x27; %&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;search&quot;</span> <span class="attr">name</span>=<span class="string">&quot;q&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;search&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;input-group-btn&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-default&quot;</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>Go!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：input的name属性的值一定要是<code>q</code></p>
+<p><strong>创建搜索结果页面</strong><br><code>haystack_search</code>视图函数会将搜索结果传递给模板<code>search/search.html</code>，因此创建这个模板文件，对搜索结果进行渲染：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if query %&#125;</span><br><span class="line">    &#123;% for result in page.object_list %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">article</span> <span class="attr">id</span>=<span class="string">&quot;post-77&quot;</span></span></span><br><span class="line"><span class="tag">                 <span class="attr">class</span>=<span class="string">&quot;clearfix post post-77 blog type-blog status-publish has-post-thumbnail hentry&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">&quot;entry-title&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;Post:detail&#x27; result.object.id %&#125;&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;bookmark&quot;</span>&gt;</span></span><br><span class="line">                    &#123;% highlight result.object.title with query %&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;entry-meta&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;glyphicon glyphicon-time&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">time</span> <span class="attr">class</span>=<span class="string">&quot;meta-date&quot;</span> <span class="attr">itemprop</span>=<span class="string">&quot;datePublished&quot;</span></span></span><br><span class="line"><span class="tag">                      <span class="attr">datetime</span>=<span class="string">&quot;&#123;&#123; result.object.modified_time &#125;&#125;&quot;</span>&gt;</span> &#123;&#123; result.object.modified_time &#125;&#125;<span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;glyphicon glyphicon-tags&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;post-cate&quot;</span>&gt;</span>&#123;&#123; result.object.category.name &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;entry-content&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;% highlight result.object.body with query %&#125;<span class="symbol">&amp;hellip;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;etry-more&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;Post:detail&#x27; result.object.id %&#125;&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;bookmark&quot;</span>&gt;</span>Read More<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    &#123;% empty %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;no-post&quot;</span>&gt;</span>没有搜索到你想要的结果！<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>路径：<br><img src="https://img-blog.csdnimg.cn/20181219121428191.png" alt="在这里插入图片描述"></p>
+<p>这个模板基本和<code>Post/list.html</code>一样，只是由于haystack对搜索结果做了分页，传给模板的变量是一个<code>page</code>对象，所以我们从<code>page</code>中取出这一页对应的搜索结果，然后对其循环显示，即<code>&#123;% for result in page.object_list %&#125;</code>。另外要取得Post（文章）以显示文章的数据如标题、正文，需要从<code>result</code>的<code>object</code>属性中获取.<code>query</code>变量的值即为用户搜索的关键词。</p>
+<p><strong>高亮关键词</strong><br>在django haystack中实现这个效果也非常简单，只需要使用<code>&#123;% highlight %&#125;</code>模板标签即可,上面的示例已经有了高亮。高亮处理的原理其实就是给文本中的关键字包上一个<code>span</code>标签并且为其添加<code>highlighted</code>样式,因此你可以自己设置高亮的颜色哦：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    <span class="selector-tag">span</span><span class="selector-class">.highlighted</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: red;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改搜索引擎为中文分词</strong><br>我们使用 Whoosh 作为搜索引擎，但在 django haystack 中为 Whoosh 指定的分词器是英文分词器，可能会使得搜索结果不理想，我们把这个分词器替换成 jieba 中文分词器。从你安装的 haystack 中把<code>haystack/backends/whoosh_backends.py</code>文件拷贝到<code>Post/</code>下，重命名为<code>whoosh_cn_backends.py</code>（之前我们在 <code>settings.py</code>中的<code>HAYSTACK_CONNECTIONS</code> 指定的就是这个文件），然后找到如下一行代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schema_fields[field_class.index_fieldname] = TEXT(stored=<span class="literal">True</span>, analyzer=StemmingAnalyzer(), field_boost=field_class.boost, sortable=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>将其中的<code>analyzer</code>改为<code>ChineseAnalyzer</code>，当然为了使用它，你需要在文件顶部引入：<code>from jieba.analyse import ChineseAnalyzer</code>。<br>改成这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注意先找到这个再修改，而不是直接添加  </span></span><br><span class="line">schema_fields[field_class.index_fieldname] = TEXT(stored=<span class="literal">True</span>, analyzer=ChineseAnalyzer(),field_boost=field_class.boost, sortable=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>建立索引文件</strong><br>最后一步就是建立索引文件了，运行命令<code>python manage.py rebuild_index</code>就可以建立索引文件了。<br>最后就可以看到效果啦<br><img src="https://img-blog.csdnimg.cn/20181219122427497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/12/18/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%BA%8C)/" data-id="ckpqq959b000pykjd4khf05xe" data-title="django项目开发实战——博客(二)" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/28/python2-mac10.13%E4%B8%8B%E5%AE%89%E8%A3%85mysql-python/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          python2-mac10.13下安装mysql-python
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/07/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">celery学习笔记（一）——celery快速入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

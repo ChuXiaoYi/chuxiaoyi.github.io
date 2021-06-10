@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>django项目开发实战——博客 | cxy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="p个大s：12345这里用的是python3.7和Django2.0.假设全都安装成功&#x3D; &#x3D;然后这个是我做个人网站的一个过程&#x3D;。&#x3D;然后这个也不能算是个教程吧&#x3D;。&#x3D;然后这只是粗糙的记录&#x3D;。&#x3D;最后，防脱发用霸王&#x3D;3&#x3D;  生成一个完整的django项目 创建Django项目 1django-admin.py startproject MySite  此时，你会看到这样的文件夹：  运行一下你的项目，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django项目开发实战——博客">
+<meta property="og:url" content="https://chuxiaoyi.github.io/2018/08/08/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="cxy">
+<meta property="og:description" content="p个大s：12345这里用的是python3.7和Django2.0.假设全都安装成功&#x3D; &#x3D;然后这个是我做个人网站的一个过程&#x3D;。&#x3D;然后这个也不能算是个教程吧&#x3D;。&#x3D;然后这只是粗糙的记录&#x3D;。&#x3D;最后，防脱发用霸王&#x3D;3&#x3D;  生成一个完整的django项目 创建Django项目 1django-admin.py startproject MySite  此时，你会看到这样的文件夹：  运行一下你的项目，">
+<meta property="og:locale">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/49h3i95aw0oqoecmvefqd8l1/image_1cjvd08ra1bil15seqb71p312or9.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/i4gc0elqc605ajy3f3vf69n8/image_1cjvd8tjj4aq48ihk21n4d1b38m.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/n2ym6tgwxd9plj2uhzugpaxi/image_1cjvdb63b1bcl1jnpupct2610j423.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/v5k5xmi0xg796sduhoai22xt/image_1cjvdpm002a81skaf2714pr1f2t2g.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/t8bc491f1uw4z71ij3vplcb1/image_1cjveevfspif39o6hm2mnucn3d.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/ekq7zlcwi70z8znyr2jy1now/image_1cjvfbgkulc0gvt1gl9cu01sgd4a.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/du4zwcl0gkr8x9jc5o7vhpm1/image_1cjvfv00s1kuo119k1t8dh581ug84n.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/tfogy4umjmduw5t0utatz3o2/image_1cjvg4n791bobtht1smbf1f1u7t54.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/gmgmt3mz41l9swzbv1axotyg/image_1cjvibkvpei29mk1doucvv12j15h.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/cqlxbmom3dcu4sskz3s9jkd8/image_1cjvifci91ss01v9l1l1g1m5moo25u.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/wv0tgog0pl8u2q8zcoq112um/image_1cjvilv4o14lf9a9371jkjhcr7o.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/clj4spcx26385unz62hwxg26/image_1cjvlp6q840k17eg1cubd8i1qpi8i.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/qp8cowqr7rlu64tu0znzihgn/image_1cjvls24ohf91gngccsuk5ce8v.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/gfdqcztquhucuf7urxraech7/image_1cjvlvc96ir9hk4ubn1jk73uq9c.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/1oihspdgm87u6fs8xsyi7rs3/image_1ck6k15rg1j1lfei3j1aoepvha9.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/yij56j7cs2lce5bzsd4d4mdp/image_1ck6k35as1gm97pr1gng1ch41ns7am.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/d5dremlh2i930xisccmz8d62/image_1ck6k74sv5p3212h1osclqub3.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/y1tnpxlnteb4sdpfe39lh6hh/image_1ck6ueleqhgg1ml215qg8461hpkbg.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/rl9rr4j86xh9eqzlhuk8vm2u/image_1ck6uhi34mt1nqi1a3i46p204bt.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/xb662pip3z8x1271lcahbb35/image_1ck6vajq31hn72jkr4hjpe1dt1ca.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/mrayby38anpbctc28d2dmf3q/image_1ck6vb9cieha182n1eg12rt7qfcn.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/gz98bcgfeuyk3wl41rrswsi0/image_1ck6vcgaqlpe8dqsf8qnn17rndk.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/49j3eahshzer64j9h6nqpuoj/image_1ck99cgjpsqtjq41hnk148j1ak9.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/y4kk578e16p5tyeiyd7mhecl/image_1ck99kovo16t218tb11lo19k441mm.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/rnf7dr6w65lrn908p5f73rfu/image_1ck9hp2bkhnqamtcnbbm415813.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/iplx5zoz3up0mlsm7k75j2ie/image_1ck9i8vcll104c16qd1i9r2k01g.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/el867o3qwzqlek2v3f39bn9z/image_1ckc3ee0n117f10is15k8idd402d.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/4i86entcw88n7jzapw847n57/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_f1e71885-52fc-43e6-b722-a51dc80c8934.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/cjebk0cdfykz15cnb347inx9/image_1ckc6rca21j8d73ogvq16a01cl01e.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/f5e47hed0uv3grf7qtdo1w8g/image_1ckcba269rui1u8a8rt1chqulf2r.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/19pzrwbl1kb170pul5v7x023/image_1ckcc3v5apog1quqljj7lrrh21p.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/jdgsbihsi0hdw5b56idjitl1/image_1ckcc59nn17vv1dqq1lot1lak8tk26.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/8ls7ecfp6838j3n0e0uzfgfv/image_1ckceclnl10r41ocn18rlu2mpfc2j.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/4688zzma09v6kdfe0dorx8yv/image_1ckcef75i1ie51q421seb1rcu1lmm30.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/1cm876ipp9l2m0ahh4hrjw1o/image_1ckcf0alj1l1u12a450avgf14323d.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/8bz7aaw3iqj6lxcx0vkvdgdd/image_1ckcf1coerbg1j2lroe2l91q9b3q.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/fy60nesb0nih1f8bnt2id1yh/image_1ckcf2edjfd11i6qg8e1vq51pfo47.png">
+<meta property="og:image" content="http://static.zybuluo.com/chuxiaoyi/z7b8c2kehww2oufikser9o0d/image_1ckcf3k481u62unqtur1iis10ne5k.png">
+<meta property="article:published_time" content="2018-08-08T09:53:22.000Z">
+<meta property="article:modified_time" content="2021-06-10T09:57:23.659Z">
+<meta property="article:author" content="chuxiaoyi">
+<meta property="article:tag" content="django python django">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://static.zybuluo.com/chuxiaoyi/49h3i95aw0oqoecmvefqd8l1/image_1cjvd08ra1bil15seqb71p312or9.png">
+  
+    <link rel="alternate" href="/atom.xml" title="cxy" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cxy</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chuxiaoyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-django项目开发实战——博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/08/08/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2/" class="article-date">
+  <time class="dt-published" datetime="2018-08-08T09:53:22.000Z" itemprop="datePublished">2018-08-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      django项目开发实战——博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h3 id="p个大s："><a href="#p个大s：" class="headerlink" title="p个大s："></a>p个大s：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这里用的是python3.7和Django2.0.假设全都安装成功= =</span><br><span class="line">然后这个是我做个人网站的一个过程=。=</span><br><span class="line">然后这个也不能算是个教程吧=。=</span><br><span class="line">然后这只是粗糙的记录=。=</span><br><span class="line">最后，防脱发用霸王=3=</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成一个完整的django项目"><a href="#生成一个完整的django项目" class="headerlink" title="生成一个完整的django项目"></a>生成一个完整的django项目</h3><ul>
+<li><p><strong>创建Django项目</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin.py startproject MySite</span><br></pre></td></tr></table></figure>
+
+<p>此时，你会看到这样的文件夹：<br><img src="http://static.zybuluo.com/chuxiaoyi/49h3i95aw0oqoecmvefqd8l1/image_1cjvd08ra1bil15seqb71p312or9.png" alt="image_1cjvd08ra1bil15seqb71p312or9.png-6.5kB"></p>
+</li>
+<li><p><strong>运行一下你的项目，看看有没有成功</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./manage.py runserver</span><br></pre></td></tr></table></figure>
+
+<p>终端会显示这些：<br><img src="http://static.zybuluo.com/chuxiaoyi/i4gc0elqc605ajy3f3vf69n8/image_1cjvd8tjj4aq48ihk21n4d1b38m.png" alt="image_1cjvd8tjj4aq48ihk21n4d1b38m.png-79kB"><br>有红字也不要担心，因为还没有设置呢！<br>接下来去<code>http://127.0.0.1:8000/</code>看一看：<br><img src="http://static.zybuluo.com/chuxiaoyi/n2ym6tgwxd9plj2uhzugpaxi/image_1cjvdb63b1bcl1jnpupct2610j423.png" alt="image_1cjvdb63b1bcl1jnpupct2610j423.png-121.7kB"><br>成功了！<br><strong>ps：</strong>如果想要外部机器（同一网络）访问本机的Django服务的话，要写成<code>./manage.py runserver 0.0.0.0:9999</code>,并将<code>setting.py</code>中的<code>ALLOWED_HOSTS</code>改为<code>ALLOWED_HOSTS = [&#39;*&#39;, ]</code>，一定要加<strong>逗号</strong>！</p>
+</li>
+<li><p><strong>改一些配置</strong><br><strong>ps</strong>：这里的顺序可能不对。= =</p>
+<ol>
+<li>更改<code>/MySite/MySite/settings.py</code>中的内容<br>Django默认的<code>DATABASES</code>是<code>sqlite</code>，是这样的：<br><img src="http://static.zybuluo.com/chuxiaoyi/v5k5xmi0xg796sduhoai22xt/image_1cjvdpm002a81skaf2714pr1f2t2g.png" alt="image_1cjvdpm002a81skaf2714pr1f2t2g.png-13.3kB"><br>这里我是用的是<code>MySQL</code>数据库，因此，我要改成这样：</li>
+</ol>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line"><span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.mysql&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;MySite&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;xxxxx&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;HOST&#x27;</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;PORT&#x27;</span>: <span class="string">&#x27;3306&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  这里一定要确保数据库已经存在了。在这之前，需要创建数据库，像这样滴：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database MySite CHARACTER SET utf8 COLLATE utf8_general_ci;</span><br></pre></td></tr></table></figure>
+
+<p>  还要更改<strong>时区</strong>和<strong>语言</strong><br>  <img src="http://static.zybuluo.com/chuxiaoyi/t8bc491f1uw4z71ij3vplcb1/image_1cjveevfspif39o6hm2mnucn3d.png" alt="image_1cjveevfspif39o6hm2mnucn3d.png-5.8kB"></p>
+<ol start="2">
+<li> 向<code>/MySite/MySite/__init__.py</code>中添加内容</li>
+</ol>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>数据库迁移</strong><br>首先，执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./manage.py makemigrations</span><br></pre></td></tr></table></figure>
+
+<p>然后，执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<p>这样就成功啦～<br><img src="http://static.zybuluo.com/chuxiaoyi/ekq7zlcwi70z8znyr2jy1now/image_1cjvfbgkulc0gvt1gl9cu01sgd4a.png" alt="image_1cjvfbgkulc0gvt1gl9cu01sgd4a.png-70.9kB"></p>
+</li>
+<li><p><strong>创建超级用户</strong><br>创建超级用户是用来登陆到admin后台管理中的<br>执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./manage.py createsuperuser</span><br></pre></td></tr></table></figure>
+
+<p>然后按照提示填写就好啦～<br><strong>ps：</strong>一定要先进行数据库迁移，再创建用户。否则，会出现<img src="http://static.zybuluo.com/chuxiaoyi/du4zwcl0gkr8x9jc5o7vhpm1/image_1cjvfv00s1kuo119k1t8dh581ug84n.png" alt="image_1cjvfv00s1kuo119k1t8dh581ug84n.png-6.3kB"></p>
+</li>
+<li><p><strong>进入admin看看</strong><br>在浏览器中输入<code>http://127.0.0.1:8000/admin</code>，会出现登录页面，此时会发现全都变成中文了，说明之前的设置生效了。<br><img src="http://static.zybuluo.com/chuxiaoyi/tfogy4umjmduw5t0utatz3o2/image_1cjvg4n791bobtht1smbf1f1u7t54.png" alt="image_1cjvg4n791bobtht1smbf1f1u7t54.png-41.6kB"><br>接下来，就可以用刚刚创建的用户登陆了，查看后台数据了！</p>
+</li>
+</ul>
+<h3 id="项目正式开始"><a href="#项目正式开始" class="headerlink" title="项目正式开始"></a>项目正式开始</h3><ul>
+<li><p><strong>创建app</strong><br>执行<code>./manage.py startapp Post</code>,查看项目结构，如下：<br><img src="http://static.zybuluo.com/chuxiaoyi/gmgmt3mz41l9swzbv1axotyg/image_1cjvibkvpei29mk1doucvv12j15h.png" alt="image_1cjvibkvpei29mk1doucvv12j15h.png-10kB"></p>
+<p>完成上步操作后，需要在<code>/MySite/MySite/settings.py</code>中将app添加进去：<br><img src="http://static.zybuluo.com/chuxiaoyi/cqlxbmom3dcu4sskz3s9jkd8/image_1cjvifci91ss01v9l1l1g1m5moo25u.png" alt="image_1cjvifci91ss01v9l1l1g1m5moo25u.png-14.5kB"><br>接下来，需要在app文件夹下添加<code>urls.py</code>，用于路由映射：<br><img src="http://static.zybuluo.com/chuxiaoyi/wv0tgog0pl8u2q8zcoq112um/image_1cjvilv4o14lf9a9371jkjhcr7o.png" alt="image_1cjvilv4o14lf9a9371jkjhcr7o.png-9.4kB"><br>在<code>urls.py</code>中这样写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app_name = <span class="string">&#x27;Post&#x27;</span>   <span class="comment"># 这里是为了url反向解析用</span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">  <span class="comment"># 这里放映射的view</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>同时，在<code>/MySite/MySite/urls.py</code>中需要添加对<code>Post.urls</code>的映射：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">  path(<span class="string">&#x27;admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">  path(<span class="string">r&#x27;&#x27;</span>, include(<span class="string">&#x27;Post.urls&#x27;</span>)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>创建模型</strong><br>在app下的<code>models.py</code>创建自己的模型就可以啦~</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Category</span>(<span class="params">models.Model</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;分类&quot;&quot;&quot;</span></span><br><span class="line">  name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tag</span>(<span class="params">models.Model</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;标签&quot;&quot;&quot;</span></span><br><span class="line">  name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span>(<span class="params">models.Model</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;文章&quot;&quot;&quot;</span></span><br><span class="line">  title = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">  body = models.TextField()</span><br><span class="line">  created_time = models.DateTimeField()</span><br><span class="line">  modified_time = models.DateTimeField()</span><br><span class="line">  excerpt = models.CharField(max_length=<span class="number">200</span>, blank=<span class="literal">True</span>)  <span class="comment"># 文章摘要，可为空</span></span><br><span class="line">  category = models.ForeignKey(Category, on_delete=<span class="literal">True</span>)  <span class="comment"># ForeignKey表示1对多（多个post对应1个category）</span></span><br><span class="line">  tags = models.ManyToManyField(Tag, blank=<span class="literal">True</span>)</span><br><span class="line">  views = models.PositiveIntegerField(default=<span class="number">0</span>)  <span class="comment"># 阅读量</span></span><br></pre></td></tr></table></figure>
+
+<p>然后一定不要忘记再进行<strong>数据库迁移</strong>啊！！</p>
+</li>
+<li><p><strong>前端模版</strong><br>这里的前端模板使用的是模板之家的<br>链接��：<a target="_blank" rel="noopener" href="http://www.cssmoban.com/tags.asp?n=html5">http://www.cssmoban.com/tags.asp?n=html5</a></p>
+<p>首先创建templates目录，结构如下：<br><img src="http://static.zybuluo.com/chuxiaoyi/clj4spcx26385unz62hwxg26/image_1cjvlp6q840k17eg1cubd8i1qpi8i.png" alt="image_1cjvlp6q840k17eg1cubd8i1qpi8i.png-12.8kB"><br>此时，需要在<code>setting.py</code>中添加关于模板的配置：<br><img src="http://static.zybuluo.com/chuxiaoyi/qp8cowqr7rlu64tu0znzihgn/image_1cjvls24ohf91gngccsuk5ce8v.png" alt="image_1cjvls24ohf91gngccsuk5ce8v.png-39.8kB"></p>
+<p>接下来是static目录，结构如下：<br><img src="http://static.zybuluo.com/chuxiaoyi/gfdqcztquhucuf7urxraech7/image_1cjvlvc96ir9hk4ubn1jk73uq9c.png" alt="image_1cjvlvc96ir9hk4ubn1jk73uq9c.png-9.5kB"><br>显而易见，这里放的是一些css、js文件等</p>
+</li>
+<li><p><strong>index视图</strong><br>首先，在<code>Post/views.py</code>中实现<code>index</code>方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">  主页</span></span><br><span class="line"><span class="string">  :param request:</span></span><br><span class="line"><span class="string">  :return:</span></span><br><span class="line"><span class="string">  &quot;&quot;&quot;</span></span><br><span class="line">  <span class="keyword">return</span> render(request=request, template_name=<span class="string">&#x27;Post/index.html&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>request</code>为请求对象;<br><code>template_name</code>为渲染的前端页面的路径字符串（相对templates目录）</p>
+<p>然后，在<code>Post/urls.py</code>中进行路由映射：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = [</span><br><span class="line">  url(<span class="string">r&#x27;^$&#x27;</span>, views.index, name=<span class="string">&quot;index&quot;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果你主页的url是空，正则必须写成<strong>^$</strong></p>
+<p>最后，一定要要修改静态页面中引用的路径。<br>对于Django来说，可以使用<code>static</code>标签。<br>在页面开头引入<code>&#123;% load static %&#125;</code>，这个对应的配置信息是<img src="http://static.zybuluo.com/chuxiaoyi/1oihspdgm87u6fs8xsyi7rs3/image_1ck6k15rg1j1lfei3j1aoepvha9.png" alt="image_1ck6k15rg1j1lfei3j1aoepvha9.png-2.7kB"><br>并将页面中的路径改为<img src="http://static.zybuluo.com/chuxiaoyi/yij56j7cs2lce5bzsd4d4mdp/image_1ck6k35as1gm97pr1gng1ch41ns7am.png" alt="image_1ck6k35as1gm97pr1gng1ch41ns7am.png-4.5kB"><br><strong>ps：</strong>对于css或者js中的引用也不要忘了改！</p>
+<p>运行一下。<br><img src="http://static.zybuluo.com/chuxiaoyi/d5dremlh2i930xisccmz8d62/image_1ck6k74sv5p3212h1osclqub3.png" alt="image_1ck6k74sv5p3212h1osclqub3.png-422.3kB"><br>搞定！</p>
+</li>
+<li><p><strong>向前端渲染及分页</strong><br>首先，更改<code>index()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Post</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">  主页</span></span><br><span class="line"><span class="string">  :param request:</span></span><br><span class="line"><span class="string">  :return:</span></span><br><span class="line"><span class="string">  &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">  post = Post.objects.<span class="built_in">all</span>()</span><br><span class="line"></span><br><span class="line">  limit = <span class="number">3</span></span><br><span class="line">  paginator = Paginator(post, limit)</span><br><span class="line">  page = request.GET.get(<span class="string">&#x27;page&#x27;</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">  result = paginator.page(page)</span><br><span class="line">  context = &#123;</span><br><span class="line">      <span class="string">&quot;post_list&quot;</span>: result,</span><br><span class="line">      <span class="string">&quot;page&quot;</span>: page</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> render(request=request, template_name=<span class="string">&#x27;Post/index.html&#x27;</span>, context=context)</span><br></pre></td></tr></table></figure>
+
+<p>然后修改<code>index.html</code><br><img src="http://static.zybuluo.com/chuxiaoyi/y1tnpxlnteb4sdpfe39lh6hh/image_1ck6ueleqhgg1ml215qg8461hpkbg.png" alt="image_1ck6ueleqhgg1ml215qg8461hpkbg.png-122kB"></p>
+<p>运行看一下<br><img src="http://static.zybuluo.com/chuxiaoyi/rl9rr4j86xh9eqzlhuk8vm2u/image_1ck6uhi34mt1nqi1a3i46p204bt.png" alt="image_1ck6uhi34mt1nqi1a3i46p204bt.png-173.5kB"><br>搞定！</p>
+</li>
+<li><p><strong>更改index.html中的所有跳转链接</strong><br>在这里，我用的是url的反向解析。这样可以减轻后期维护成本。因此，就需要在urls.py中添加如下信息：<br><img src="http://static.zybuluo.com/chuxiaoyi/xb662pip3z8x1271lcahbb35/image_1ck6vajq31hn72jkr4hjpe1dt1ca.png" alt="image_1ck6vajq31hn72jkr4hjpe1dt1ca.png-11.1kB"></p>
+<p><img src="http://static.zybuluo.com/chuxiaoyi/mrayby38anpbctc28d2dmf3q/image_1ck6vb9cieha182n1eg12rt7qfcn.png" alt="image_1ck6vb9cieha182n1eg12rt7qfcn.png-7.8kB"><br>在html中修改成如下：<br><img src="http://static.zybuluo.com/chuxiaoyi/gz98bcgfeuyk3wl41rrswsi0/image_1ck6vcgaqlpe8dqsf8qnn17rndk.png" alt="image_1ck6vcgaqlpe8dqsf8qnn17rndk.png-3.5kB"></p>
+</li>
+<li><p><strong>博客文章页面</strong><br>别忘了改跳转链接！！！！<br>文章详情页和主页大体结构是相似的，因此，这里使用了模版继承。<br>在基类模版里，使用这个，将子类模版需要填充的位置占位<br><img src="http://static.zybuluo.com/chuxiaoyi/49j3eahshzer64j9h6nqpuoj/image_1ck99cgjpsqtjq41hnk148j1ak9.png" alt="image_1ck99cgjpsqtjq41hnk148j1ak9.png-4.6kB"><br>然后在子类模板中，使用相同的标签将填充的内容进行包裹<br>最后，不要忘了在子类模板中再写上<code>&#123;% extends 'Post/base.html' %&#125;</code>和<code>&#123;% load static %&#125;</code></p>
+<p>在<code>Post/urls.py</code>中添加详情页的url：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(r&#x27;^detail/post-(?P&lt;pk&gt;\d+)$&#x27;, views.detail, name=&quot;detail&quot;),</span><br></pre></td></tr></table></figure>
+
+<p>并添加detail视图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span>(<span class="params">request, pk</span>):</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">:param request: </span></span><br><span class="line"><span class="string">:param pk: 接收到的文章的主键id</span></span><br><span class="line"><span class="string">:return: </span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">return</span> render(request, template_name=<span class="string">&#x27;Post/blog.html&#x27;</span>, )</span><br></pre></td></tr></table></figure>
+
+<p>运行看一下吧！<br><img src="http://static.zybuluo.com/chuxiaoyi/y4kk578e16p5tyeiyd7mhecl/image_1ck99kovo16t218tb11lo19k441mm.png" alt="image_1ck99kovo16t218tb11lo19k441mm.png-257kB"><br>搞定！<br>继续在视图中添加内容，将假数据改为真实的文章数据<br>对于多对多的关系来说，可以写成这样：<br><img src="http://static.zybuluo.com/chuxiaoyi/rnf7dr6w65lrn908p5f73rfu/image_1ck9hp2bkhnqamtcnbbm415813.png" alt="image_1ck9hp2bkhnqamtcnbbm415813.png-10.1kB"><br>看一看效果吧！<br><img src="http://static.zybuluo.com/chuxiaoyi/iplx5zoz3up0mlsm7k75j2ie/image_1ck9i8vcll104c16qd1i9r2k01g.png" alt="image_1ck9i8vcll104c16qd1i9r2k01g.png-264.3kB"></p>
+<p>**接下来就是让我可以上传markdown格式的文本了！<br>这个暂时先不解决了= =，小本本记下来**</p>
+</li>
+<li><p><strong>添加分类栏</strong><br>这里使用自定义模版标签！<br>首先，在app文件夹下，创建<code>templatetags</code>文件夹，然后创建一个py文件，里面定义模版标签，目录是这样滴：<br><img src="http://static.zybuluo.com/chuxiaoyi/el867o3qwzqlek2v3f39bn9z/image_1ckc3ee0n117f10is15k8idd402d.png" alt="image_1ckc3ee0n117f10is15k8idd402d.png-9.9kB"></p>
+<p>然后定义一个分类目录的标签：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django <span class="keyword">import</span> template</span><br><span class="line"><span class="keyword">from</span> ..models <span class="keyword">import</span> Category</span><br><span class="line"></span><br><span class="line">register = template.Library()</span><br><span class="line"></span><br><span class="line"><span class="meta">@register.simple_tag</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_categories</span>():</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">  分类目录标签</span></span><br><span class="line"><span class="string">  :return:</span></span><br><span class="line"><span class="string">  &quot;&quot;&quot;</span></span><br><span class="line">  <span class="keyword">return</span> Category.objects.<span class="built_in">all</span>()</span><br></pre></td></tr></table></figure>
+
+<p>在前端引用自定义标签时，一定要开头加载自定义的模版标签所在的py文件，<code>&#123;% load simple_tags %&#125;</code>,然后再使用：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% get_categories as category_list %&#125;</span><br><span class="line">&#123;% for category in category_list %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>&#123;&#123; category.name &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看一下效果吧！<br><img src="http://static.zybuluo.com/chuxiaoyi/4i86entcw88n7jzapw847n57/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_f1e71885-52fc-43e6-b722-a51dc80c8934.png" alt="企业微信截图_f1e71885-52fc-43e6-b722-a51dc80c8934.png-364.8kB"><br>搞定！</p>
+</li>
+<li><p><strong>评论功能</strong><br>评论功能新建一个app</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./manage.py startapp comment </span><br></pre></td></tr></table></figure>
+
+<p>不要忘了把它注册到django中<br><img src="http://static.zybuluo.com/chuxiaoyi/cjebk0cdfykz15cnb347inx9/image_1ckc6rca21j8d73ogvq16a01cl01e.png" alt="image_1ckc6rca21j8d73ogvq16a01cl01e.png-15.2kB"></p>
+<p>创建模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comment</span>(<span class="params">models.Model</span>):</span></span><br><span class="line">  name = models.CharField(max_length=<span class="number">20</span>)</span><br><span class="line">  email = models.EmailField(max_length=<span class="number">50</span>)</span><br><span class="line">  website = models.URLField(blank=<span class="literal">True</span>)</span><br><span class="line">  text = models.TextField()</span><br><span class="line">  created_time = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">  post = models.ForeignKey(<span class="string">&#x27;Post.Post&#x27;</span>, on_delete=<span class="literal">True</span>)  <span class="comment"># 一篇文章有多个评论</span></span><br></pre></td></tr></table></figure>
+
+<p>不要忘了注册到admin中啊！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin.site.register(Comment)</span><br></pre></td></tr></table></figure>
+
+<p>最重要的一步。数据库迁移啊！！！</p>
+<p>这里要实现的是点击submit按钮，会提交评论<br>在<code>comment/views.py</code>中添加视图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render, redirect</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Comment</span><br><span class="line"><span class="keyword">from</span> Post.models <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">submit_comment</span>(<span class="params">request, pk</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">  处理提交的评论</span></span><br><span class="line"><span class="string">  :param request:</span></span><br><span class="line"><span class="string">  :return:</span></span><br><span class="line"><span class="string">  &quot;&quot;&quot;</span></span><br><span class="line">  post = request.POST</span><br><span class="line">  comment = Comment()</span><br><span class="line">  comment.name = post.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">  comment.email = post.get(<span class="string">&#x27;email&#x27;</span>)</span><br><span class="line">  comment.website = post.get(<span class="string">&#x27;website&#x27;</span>)</span><br><span class="line">  comment.text = post.get(<span class="string">&#x27;message&#x27;</span>)</span><br><span class="line">  comment.post = Post.objects.get(<span class="built_in">id</span>=pk)</span><br><span class="line">  comment.save()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> redirect(reverse(<span class="string">&#x27;Post:detail&#x27;</span>, kwargs=&#123;<span class="string">&quot;pk&quot;</span>: pk&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>更改前端页面中的评论部分：<br><img src="http://static.zybuluo.com/chuxiaoyi/f5e47hed0uv3grf7qtdo1w8g/image_1ckcba269rui1u8a8rt1chqulf2r.png" alt="image_1ckcba269rui1u8a8rt1chqulf2r.png-37.9kB"></p>
+<p>在<code>comment/urls.py</code>中添加映射：<br><img src="http://static.zybuluo.com/chuxiaoyi/19pzrwbl1kb170pul5v7x023/image_1ckcc3v5apog1quqljj7lrrh21p.png" alt="image_1ckcc3v5apog1quqljj7lrrh21p.png-13.1kB"><br>试一下吧！<br><img src="http://static.zybuluo.com/chuxiaoyi/jdgsbihsi0hdw5b56idjitl1/image_1ckcc59nn17vv1dqq1lot1lak8tk26.png" alt="image_1ckcc59nn17vv1dqq1lot1lak8tk26.png-24.9kB"><br>搞定！</p>
+<p><strong>后面再完善一下。搞成可以回复的啵！小本本记下来～</strong></p>
+</li>
+<li><p><strong>最新评论</strong><br>这个也写成自定义标签啵。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@register.simple_tag</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_latest_comment</span>():</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">  获取最新评论</span></span><br><span class="line"><span class="string">  :return:</span></span><br><span class="line"><span class="string">  &quot;&quot;&quot;</span></span><br><span class="line">  comment_list = Comment.objects.<span class="built_in">all</span>()[:<span class="number">5</span>].only(<span class="string">&#x27;post&#x27;</span>, <span class="string">&#x27;text&#x27;</span>)   <span class="comment"># 只获取特定字段</span></span><br><span class="line">  <span class="keyword">return</span> comment_list</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://static.zybuluo.com/chuxiaoyi/8ls7ecfp6838j3n0e0uzfgfv/image_1ckceclnl10r41ocn18rlu2mpfc2j.png" alt="image_1ckceclnl10r41ocn18rlu2mpfc2j.png-17.4kB"></p>
+<p>看一下效果<br><img src="http://static.zybuluo.com/chuxiaoyi/4688zzma09v6kdfe0dorx8yv/image_1ckcef75i1ie51q421seb1rcu1lmm30.png" alt="image_1ckcef75i1ie51q421seb1rcu1lmm30.png-20.2kB"><br>搞定！</p>
+</li>
+<li><p><strong>阅读量</strong><br>在<code>Post/models.py</code>中添加：<br><img src="http://static.zybuluo.com/chuxiaoyi/1cm876ipp9l2m0ahh4hrjw1o/image_1ckcf0alj1l1u12a450avgf14323d.png" alt="image_1ckcf0alj1l1u12a450avgf14323d.png-71.1kB"></p>
+<p>在<code>Post/views.py</code>中添加：<br><img src="http://static.zybuluo.com/chuxiaoyi/8bz7aaw3iqj6lxcx0vkvdgdd/image_1ckcf1coerbg1j2lroe2l91q9b3q.png" alt="image_1ckcf1coerbg1j2lroe2l91q9b3q.png-48.6kB"></p>
+<p>在前端页面添加：<br><img src="http://static.zybuluo.com/chuxiaoyi/fy60nesb0nih1f8bnt2id1yh/image_1ckcf2edjfd11i6qg8e1vq51pfo47.png" alt="image_1ckcf2edjfd11i6qg8e1vq51pfo47.png-4.3kB"></p>
+<p>搞定！<br><img src="http://static.zybuluo.com/chuxiaoyi/z7b8c2kehww2oufikser9o0d/image_1ckcf3k481u62unqtur1iis10ne5k.png" alt="image_1ckcf3k481u62unqtur1iis10ne5k.png-7.5kB"></p>
+</li>
+</ul>
+<p>好啦～到这里博客基本成型了。就是不好看= =。然后后面继续完善。小本本记下来。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://chuxiaoyi.github.io/2018/08/08/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2/" data-id="ckpqq95b70048ykjdh7wc0cw5" data-title="django项目开发实战——博客" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/09/Python%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8%E5%92%8Cwith%E8%AF%AD%E5%8F%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Python中的上下文管理器和with语句
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/03/%E6%97%A5%E5%B8%B8%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">日常遇到的问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/fastapi/">fastapi</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/myql/">myql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python3-7%E6%A0%87%E5%87%86%E5%BA%93/">python3.7标准库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew%E5%AE%89%E8%A3%85/" rel="tag">brew安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-celery/" rel="tag">celery celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/celery-python3-7-celery/" rel="tag">celery python3.7 celery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/" rel="tag">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-celery-django/" rel="tag">django celery django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django/" rel="tag">django django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-django-rest/" rel="tag">django django rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-python-django/" rel="tag">django python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django-rest-framework-django-rest-framework-python/" rel="tag">django rest framework django rest framework python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python/" rel="tag">fastapi python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fastapi-python-fastapi/" rel="tag">fastapi python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-sqlalchemy-flask-sqlalchemy/" rel="tag">flask sqlalchemy flask sqlalchemy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myql-python2-7-mysql/" rel="tag">myql python2.7 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-apScheduler/" rel="tag">python apScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-django/" rel="tag">python django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-fastapi/" rel="tag">python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python/" rel="tag">python python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-fastapi/" rel="tag">python python fastapi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E6%89%93%E5%8C%85-pypi/" rel="tag">python 打包 pypi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-%E7%AE%97%E6%B3%95/" rel="tag">python 算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" rel="tag">python3.7标准库 python python3.7标准库 python3.7标准库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-tornado/" rel="tag">tornado tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado-%E6%BA%90%E7%A0%81/" rel="tag">tornado 源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" rel="tag">字符串相似度</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" rel="tag">数据库 mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" rel="tag">算法 python 算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/brew%E5%AE%89%E8%A3%85/" style="font-size: 10px;">brew安装</a> <a href="/tags/celery-celery/" style="font-size: 13.33px;">celery celery</a> <a href="/tags/celery-python3-7-celery/" style="font-size: 10px;">celery python3.7 celery</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/django-celery-django/" style="font-size: 10px;">django celery django</a> <a href="/tags/django-django/" style="font-size: 10px;">django django</a> <a href="/tags/django-django-rest/" style="font-size: 10px;">django django rest</a> <a href="/tags/django-python-django/" style="font-size: 10px;">django python django</a> <a href="/tags/django-rest-framework-django-rest-framework-python/" style="font-size: 10px;">django rest framework django rest framework python</a> <a href="/tags/fastapi-python/" style="font-size: 13.33px;">fastapi python</a> <a href="/tags/fastapi-python-fastapi/" style="font-size: 10px;">fastapi python fastapi</a> <a href="/tags/flask-sqlalchemy-flask-sqlalchemy/" style="font-size: 10px;">flask sqlalchemy flask sqlalchemy</a> <a href="/tags/myql-python2-7-mysql/" style="font-size: 10px;">myql python2.7 mysql</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/python-apScheduler/" style="font-size: 10px;">python apScheduler</a> <a href="/tags/python-django/" style="font-size: 10px;">python django</a> <a href="/tags/python-fastapi/" style="font-size: 20px;">python fastapi</a> <a href="/tags/python-python/" style="font-size: 10px;">python python</a> <a href="/tags/python-python-fastapi/" style="font-size: 13.33px;">python python fastapi</a> <a href="/tags/python-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 10px;">python python python3.7标准库 python3.7标准库</a> <a href="/tags/python-%E6%89%93%E5%8C%85-pypi/" style="font-size: 10px;">python 打包 pypi</a> <a href="/tags/python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">python 算法</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库</a> <a href="/tags/python3-7%E6%A0%87%E5%87%86%E5%BA%93-python-python3-7%E6%A0%87%E5%87%86%E5%BA%93-python3-7%E6%A0%87%E5%87%86%E5%BA%93/" style="font-size: 16.67px;">python3.7标准库 python python3.7标准库 python3.7标准库</a> <a href="/tags/tornado-tornado/" style="font-size: 10px;">tornado tornado</a> <a href="/tags/tornado-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">tornado 源码</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6/" style="font-size: 10px;">字符串相似度</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93-mysql/" style="font-size: 10px;">数据库 mysql</a> <a href="/tags/%E7%AE%97%E6%B3%95-python-%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法 python 算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/">apScheduler和fastapi交互</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/">fastapi教程-进阶九（Dependencies-1）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/">fastapi教程-进阶八（Handling Errors）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/">fastapi教程-进阶七（Request Forms and Files）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/">fastapi教程-进阶六（Response Status Code）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 chuxiaoyi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
