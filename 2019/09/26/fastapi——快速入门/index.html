@@ -21,18 +21,18 @@
     var CONFIG = {"hostname":"chuxiaoyi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="fastapi是高性能的web框架。他的主要特点是：- 快速编码- 减少人为bug- 直观- 简易- 具有交互式文档- 基于API的开放标准（并与之完全兼容）：OpenAPI（以前称为Swagger）和JSON Schema。  技术背景：python3.6+、Starlette、Pydantic 安装12pip install fastapipip install uvicorn  qui">
+  <meta name="description" content="fastapi是高性能的web框架。他的主要特点是：- 快速编码- 减少人为bug- 直观- 简易- 具有交互式文档- 基于API的开放标准（并与之完全兼容）：OpenAPI（以前称为Swagger）和JSON Schema。  技术背景：python3.6+、Starlette、Pydantic">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fastapi——快速入门">
 <meta property="og:url" content="https://chuxiaoyi.github.io/2019/09/26/fastapi%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="cxy">
-<meta property="og:description" content="fastapi是高性能的web框架。他的主要特点是：- 快速编码- 减少人为bug- 直观- 简易- 具有交互式文档- 基于API的开放标准（并与之完全兼容）：OpenAPI（以前称为Swagger）和JSON Schema。  技术背景：python3.6+、Starlette、Pydantic 安装12pip install fastapipip install uvicorn  qui">
+<meta property="og:description" content="fastapi是高性能的web框架。他的主要特点是：- 快速编码- 减少人为bug- 直观- 简易- 具有交互式文档- 基于API的开放标准（并与之完全兼容）：OpenAPI（以前称为Swagger）和JSON Schema。  技术背景：python3.6+、Starlette、Pydantic">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190926152850404.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190926153457923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190926153624102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2019-09-26T07:27:51.000Z">
-<meta property="article:modified_time" content="2021-06-11T02:47:26.801Z">
+<meta property="article:modified_time" content="2021-06-11T03:29:38.776Z">
 <meta property="article:author" content="chuxiaoyi">
 <meta property="article:tag" content="fastapi python fastapi">
 <meta name="twitter:card" content="summary">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-11 10:47:26" itemprop="dateModified" datetime="2021-06-11T10:47:26+08:00">2021-06-11</time>
+                <time title="修改时间：2021-06-11 11:29:38" itemprop="dateModified" datetime="2021-06-11T11:29:38+08:00">2021-06-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,6 +253,13 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
             </span>
   
   <span class="post-meta-item">
@@ -292,12 +299,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <span id="more"></span>
-
-<blockquote>
+        <blockquote>
 <p>fastapi是高性能的web框架。他的主要特点是：<br>- 快速编码<br>- 减少人为bug<br>- 直观<br>- 简易<br>- 具有交互式文档<br>- 基于API的开放标准（并与之完全兼容）：OpenAPI（以前称为Swagger）和JSON Schema。</p>
 </blockquote>
 <p>技术背景：python3.6+、<a target="_blank" rel="noopener" href="https://www.starlette.io/">Starlette</a>、<a target="_blank" rel="noopener" href="https://pydantic-docs.helpmanual.io/">Pydantic</a></p>
+<span id="more"></span>
+
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install fastapi</span><br><span class="line">pip install uvicorn</span><br></pre></td></tr></table></figure>
 
 <h2 id="quick-start"><a href="#quick-start" class="headerlink" title="quick start"></a>quick start</h2><h3 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_root</span>():</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;Hello&quot;</span>: <span class="string">&quot;World&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id: <span class="built_in">int</span>, q: <span class="built_in">str</span> = <span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id, <span class="string">&quot;q&quot;</span>: q&#125;</span><br></pre></td></tr></table></figure>
@@ -499,6 +506,26 @@
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 

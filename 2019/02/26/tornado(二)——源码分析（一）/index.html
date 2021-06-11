@@ -21,16 +21,16 @@
     var CONFIG = {"hostname":"chuxiaoyi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="这里将从服务开启到请求进入之后的顺序进行源码解析。分析有误的地方希望大家指出哦～ 开发环境：  python3.7、tornado5.0  我们先创建一个最简单的tornado应用，从简单的栗子开始进行源码分析： 1234567891011121314151617181920212223242526import tornado.httpserverimport tornado.ioloopim">
+  <meta name="description" content="这里将从服务开启到请求进入之后的顺序进行源码解析。分析有误的地方希望大家指出哦～ 开发环境：  python3.7、tornado5.0  我们先创建一个最简单的tornado应用，从简单的栗子开始进行源码分析：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tornado(二)——源码分析（一）">
 <meta property="og:url" content="https://chuxiaoyi.github.io/2019/02/26/tornado(%E4%BA%8C)%E2%80%94%E2%80%94%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="cxy">
-<meta property="og:description" content="这里将从服务开启到请求进入之后的顺序进行源码解析。分析有误的地方希望大家指出哦～ 开发环境：  python3.7、tornado5.0  我们先创建一个最简单的tornado应用，从简单的栗子开始进行源码分析： 1234567891011121314151617181920212223242526import tornado.httpserverimport tornado.ioloopim">
+<meta property="og:description" content="这里将从服务开启到请求进入之后的顺序进行源码解析。分析有误的地方希望大家指出哦～ 开发环境：  python3.7、tornado5.0  我们先创建一个最简单的tornado应用，从简单的栗子开始进行源码分析：">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190226190935616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2019-02-26T09:26:32.000Z">
-<meta property="article:modified_time" content="2021-06-11T02:47:26.801Z">
+<meta property="article:modified_time" content="2021-06-11T03:29:38.776Z">
 <meta property="article:author" content="chuxiaoyi">
 <meta property="article:tag" content="tornado 源码">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-11 10:47:26" itemprop="dateModified" datetime="2021-06-11T10:47:26+08:00">2021-06-11</time>
+                <time title="修改时间：2021-06-11 11:29:38" itemprop="dateModified" datetime="2021-06-11T11:29:38+08:00">2021-06-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,6 +251,13 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
             </span>
   
   <span class="post-meta-item">
@@ -290,14 +297,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <span id="more"></span>
-
-<p>这里将从服务开启到请求进入之后的顺序进行源码解析。分析有误的地方希望大家指出哦～</p>
+        <p>这里将从服务开启到请求进入之后的顺序进行源码解析。分析有误的地方希望大家指出哦～</p>
 <p>开发环境：</p>
 <ul>
 <li>python3.7、tornado5.0</li>
 </ul>
 <p>我们先创建一个最简单的tornado应用，从简单的栗子开始进行源码分析：</p>
+<span id="more"></span>
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tornado.httpserver</span><br><span class="line"><span class="keyword">import</span> tornado.ioloop</span><br><span class="line"><span class="keyword">import</span> tornado.options</span><br><span class="line"><span class="keyword">import</span> tornado.web</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tornado.options <span class="keyword">import</span> define, options</span><br><span class="line"></span><br><span class="line">define(<span class="string">&quot;port&quot;</span>, default=<span class="number">8000</span>, <span class="built_in">help</span>=<span class="string">&quot;run on the given port&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexHandler</span>(<span class="params">tornado.web.RequestHandler</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">        greeting = self.get_argument(<span class="string">&#x27;greeting&#x27;</span>, <span class="string">&#x27;Hello&#x27;</span>)</span><br><span class="line">        self.write(greeting + <span class="string">&#x27;, friendly user!&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    tornado.options.parse_command_line()</span><br><span class="line">    app = tornado.web.Application(</span><br><span class="line">        handlers=[</span><br><span class="line">            (<span class="string">r&quot;/&quot;</span>, IndexHandler)</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">    http_server = tornado.httpserver.HTTPServer(app)</span><br><span class="line">    http_server.listen(options.port)</span><br><span class="line">    tornado.ioloop.IOLoop.instance().start()</span><br></pre></td></tr></table></figure>
 
 <h2 id="程序运行"><a href="#程序运行" class="headerlink" title="程序运行"></a>程序运行</h2><p>首先，进入main中：</p>
@@ -526,6 +533,26 @@
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 

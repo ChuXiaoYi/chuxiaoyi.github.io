@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-11 10:47:26" itemprop="dateModified" datetime="2021-06-11T10:47:26+08:00">2021-06-11</time>
+                <time title="修改时间：2021-06-11 11:29:38" itemprop="dateModified" datetime="2021-06-11T11:29:38+08:00">2021-06-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,9 +283,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <span id="more"></span>
-
-<ul>
+          <ul>
 <li><ul>
 <li><ul>
 <li><a href="#1-%E5%B0%8F%E6%95%B0%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%99%BE%E5%88%86%E6%95%B0">1. 小数转换为百分数</a></li>
@@ -318,260 +316,14 @@
 </li>
 </ul>
 <hr>
-<h3 id="1-小数转换为百分数"><a href="#1-小数转换为百分数" class="headerlink" title="1. 小数转换为百分数"></a>1. 小数转换为百分数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_percent</span>(<span class="params">num</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;%.2f%%&quot;</span> % (num * <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-文件操作"><a href="#2-文件操作" class="headerlink" title="2. 文件操作"></a>2. 文件操作</h3><ul>
-<li><p>查看当前目录</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.getcwd()</span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> path </span><br><span class="line">d = path.dirname(__file__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># __file__ 为当前文件, 若果在ide中运行此行会报错,可改为  #d = path.dirname(&#x27;.&#x27;)</span></span><br></pre></td></tr></table></figure></li>
-<li><p>获得单个目录节点的子节点</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.listdir(rootdir)</span><br></pre></td></tr></table></figure></li>
-<li><p>获取当前目录下的信息</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> parent,dirnames,filenames <span class="keyword">in</span> os.walk(rootdir):   <span class="comment">#三个参数：分别返回1.父目录 2.所有文件夹名字（不含路径）3.所有文件名字</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> dirname <span class="keyword">in</span>  dirnames:                       <span class="comment">#输出文件夹信息</span></span><br><span class="line">      <span class="built_in">print</span> <span class="string">&quot;parent is:&quot;</span> + parent</span><br><span class="line">      <span class="built_in">print</span>  <span class="string">&quot;dirname is&quot;</span> + dirname</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> filename <span class="keyword">in</span> filenames:                        <span class="comment">#输出文件信息</span></span><br><span class="line">      <span class="built_in">print</span> <span class="string">&quot;parent is:&quot;</span> + parent</span><br><span class="line">      <span class="built_in">print</span> <span class="string">&quot;filename is:&quot;</span> + filename</span><br><span class="line">      <span class="built_in">print</span> <span class="string">&quot;the full name of the file is:&quot;</span> + os.path.join(parent,filename) <span class="comment">#输出文件路径信息</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="3-读写csv文件"><a href="#3-读写csv文件" class="headerlink" title="3. 读写csv文件"></a>3. 读写csv文件</h3><ul>
-<li><p>写入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writer_to_csv</span>(<span class="params">info</span>):</span></span><br><span class="line">  result_csv = <span class="built_in">open</span>(<span class="string">&#x27;result.csv&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">  writer = csv.writer(result_csv)</span><br><span class="line">  writer.writerow(info)</span><br><span class="line">  result_csv.close()</span><br></pre></td></tr></table></figure></li>
-<li><p>读出</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_csv</span>(<span class="params">file</span>):</span></span><br><span class="line">  csv_file = <span class="built_in">open</span>(file, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">  reader = csv.reader(csv_file)</span><br><span class="line">  <span class="keyword">for</span> item <span class="keyword">in</span> reader:</span><br><span class="line">      <span class="keyword">yield</span> item[<span class="number">0</span>]</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="4-python3-6读ini配置文件"><a href="#4-python3-6读ini配置文件" class="headerlink" title="4. python3.6读ini配置文件"></a>4. python3.6读ini配置文件</h3><p><strong>说明</strong>：python2.7-3.5使用的是<code>ConfigParser</code>模块</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> configparser</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-django之允许外部机器访问本机服务"><a href="#5-django之允许外部机器访问本机服务" class="headerlink" title="5. django之允许外部机器访问本机服务"></a>5. django之允许外部机器访问本机服务</h3><ol>
-<li><p>开启django服务时，使用0.0.0.0:端口启动，例：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./manage.py runserver 0.0.0.0:9999</span><br></pre></td></tr></table></figure></li>
-<li><p>修改setting文件中的ALLOWED_HOSTS</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALLOWED_HOSTS = [&#x27;*&#x27;, ]</span><br></pre></td></tr></table></figure>
-
-<p> 注意：<code>[&#39;*&#39;, ]</code>一定要加<code>,</code></p>
-</li>
-</ol>
-<h3 id="6-Python多进程并发操作中进程池Pool的应用"><a href="#6-Python多进程并发操作中进程池Pool的应用" class="headerlink" title="6. Python多进程并发操作中进程池Pool的应用"></a>6. Python多进程并发操作中进程池Pool的应用</h3><ul>
-<li><p><strong>说明：</strong></p>
-<blockquote>
-<ol>
-<li> 使用<code>Pool</code>类，需要通过<code>from multiprocessing import Pool</code>导入池</li>
-<li> join方法必须在close或terminate之后使用。</li>
-</ol>
-</blockquote>
-</li>
-<li><p><strong>apply_async()</strong></p>
-<ul>
-<li><p>函数原型：</p>
-<p><code>apply_async(func[, args=()[, kwds=&#123;&#125;[,callback=None]]])</code>，该方法非阻塞且支持结果返回进行回调。</p>
-</li>
-<li><p>示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">fn</span>):</span></span><br><span class="line"><span class="comment"># fn: 函数参数是数据列表的一个元素</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">return</span> fn * fn</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">testFL = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;顺序执行:&#x27;</span>)  <span class="comment"># 顺序执行(也就是串行执行，单进程)</span></span><br><span class="line">s = time.time()</span><br><span class="line"><span class="keyword">for</span> fn <span class="keyword">in</span> testFL:</span><br><span class="line">    <span class="built_in">print</span>(run(fn))</span><br><span class="line"></span><br><span class="line">e1 = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;顺序执行时间：&quot;</span>, <span class="built_in">int</span>(e1 - s))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;多进程执行:&#x27;</span>)  <span class="comment"># 创建多个进程，并行执行</span></span><br><span class="line">pool = Pool(<span class="number">5</span>)  <span class="comment"># 创建拥有5个进程数量的进程池</span></span><br><span class="line"><span class="comment"># testFL:要处理的数据列表，run：处理testFL列表中数据的函数</span></span><br><span class="line"><span class="comment"># rl = pool.map(run, testFL)</span></span><br><span class="line"><span class="keyword">for</span> fn <span class="keyword">in</span> testFL:</span><br><span class="line">    pool.apply_async(run, args=(fn, ))</span><br><span class="line">pool.close()  <span class="comment"># 关闭进程池，不再接受新的进程</span></span><br><span class="line">pool.join()  <span class="comment"># 主进程阻塞等待子进程的退出</span></span><br><span class="line">e2 = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;并行执行时间：&quot;</span>, <span class="built_in">int</span>(e2 - e1))</span><br><span class="line"><span class="comment"># print(rl)</span></span><br></pre></td></tr></table></figure></li>
-<li><p>响应：  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">顺序执行:</span><br><span class="line">1</span><br><span class="line">4</span><br><span class="line">9</span><br><span class="line">16</span><br><span class="line">25</span><br><span class="line">36</span><br><span class="line">顺序执行时间： 6</span><br><span class="line">多进程执行:</span><br><span class="line">并行执行时间： 2</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>map()</strong></p>
-<ul>
-<li><p>函数原型：</p>
-<p><code>map(func, iterable[, chunksize=None])</code>，Pool类中的map方法，与内置的map函数用法行为基本一致，它会使进程阻塞直到返回结果。<br>注意：虽然第二个参数是一个迭代器，但在实际使用中，必须在整个队列都就绪后，程序才会运行子进程。</p>
-</li>
-<li><p>示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">fn</span>):</span></span><br><span class="line"><span class="comment"># fn: 函数参数是数据列表的一个元素</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">return</span> fn * fn</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">testFL = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;顺序执行:&#x27;</span>)  <span class="comment"># 顺序执行(也就是串行执行，单进程)</span></span><br><span class="line">s = time.time()</span><br><span class="line"><span class="keyword">for</span> fn <span class="keyword">in</span> testFL:</span><br><span class="line">    <span class="built_in">print</span>(run(fn))</span><br><span class="line"></span><br><span class="line">e1 = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;顺序执行时间：&quot;</span>, <span class="built_in">int</span>(e1 - s))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;多进程执行:&#x27;</span>)  <span class="comment"># 创建多个进程，并行执行</span></span><br><span class="line">pool = Pool(<span class="number">5</span>)  <span class="comment"># 创建拥有5个进程数量的进程池</span></span><br><span class="line"><span class="comment"># testFL:要处理的数据列表，run：处理testFL列表中数据的函数</span></span><br><span class="line">rl = pool.<span class="built_in">map</span>(run, testFL)</span><br><span class="line"><span class="comment"># for fn in testFL:</span></span><br><span class="line"><span class="comment">#     pool.apply_async(run, args=(fn, ))</span></span><br><span class="line">pool.close()  <span class="comment"># 关闭进程池，不再接受新的进程</span></span><br><span class="line">pool.join()  <span class="comment"># 主进程阻塞等待子进程的退出</span></span><br><span class="line">e2 = time.time()</span><br><span class="line"><span class="built_in">print</span>(rl)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;并行执行时间：&quot;</span>, <span class="built_in">int</span>(e2 - e1))</span><br></pre></td></tr></table></figure></li>
-<li><p>响应：  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">顺序执行:</span><br><span class="line">1</span><br><span class="line">4</span><br><span class="line">9</span><br><span class="line">16</span><br><span class="line">25</span><br><span class="line">36</span><br><span class="line">顺序执行时间： 6</span><br><span class="line">多进程执行:</span><br><span class="line">[1, 4, 9, 16, 25, 36]</span><br><span class="line">并行执行时间： 2</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h3 id="7-进程池使用queue队列"><a href="#7-进程池使用queue队列" class="headerlink" title="7. 进程池使用queue队列"></a>7. 进程池使用queue队列</h3><p>注意：进程池使用队列，应使用<code>Manager</code>对象的Queue</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Manager</span><br><span class="line">qid_queue = Manager().Queue()</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-operator-itemgetter"><a href="#8-operator-itemgetter" class="headerlink" title="8. operator.itemgetter()"></a>8. operator.itemgetter()</h3><p>返回一个可调用对象，该对象使用被操作元的**<code>__getitem__()</code><strong>方法从其被操作元获取</strong>项**。通过该函数作用到对象上才能获取值。如果指定了多个项，则返回查找值的一组。例如:</p>
-<blockquote>
-<ul>
-<li>在f = itemgetter(2)之后，调用f(r)返回r[2]。</li>
-<li>在g = itemgetter(2,5,3)之后，调用g(r)返回(r[2]， r[5]， r[3])。</li>
-</ul>
-</blockquote>
-<p>等价于:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">itemgetter</span>(<span class="params">*items</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(items) == <span class="number">1</span>:</span><br><span class="line">        item = items[<span class="number">0</span>]</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">obj</span>):</span></span><br><span class="line">            <span class="keyword">return</span> obj[item]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">obj</span>):</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">tuple</span>(obj[item] <span class="keyword">for</span> item <span class="keyword">in</span> items)</span><br><span class="line">    <span class="keyword">return</span> g</span><br></pre></td></tr></table></figure>
-
-<p>项可以是被操作元的**<code>__getitem__()</code>**方法所接受的任何类型。字典接受各种哈希值，列表、元组和字符串接受索引或片:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; itemgetter(1)(&#x27;ABCDEFG&#x27;)</span><br><span class="line">&#x27;B&#x27;</span><br><span class="line">&gt;&gt;&gt; itemgetter(1,3,5)(&#x27;ABCDEFG&#x27;)</span><br><span class="line">(&#x27;B&#x27;, &#x27;D&#x27;, &#x27;F&#x27;)</span><br><span class="line">&gt;&gt;&gt; itemgetter(slice(2,None))(&#x27;ABCDEFG&#x27;)</span><br><span class="line">&#x27;CDEFG&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>在版本2.5中更改:添加了对多个项目提取的支持。<br>使用itemgetter()从元组记录中检索特定字段的示例:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; inventory = [(&#x27;apple&#x27;, 3), (&#x27;banana&#x27;, 2), (&#x27;pear&#x27;, 5), (&#x27;orange&#x27;, 1)]</span><br><span class="line">&gt;&gt;&gt; getcount = itemgetter(1)</span><br><span class="line">&gt;&gt;&gt; map(getcount, inventory)</span><br><span class="line">[3, 2, 5, 1]</span><br><span class="line">&gt;&gt;&gt; sorted(inventory, key=getcount)</span><br><span class="line">[(&#x27;orange&#x27;, 1), (&#x27;banana&#x27;, 2), (&#x27;apple&#x27;, 3), (&#x27;pear&#x27;, 5)]</span><br></pre></td></tr></table></figure>
-
-<h3 id="9-sorted-内建函数"><a href="#9-sorted-内建函数" class="headerlink" title="9. sorted()内建函数"></a>9. sorted()内建函数</h3><p><strong>sort 与 sorted 区别：</strong></p>
-<blockquote>
-<ul>
-<li>sort 是应用在 list 上的方法，sorted 可以对所有可迭代的对象进行排序操作。</li>
-<li>list 的 sort 方法返回的是对已经存在的列表进行操作，而内建函数 sorted 方法返回的是一个新的 list，而不是在原来的基础上进行的操作。</li>
-</ul>
-</blockquote>
-<p><strong>sorted 语法：</strong></p>
-<blockquote>
-<p>sorted(iterable[, cmp[, key[, reverse]]])</p>
-</blockquote>
-<p>参数说明：</p>
-<blockquote>
-<ul>
-<li>iterable – 可迭代对象。</li>
-<li>cmp – 比较的函数，这个具有两个参数，参数的值都是从可迭代对象中取出，此函数必须遵守的规则为，大于则返回1，小于则返回-1，等于则返回0。</li>
-<li>key – 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。</li>
-<li>reverse – 排序规则，reverse = True 降序 ， reverse = False 升序（默认）。</li>
-</ul>
-</blockquote>
-<p><strong>例子：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = [5,7,6,3,4,1,2]</span><br><span class="line">&gt;&gt;&gt; b = sorted(a)       # 保留原列表</span><br><span class="line">&gt;&gt;&gt; a </span><br><span class="line">[5, 7, 6, 3, 4, 1, 2]</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">[1, 2, 3, 4, 5, 6, 7]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; L=[(&#x27;b&#x27;,2),(&#x27;a&#x27;,1),(&#x27;c&#x27;,3),(&#x27;d&#x27;,4)]</span><br><span class="line">&gt;&gt;&gt; sorted(L, cmp=lambda x,y:cmp(x[1],y[1]))   # 利用cmp函数</span><br><span class="line">[(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2), (&#x27;c&#x27;, 3), (&#x27;d&#x27;, 4)]</span><br><span class="line">&gt;&gt;&gt; sorted(L, key=lambda x:x[1])               # 利用key</span><br><span class="line">[(&#x27;a&#x27;, 1), (&#x27;b&#x27;, 2), (&#x27;c&#x27;, 3), (&#x27;d&#x27;, 4)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; students = [(&#x27;john&#x27;, &#x27;A&#x27;, 15), (&#x27;jane&#x27;, &#x27;B&#x27;, 12), (&#x27;dave&#x27;, &#x27;B&#x27;, 10)]</span><br><span class="line">&gt;&gt;&gt; sorted(students, key=lambda s: s[2])            # 按年龄排序</span><br><span class="line">[(&#x27;dave&#x27;, &#x27;B&#x27;, 10), (&#x27;jane&#x27;, &#x27;B&#x27;, 12), (&#x27;john&#x27;, &#x27;A&#x27;, 15)]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; sorted(students, key=lambda s: s[2], reverse=True)       # 按降序</span><br><span class="line">[(&#x27;john&#x27;, &#x27;A&#x27;, 15), (&#x27;jane&#x27;, &#x27;B&#x27;, 12), (&#x27;dave&#x27;, &#x27;B&#x27;, 10)]</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>：建议使用key，而不是cmp，因为key更节省内存空间</p>
-<h3 id="10-python2-7-解决UnicodeDecodeError-‘ascii’-codec-can’t-decode-byte-0xe5-in-position-108-ordinal-not-in-range-128。。。。"><a href="#10-python2-7-解决UnicodeDecodeError-‘ascii’-codec-can’t-decode-byte-0xe5-in-position-108-ordinal-not-in-range-128。。。。" class="headerlink" title="10. python2.7 解决UnicodeDecodeError: ‘ascii’ codec can’t decode byte 0xe5 in position 108: ordinal not in range(128。。。。"></a>10. python2.7 解决UnicodeDecodeError: ‘ascii’ codec can’t decode byte 0xe5 in position 108: ordinal not in range(128。。。。</h3><p><strong>出现错误原因</strong>：</p>
-<blockquote>
-<p>python的str默认是ascii编码，和unicode编码冲突</p>
-</blockquote>
-<p><strong>解决方案</strong>：</p>
-<blockquote>
-<p>import sys<br>reload(sys)<br>sys.setdefaultencoding(‘utf8’)</p>
-</blockquote>
-<h3 id="11-几个有用的python函数-笛卡尔积-排列-组合"><a href="#11-几个有用的python函数-笛卡尔积-排列-组合" class="headerlink" title="11. 几个有用的python函数 (笛卡尔积, 排列, 组合)"></a>11. 几个有用的python函数 (笛卡尔积, 排列, 组合)</h3><blockquote>
-<ul>
-<li><strong>product</strong> 笛卡尔积</li>
-<li><strong>permutations</strong> 排列</li>
-<li><strong>combinations</strong> 组合,没有重复</li>
-<li><strong>combinations_with_replacement</strong> 组合,有重复</li>
-</ul>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import itertools</span><br><span class="line">&gt;&gt;&gt; for i in itertools.product(&#x27;ABCD&#x27;, r=2):</span><br><span class="line">...     print i,</span><br><span class="line">... </span><br><span class="line">(&#x27;A&#x27;, &#x27;A&#x27;) (&#x27;A&#x27;, &#x27;B&#x27;) (&#x27;A&#x27;, &#x27;C&#x27;) (&#x27;A&#x27;, &#x27;D&#x27;) (&#x27;B&#x27;, &#x27;A&#x27;) (&#x27;B&#x27;, &#x27;B&#x27;) (&#x27;B&#x27;, &#x27;C&#x27;) (&#x27;B&#x27;, &#x27;D&#x27;) (&#x27;C&#x27;, &#x27;A&#x27;) (&#x27;C&#x27;, &#x27;B&#x27;) (&#x27;C&#x27;, &#x27;C&#x27;) (&#x27;C&#x27;, &#x27;D&#x27;) (&#x27;D&#x27;, &#x27;A&#x27;) (&#x27;D&#x27;, &#x27;B&#x27;) (&#x27;D&#x27;, &#x27;C&#x27;) (&#x27;D&#x27;, &#x27;D&#x27;)</span><br><span class="line">&gt;&gt;&gt; for i in itertools.permutations(&#x27;ABCD&#x27;, 2):</span><br><span class="line">...     print i,</span><br><span class="line">... </span><br><span class="line">(&#x27;A&#x27;, &#x27;B&#x27;) (&#x27;A&#x27;, &#x27;C&#x27;) (&#x27;A&#x27;, &#x27;D&#x27;) (&#x27;B&#x27;, &#x27;A&#x27;) (&#x27;B&#x27;, &#x27;C&#x27;) (&#x27;B&#x27;, &#x27;D&#x27;) (&#x27;C&#x27;, &#x27;A&#x27;) (&#x27;C&#x27;, &#x27;B&#x27;) (&#x27;C&#x27;, &#x27;D&#x27;) (&#x27;D&#x27;, &#x27;A&#x27;) (&#x27;D&#x27;, &#x27;B&#x27;) (&#x27;D&#x27;, &#x27;C&#x27;)</span><br><span class="line">&gt;&gt;&gt; for i in itertools.combinations(&#x27;ABCD&#x27;, 2):</span><br><span class="line">...     print i,</span><br><span class="line">... </span><br><span class="line">(&#x27;A&#x27;, &#x27;B&#x27;) (&#x27;A&#x27;, &#x27;C&#x27;) (&#x27;A&#x27;, &#x27;D&#x27;) (&#x27;B&#x27;, &#x27;C&#x27;) (&#x27;B&#x27;, &#x27;D&#x27;) (&#x27;C&#x27;, &#x27;D&#x27;)</span><br><span class="line">&gt;&gt;&gt; for i in itertools.combinations_with_replacement(&#x27;ABCD&#x27;, 2):</span><br><span class="line">...     print i,</span><br><span class="line">... </span><br><span class="line">(&#x27;A&#x27;, &#x27;A&#x27;) (&#x27;A&#x27;, &#x27;B&#x27;) (&#x27;A&#x27;, &#x27;C&#x27;) (&#x27;A&#x27;, &#x27;D&#x27;) (&#x27;B&#x27;, &#x27;B&#x27;) (&#x27;B&#x27;, &#x27;C&#x27;) (&#x27;B&#x27;, &#x27;D&#x27;) (&#x27;C&#x27;, &#x27;C&#x27;) (&#x27;C&#x27;, &#x27;D&#x27;) (&#x27;D&#x27;, &#x27;D&#x27;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="12-python求两个链表组成的数字的和"><a href="#12-python求两个链表组成的数字的和" class="headerlink" title="12. python求两个链表组成的数字的和"></a>12. python求两个链表组成的数字的和</h3><p>给定两个非空链表来表示两个非负整数。位数按照逆序方式存储，它们的每个节点只存储单个数字。将两数相加返回一个新的链表。<br>你可以假设除了数字 0 之外，这两个数字都不会以零开头<br>示例：</p>
-<blockquote>
-<p>输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>输出：7 -&gt; 0 -&gt; 8<br>原因：342 + 465 = 807</p>
-</blockquote>
-<p><strong>代码实现：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span>(<span class="params">self, l1, l2</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type l1: ListNode</span></span><br><span class="line"><span class="string">        :type l2: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        val_sum = l1.val + l2.val</span><br><span class="line">        list_node = ListNode(val_sum % <span class="number">10</span>)</span><br><span class="line">        a = val_sum // <span class="number">10</span></span><br><span class="line">        node = list_node</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                l1 = l1.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                l2 = l2.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> l1 <span class="keyword">and</span> <span class="keyword">not</span> l2:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="keyword">not</span> l1:</span><br><span class="line">                l1_val = <span class="number">0</span></span><br><span class="line">                l2_val = l2.val</span><br><span class="line">            <span class="keyword">elif</span> <span class="keyword">not</span> l2:</span><br><span class="line">                l2_val = <span class="number">0</span></span><br><span class="line">                l1_val = l1.val</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                l1_val = l1.val</span><br><span class="line">                l2_val = l2.val</span><br><span class="line">            val_sum = l1_val + l2_val + a</span><br><span class="line">            temp_node = ListNode(val_sum % <span class="number">10</span>)</span><br><span class="line">            node.<span class="built_in">next</span> = temp_node</span><br><span class="line">            node = temp_node</span><br><span class="line">            a = val_sum // <span class="number">10</span></span><br><span class="line">        <span class="keyword">if</span> a != <span class="number">0</span>:</span><br><span class="line">            node.<span class="built_in">next</span> = ListNode(a)</span><br><span class="line">        <span class="keyword">return</span> list_node</span><br></pre></td></tr></table></figure>
-
-<h3 id="13-python内置函数——divmod-a-b"><a href="#13-python内置函数——divmod-a-b" class="headerlink" title="13. python内置函数——divmod(a, b)"></a>13. python内置函数——divmod(a, b)</h3><ul>
-<li><p>v2.7</p>
-<blockquote>
-<p>实际上是算a除以b的商和余数，返回(商，余数)</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">divmod(1,2)</span><br><span class="line">(0, 1)</span><br><span class="line">divmod(5, 1)</span><br><span class="line">(5, 0)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="14-python内置函数——enumerate-sequence-start-0"><a href="#14-python内置函数——enumerate-sequence-start-0" class="headerlink" title="14. python内置函数——enumerate(sequence, start=0)"></a>14. python内置函数——enumerate(sequence, start=0)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; seasons = [&#x27;Spring&#x27;, &#x27;Summer&#x27;, &#x27;Fall&#x27;, &#x27;Winter&#x27;]</span><br><span class="line">&gt;&gt;&gt; list(enumerate(seasons))</span><br><span class="line">[(0, &#x27;Spring&#x27;), (1, &#x27;Summer&#x27;), (2, &#x27;Fall&#x27;), (3, &#x27;Winter&#x27;)]</span><br><span class="line">&gt;&gt;&gt; list(enumerate(seasons, start=1))</span><br><span class="line">[(1, &#x27;Spring&#x27;), (2, &#x27;Summer&#x27;), (3, &#x27;Fall&#x27;), (4, &#x27;Winter&#x27;)]</span><br></pre></td></tr></table></figure>
-
-<h3 id="15-python内置函数——filter-function-iterable"><a href="#15-python内置函数——filter-function-iterable" class="headerlink" title="15. python内置函数——filter(function, iterable)"></a>15. python内置函数——filter(function, iterable)</h3><ul>
-<li><p>v2.7</p>
-<ul>
-<li><p>如果function是None，就等价于：</p>
-<blockquote>
-<p>[item for item in iterable if item]</p>
-</blockquote>
-</li>
-<li><p>如果function不是None，就等价于：</p>
-<blockquote>
-<p>[item for item in iterable if function(item)]</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="16-datetime"><a href="#16-datetime" class="headerlink" title="16. datetime"></a>16. datetime</h3><p>datetime模块用于是date和time模块的合集，datetime有两个常量，MAXYEAR和MINYEAR，分别是9999和1.</p>
-<blockquote>
-<p>datetime模块定义了5个类，分别是<br>1. datetime.date：表示日期的类<br>2. datetime.datetime：表示日期时间的类<br>3. datetime.time：表示时间的类<br>4. datetime.timedelta：表示时间间隔，即两个时间点的间隔<br>5. datetime.tzinfo：时区的相关信息</p>
-</blockquote>
-<ul>
-<li><p><strong>datetime.date类</strong><br>date类有三个参数,datetime.date(year,month,day)，返回<strong>datetime.date(2018, 7, 30)</strong></p>
-<ul>
-<li><p><strong>datetime.date.ctime()</strong>,返回格式如 Sun Apr 16 00:00:00 2017</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.date.ctime(datetime.date(2018, 7, 30))</span><br><span class="line">&#x27;Mon Jul 30 00:00:00 2018&#x27;</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>datetime.date.fromtimestamp(timestamp)</strong>,根据给定的时间戮，返回一个date对象；**datetime.date.today()**作用相同</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.date.today()</span><br><span class="line">datetime.date(2018, 7, 30)</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>datetime.date.isocalendar()</strong>:返回格式如(year，month，day)的元组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.date.isocalendar(datetime.date(2018, 7, 30))</span><br><span class="line">(2018, 31, 1)</span><br></pre></td></tr></table></figure></li>
-<li><p>**datetime.date.isoformat()**：返回格式如YYYY-MM-DD</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.date.isoformat(datetime.date(2018, 7, 30))</span><br><span class="line">&#x27;2018-07-30&#x27;</span><br></pre></td></tr></table></figure></li>
-<li><p>**datetime.date.isoweekday()**：返回给定日期的星期（0-6），星期一=0，星期日=6</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.date.isoweekday(datetime.date.today())</span><br><span class="line">1</span><br></pre></td></tr></table></figure></li>
-<li><p>**datetime.date.replace(year,month,day)**：替换给定日期，但不改变原日期</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = datetime.date.today()</span><br><span class="line">&gt;&gt;&gt;a.replace(day=26)</span><br><span class="line">datetime.date(2018, 7, 26)</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>datetime.date.strftime(format)</strong>:把日期时间按照给定的format进行格式化。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.date.strftime(datetime.date.today(), &#x27;%Y-%m-%d&#x27;)</span><br><span class="line">&#x27;2018-07-30&#x27;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = datetime.date.today()</span><br><span class="line">&gt;&gt;&gt;a</span><br><span class="line">datetime.date(2018, 7, 30)</span><br><span class="line">&gt;&gt;&gt;a.strftime(&#x27;%Y-%m-%d&#x27;)</span><br><span class="line">&#x27;2018-07-30&#x27;</span><br></pre></td></tr></table></figure></li>
-<li><p>**datetime.date.timetuple()**：返回日期对应的time.struct_time对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = datetime.date.today()</span><br><span class="line">&gt;&gt;&gt;datetime.date.timetuple(a)</span><br><span class="line">time.struct_time(tm_year=2018, tm_mon=7, tm_mday=30, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=0, tm_yday=211, tm_isdst=-1)</span><br></pre></td></tr></table></figure></li>
-<li><p>**datetime.date.weekday()**：返回日期的星期</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;a = datetime.date.today()</span><br><span class="line">&gt;&gt;&gt;datetime.date.weekday(a)</span><br><span class="line">0</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;a.weekday()</span><br><span class="line">0</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>datetime.time类</strong><br>time类有5个参数，datetime.time(hour,minute,second,microsecond,tzoninfo),返回08:29:30</p>
-<ul>
-<li><p><strong>datetime.time.replace()</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.time.replace(datetime.time(), hour=1)</span><br><span class="line">datetime.time(1, 0)</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>datetime.time.strftime(format)</strong>:按照format格式返回时间</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.time.strftime(datetime.time(2,3), &quot;%H:%M&quot;)</span><br><span class="line">&#x27;02:03&#x27;</span><br></pre></td></tr></table></figure></li>
-<li><p>**datetime.time.tzname()**：返回时区名字</p>
-</li>
-<li><p>**datetime.time.utcoffset()**：返回时区的时间偏移量</p>
-</li>
-</ul>
-</li>
-<li><p><strong>datetime.datetime类</strong><br>datetime类有很多参数，datetime(year, month, day[, hour[, minute[, second[,microsecond[,tzinfo]]]]])，返回年月日，时分秒</p>
-<ul>
-<li><p><strong>datetime.datetime.ctime()</strong></p>
-</li>
-<li><p>**datetime.datetime.now().date()**：返回当前日期时间的日期部分</p>
-</li>
-<li><p>**datetime.datetime.now().time()**：返回当前日期时间的时间部分</p>
-</li>
-<li><p><strong>datetime.datetime.fromtimestamp()</strong></p>
-</li>
-<li><p>**datetime.datetime.now()**：返回当前系统时间</p>
-</li>
-<li><p><strong>datetime.datetime.replace()</strong></p>
-</li>
-<li><p>**datetime.datetime.strftime()**：由日期格式转化为字符串格式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.datetime.now().strftime(&#x27;%b-%d-%Y %H:%M:%S&#x27;)</span><br><span class="line">&#x27;Apr-16-2017 21:01:35&#x27;</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>datetime.datetime.strptime()</strong>:由字符串格式转化为日期格式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;datetime.datetime.strptime(&#x27;Apr-16-2017 21:01:35&#x27;, &#x27;%b-%d-%Y %H:%M:%S&#x27;)</span><br><span class="line">2017-04-16 21:01:35</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>datetime.timedelta类</strong><br>datetime.datetime.timedelta用于计算两个日期之间的差值，例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a=datetime.datetime.now()</span><br><span class="line">&gt;&gt;&gt; b=datetime.datetime.now()</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">datetime.datetime(2017, 4, 16, 21, 21, 20, 871000)</span><br><span class="line">&gt;&gt;&gt; b</span><br><span class="line">datetime.datetime(2017, 4, 16, 21, 21, 29, 603000)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; b-a</span><br><span class="line">datetime.timedelta(0, 8, 732000)</span><br><span class="line">&gt;&gt;&gt; (b-a).seconds</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">time1 = datetime.datetime(2016, 10, 20)</span><br><span class="line">time2 = datetime.datetime(2015, 11, 2)</span><br><span class="line">&quot;&quot;&quot;计算天数差值&quot;&quot;&quot;</span><br><span class="line">print(time1-time2).days</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;计算两个日期之间相隔的秒数&quot;&quot;&quot;</span><br><span class="line">print (time1-time2).total_seconds()</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="17-针对“could-not-install-packages-due-to-an-EnvironmentError-Errno-13-Permission-denied-‘-Library-Python-2-7-site-packages-vine’”的解决方式"><a href="#17-针对“could-not-install-packages-due-to-an-EnvironmentError-Errno-13-Permission-denied-‘-Library-Python-2-7-site-packages-vine’”的解决方式" class="headerlink" title="17. 针对“could not install packages due to an EnvironmentError: [Errno 13] Permission denied: ‘/Library/Python/2.7/site-packages/vine’”的解决方式"></a>17. 针对“could not install packages due to an EnvironmentError: [Errno 13] Permission denied: ‘/Library/Python/2.7/site-packages/vine’”的解决方式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --user flask</span><br></pre></td></tr></table></figure>
-
-<p>在install后加<strong>–user</strong></p>
-<h3 id="18-字典转xml"><a href="#18-字典转xml" class="headerlink" title="18. 字典转xml"></a>18. 字典转xml</h3><ul>
-<li><p>v2.7<br>dicttoxml会自动在头部添加<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</code><br>并通过参数设置xml的属性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import dicttoxml</span><br><span class="line">dicttoxml.dicttoxml(self.post_data_dict, root=True, custom_root=&quot;request&quot;, attr_type=False)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="19-or和and"><a href="#19-or和and" class="headerlink" title="19. or和and"></a>19. or和and</h3><p>如果用or，应该把为true的写在or前，减小运算时间；<br>如果用and，应该把false的写在and前</p>
-<h3 id="20-xmltodict的坑"><a href="#20-xmltodict的坑" class="headerlink" title="20. xmltodict的坑"></a>20. xmltodict的坑</h3><ul>
-<li>如果xml中在同一级有相同元素，就会把相同元素变成列表；如果没有相同元素，那么就把该元素变为字典</li>
-<li>对于xml中为空的情况，xmltodict会自动将值变为<code>None</code></li>
-</ul>
-<h3 id="21-列表生成式中的if-else"><a href="#21-列表生成式中的if-else" class="headerlink" title="21. 列表生成式中的if-else"></a>21. 列表生成式中的if-else</h3><ul>
-<li><p>只有if</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[a for a in a_list if a==1]</span><br></pre></td></tr></table></figure></li>
-<li><p>if-else</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[a if a==1 else a-1 for a in a_list]</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="22-针对MySQL-said-Authentication-plugin-‘caching-sha2-password’-cannot-be-loaded-dlopen-usr-local-…的问题"><a href="#22-针对MySQL-said-Authentication-plugin-‘caching-sha2-password’-cannot-be-loaded-dlopen-usr-local-…的问题" class="headerlink" title="22. 针对MySQL said: Authentication plugin ‘caching_sha2_password’ cannot be loaded: dlopen(/usr/local/…的问题"></a>22. 针对MySQL said: Authentication plugin ‘caching_sha2_password’ cannot be loaded: dlopen(/usr/local/…的问题</h3><p>在使用MySQL Workbench连接本地数据库的时候，出现了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MySQL said: Authentication plugin &#x27;caching_sha2_password&#x27; cannot be loaded: dlopen(/usr/local/lib/plugin/caching_sha2_password.so, 2): image not found</span><br></pre></td></tr></table></figure>
-
-<p>这是因为在链接数据库时不能加载‘caching_sha2_password’这个插件，也就是不能对身份验证。</p>
-<p>解决方案是：<br>1. 打开系统偏好设置，找到mysql，点击Initialize Database。<br>2. 输入你的新密码，记住这个密码，用于后期链接数据库的登陆使用。<br>3. 选择‘Use legacy password‘。<br>4. 重启mysql服务。<br>这样在连接就没有问题了<br><img src="http://static.zybuluo.com/chuxiaoyi/zq7tgu3d2ygiplckpf8k0y2a/image_1cktk6n6bvdc1210o2jeotrnm9.png" alt="image_1cktk6n6bvdc1210o2jeotrnm9.png-380.8kB"></p>
-<h3 id="23-django-model获取特定字段"><a href="#23-django-model获取特定字段" class="headerlink" title="23. django model获取特定字段"></a>23. django model获取特定字段</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">comment_list = Comment.objects.all()[:5].only(&#x27;post&#x27;, &#x27;text&#x27;)   # 只获取特定字段</span><br></pre></td></tr></table></figure>
-
-<h3 id="24-Connection-reset-by-peer的常见原因"><a href="#24-Connection-reset-by-peer的常见原因" class="headerlink" title="24. Connection reset by peer的常见原因"></a>24. Connection reset by peer的常见原因</h3><p>Connection reset by peer: socket write error错误分析：</p>
-<blockquote>
-<p>常出现的Connection reset by peer: 原因可能是多方面的，不过更常见的原因是：<br>①：服务器的并发连接数超过了其承载量，服务器会将其中一些连接Down掉；<br>②：客户关掉了浏览器，而服务器还在给客户端发送数据；<br>③：浏览器端按了Stop</p>
-</blockquote>
-<p>通常原因为：远程主机上对等方应用程序突然停止运行，或远程主机重新启动，或远程主机在远程方套接字上使用了“强制”关闭 （参见setsockopt(SO_LINGER)）。另外，在一个或多个操作正在进行时，如果连接因“keep-alive”活动检测到一个失败而中 断，也可能导致此错误。此时，正在进行的操作以错误码WSAENETRESET失败返回，后续操作将失败返回错误码WSAECONNRESET。<br>但是如果频繁出现，就表示很 多客户端连接到Apache服务器的响应时间太长了，可能是网络的问题或者服务器性能问题。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/03/%E6%97%A5%E5%B8%B8%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -735,6 +487,26 @@
   </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 

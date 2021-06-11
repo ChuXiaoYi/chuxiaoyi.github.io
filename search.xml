@@ -3,11 +3,12 @@
   <entry>
     <title>Django使用MySQL后端日期不能按月过滤的问题及解决方案</title>
     <url>/2018/09/30/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>参考文档：<br><a href="https://chowyi.com/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">https://chowyi.com/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</a></p>
+<span id="more"></span>
 
-<p>参考文档：<br><a href="https://chowyi.com/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">https://chowyi.com/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</a></p>
 <p>在终端中，输入：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -18,9 +19,9 @@
   <entry>
     <title>Django项目——数据库管理</title>
     <url>/2019/03/21/Django%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>最近有一个需求。是可以通过可视化界面分别操作测试环境/生产环境的数据库。这里我使用了Django框架。在这里记录一下重点知识点&gt;.&lt;</p>
+<span id="more"></span>
 
-<p>最近有一个需求。是可以通过可视化界面分别操作测试环境/生产环境的数据库。这里我使用了Django框架。在这里记录一下重点知识点&gt;.&lt;</p>
 <p>具体需求是：</p>
 <ol>
 <li> 可以查看/修改数据库</li>
@@ -79,9 +80,9 @@
   <entry>
     <title>Mac下使用国内镜像安装Homebrew</title>
     <url>/2019/01/12/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%AE%89%E8%A3%85Homebrew/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h2 id="通用安装方式"><a href="#通用安装方式" class="headerlink" title="通用安装方式"></a>通用安装方式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
 
-<h2 id="通用安装方式"><a href="#通用安装方式" class="headerlink" title="通用安装方式"></a>通用安装方式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 
 <h2 id="使用国内镜像安装步骤"><a href="#使用国内镜像安装步骤" class="headerlink" title="使用国内镜像安装步骤"></a>使用国内镜像安装步骤</h2><p>第一步，</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd ~</span><br><span class="line">curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install &gt;&gt; brew_install</span><br></pre></td></tr></table></figure>
@@ -99,7 +100,8 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-core&quot;</span><br><span class="line">git remote set-url origin git://mirrors.ustc.edu.cn/homebrew-core.git</span><br></pre></td></tr></table></figure>
 
 <p>第六步，设置 bintray镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#x27; &gt;&gt; ~/.bash_profile</span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#x27; &gt;&gt; ~/.bash_profile</span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>操作系统</category>
       </categories>
@@ -110,11 +112,11 @@
   <entry>
     <title>Python中的上下文管理器和with语句</title>
     <url>/2018/08/09/Python%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8%E5%92%8Cwith%E8%AF%AD%E5%8F%A5/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>转载来自：<a href="https://www.cnblogs.com/ybjourney/p/8859519.html">https://www.cnblogs.com/ybjourney/p/8859519.html</a></p>
+    <content><![CDATA[<p>转载来自：<a href="https://www.cnblogs.com/ybjourney/p/8859519.html">https://www.cnblogs.com/ybjourney/p/8859519.html</a></p>
 <p>Python2.5之后引入了上下文管理器（context manager），算是Python的黑魔法之一，它用于规定某个对象的使用范围。本文是针对于该功能的思考总结。</p>
-<h2 id="为什么需要上下文管理器？"><a href="#为什么需要上下文管理器？" class="headerlink" title="为什么需要上下文管理器？"></a>为什么需要上下文管理器？</h2><p>首先，需要思索下为什么需要引入上下文管理器。<br>在正常情况下，管理各种系统资源（如文件）、数据库连接时，通常是先打开这些资源，执行完相应的业务逻辑，最后关闭资源。<br>举两个例子:</p>
+<h2 id="为什么需要上下文管理器？"><a href="#为什么需要上下文管理器？" class="headerlink" title="为什么需要上下文管理器？"></a>为什么需要上下文管理器？</h2><span id="more"></span>
+
+<p>首先，需要思索下为什么需要引入上下文管理器。<br>在正常情况下，管理各种系统资源（如文件）、数据库连接时，通常是先打开这些资源，执行完相应的业务逻辑，最后关闭资源。<br>举两个例子:</p>
 <blockquote>
 <ul>
 <li>使用Python打开一个文件写入内容，之后需要关闭这个文件。如果不正常关闭的话可能会在文件操作时出现异常，因为系统允许你打开的文件的最大数是有限的。</li>
@@ -154,14 +156,14 @@
   <entry>
     <title>apScheduler和fastapi交互</title>
     <url>/2020/12/17/apScheduler%E5%92%8Cfastapi%E4%BA%A4%E4%BA%92/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>参考文档:</p>
+    <content><![CDATA[<p>参考文档:</p>
 <ul>
 <li><a href="https://apscheduler.readthedocs.io/en/latest/userguide.html">官方文档</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/144506204">python定时任务最强框架APScheduler详细教程</a></li>
 <li><a href="https://www.cnblogs.com/zhangliang91/p/12468871.html">https://www.cnblogs.com/zhangliang91/p/12468871.html</a></li>
 </ul>
+<span id="more"></span>
+
 <h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>APScheduler(Advanced Python Scheduler)是一个python的任务调度器，他可以使任务定期执行，同时我们可以动态的添加或删除任务。如果我们希望任务在下次程序启动时继续执行，那么他还支持持久化任务。除此之外，他也是跨平台的。需要注意的是，APScheduler并不是一个守护进程或单独服务，他是依托于现有服务或程序运行。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install apscheduler</span><br></pre></td></tr></table></figure>
 
@@ -293,9 +295,7 @@
   <entry>
     <title>celery学习笔记（一）——celery快速入门</title>
     <url>/2018/11/07/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p><strong>参考文档：</strong></p>
+    <content><![CDATA[<p><strong>参考文档：</strong></p>
 <ul>
 <li><p><a href="https://www.cnblogs.com/forward-wang/p/5970806.html">https://www.cnblogs.com/forward-wang/p/5970806.html</a></p>
 </li>
@@ -309,6 +309,8 @@
 <li><p>celery： 4.2.1</p>
 </li>
 </ul>
+<span id="more"></span>
+
 <h2 id="什么是生产者与消费者模式"><a href="#什么是生产者与消费者模式" class="headerlink" title="什么是生产者与消费者模式"></a>什么是生产者与消费者模式</h2><p>在实际的软件开发过程中，经常会碰到如下场景：某个模块负责产生数据，这些数据由另一个模块来负责处理（此处的模块是广义的，可以是类、函数、线程、进程等）。产生数据的模块，就形象地称为生产者；而处理数据的模块，就称为消费者。</p>
 <p>生产者消费者模式是通过一个容器来解决生产者和消费者的强耦合问题。生产者和消费者彼此之间不直接通讯，而通过消息队列（缓冲区）来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给消息队列，消费者不找生产者要数据，而是直接从消息队列里取，消息队列就相当于一个缓冲区，平衡了生产者和消费者的处理能力。这个消息队列就是用来给生产者和消费者解耦的。</p>
 <p>如图所示：</p>
@@ -416,10 +418,10 @@
   <entry>
     <title>celery学习笔记（二）——celery快速入门</title>
     <url>/2019/01/09/celery%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94celery%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h2 id="在应用中使用celery"><a href="#在应用中使用celery" class="headerlink" title="在应用中使用celery"></a>在应用中使用celery</h2><p>项目结构：</p>
+    <content><![CDATA[<h2 id="在应用中使用celery"><a href="#在应用中使用celery" class="headerlink" title="在应用中使用celery"></a>在应用中使用celery</h2><p>项目结构：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proj/__init__.py</span><br><span class="line">    /celery.py</span><br><span class="line">    /tasks.py</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
 
 <p>proj/celery.py</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import, unicode_literals</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"></span><br><span class="line">app = Celery(<span class="string">&#x27;proj&#x27;</span>,</span><br><span class="line">             broker=<span class="string">&#x27;pyamqp://guest@localhost//&#x27;</span>,</span><br><span class="line">             backend=<span class="string">&#x27;redis://localhost&#x27;</span>,</span><br><span class="line">             include=[<span class="string">&#x27;proj.tasks&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Optional configuration, see the application user guide.</span></span><br><span class="line">app.conf.update(</span><br><span class="line">    result_expires=<span class="number">3600</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.start()</span><br></pre></td></tr></table></figure>
@@ -558,7 +560,8 @@
 
 <p><img src="https://img-blog.csdnimg.cn/20190113120200703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>如果将group和其他任务chain到一起，就会自动变成了chord了：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; (group(add.s(i, i) for i in range(10)) | xsum.s())().get()</span><br><span class="line">90</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; (group(add.s(i, i) for i in range(10)) | xsum.s())().get()</span><br><span class="line">90</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -569,9 +572,9 @@
   <entry>
     <title>django-rest-framework文档整理——Request and Response（二）</title>
     <url>/2018/09/03/django-rest-framework%E6%96%87%E6%A1%A3%E6%95%B4%E7%90%86%E2%80%94%E2%80%94Request%20and%20Response%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>从这里开始，我们将真正开始涵盖REST框架的核心。让我们介绍几个基本构建块。</p>
+<span id="more"></span>
 
-<p>从这里开始，我们将真正开始涵盖REST框架的核心。让我们介绍几个基本构建块。</p>
 <h1 id="Request对象"><a href="#Request对象" class="headerlink" title="Request对象"></a>Request对象</h1><p>REST框架引入了一个 <code>Request</code>对象 用来扩展常规 <code>HttpRequest</code> 对象，并提供更灵活的请求解析。<code>Request</code> 对象的核心功能是 <code>request.data</code> 属性，它类似于 <code>request.POST</code> ，但对于使用Web API更有用。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">request.POST  # Only handles form data.  Only works for &#x27;POST&#x27; method.</span><br><span class="line">request.data  # Handles arbitrary data.  Works for &#x27;POST&#x27;, &#x27;PUT&#x27; and &#x27;PATCH&#x27; methods.</span><br></pre></td></tr></table></figure>
 
@@ -634,10 +637,10 @@
   <entry>
     <title>django-rest-framework文档整理——Serialization（一）</title>
     <url>/2018/08/31/django-rest-framework%E6%96%87%E6%A1%A3%E6%95%B4%E7%90%86%E2%80%94%E2%80%94Serialization%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>注意： 该笔记主要翻译自<a href="http://www.django-rest-framework.org/tutorial/1-serialization/">官方文档</a></p>
+    <content><![CDATA[<p>注意： 该笔记主要翻译自<a href="http://www.django-rest-framework.org/tutorial/1-serialization/">官方文档</a></p>
 <h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><p>首先，创建新项目</p>
+<span id="more"></span>
+
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">django-admin.py startproject tutorial</span><br><span class="line">cd tutorial</span><br></pre></td></tr></table></figure>
 
 <p>完成后，我们可以创建一个我们将用于创建简单Web API的应用程序。</p>
@@ -744,9 +747,9 @@
   <entry>
     <title>django项目开发实战——博客(三)</title>
     <url>/2019/01/09/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%B8%89)/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>经过好几版的修改，终于变成了现在这个样子（咳咳。）网站可以<a href="http://chuxiaoyi.cn/">戳这里</a>，欢迎大家多提意见哦～</p>
+<span id="more"></span>
 
-<p>经过好几版的修改，终于变成了现在这个样子（咳咳。）网站可以<a href="http://chuxiaoyi.cn/">戳这里</a>，欢迎大家多提意见哦～</p>
 <p><img src="https://img-blog.csdnimg.cn/20190109171946399.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>在之前的基础上，做了以下增加：</p>
 <h2 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h2><p>评论功能依旧用了渲染的方式，加了一些原生js控制css样式。</p>
@@ -785,7 +788,8 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[program:celery]</span><br><span class="line"></span><br><span class="line">#启动命令入口</span><br><span class="line">command=/root/.pyenv/shims/celery worker -A MySite --loglevel=info</span><br><span class="line"></span><br><span class="line"># 命令程序所在目录</span><br><span class="line">directory=/home/BlogWebsite</span><br><span class="line"></span><br><span class="line"># 运行命令的用户名</span><br><span class="line">user=root</span><br><span class="line"></span><br><span class="line">autostart=true</span><br><span class="line">autorestart=true</span><br><span class="line">stdout_logfile=/var/log/celery/blog_comment_mail_worker.log</span><br><span class="line">stderr_logfile=/var/log/celery/blog_comment_mail_worker.log</span><br></pre></td></tr></table></figure>
 
 <p>后台运行celery</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo supervisorctl start celery</span><br><span class="line"></span><br><span class="line">sudo supervisorctl stop celery</span><br><span class="line"></span><br><span class="line">sudo supervisorctl restart celery</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo supervisorctl start celery</span><br><span class="line"></span><br><span class="line">sudo supervisorctl stop celery</span><br><span class="line"></span><br><span class="line">sudo supervisorctl restart celery</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -796,10 +800,10 @@
   <entry>
     <title>django项目开发实战——博客(二)</title>
     <url>/2018/12/18/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2(%E4%BA%8C)/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>参考文档：<br>- <a href="https://cloud.tencent.com/developer/article/1099709">Django 博客使用 Markdown 自动生成文章目录</a><br>- <a href="https://www.zmrenwu.com/post/45/">Django Haystack 全文检索与关键词高亮</a></p>
+    <content><![CDATA[<p>参考文档：<br>- <a href="https://cloud.tencent.com/developer/article/1099709">Django 博客使用 Markdown 自动生成文章目录</a><br>- <a href="https://www.zmrenwu.com/post/45/">Django Haystack 全文检索与关键词高亮</a></p>
 <p>自从做了之前的<a href="https://blog.csdn.net/weixin_40156487/article/details/81512807">django项目开发实战——博客</a>之后，一直没有继续做下去。现在终于有时间把后面的笔记补起来了！(虽然还是一个很简陋滴= =)</p>
+<span id="more"></span>
+
 <p>git地址：<a href="https://github.com/ChuXiaoYi/BlogWebSite/tree/test">https://github.com/ChuXiaoYi/BlogWebSite/tree/test</a></p>
 <p>先放图：<br><img src="https://img-blog.csdnimg.cn/2018121912245131" alt="image_1cv08semaqaa1d981p161p4n20km.png-164.9kB"></p>
 <p><img src="https://img-blog.csdnimg.cn/2018121912245155" alt="image_1cv091rb08sr1d3rvoj1vegm621j.png-234.6kB"></p>
@@ -915,12 +919,12 @@
   <entry>
     <title>fastapi——快速入门</title>
     <url>/2019/09/26/fastapi%E2%80%94%E2%80%94%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<blockquote>
+    <content><![CDATA[<blockquote>
 <p>fastapi是高性能的web框架。他的主要特点是：<br>- 快速编码<br>- 减少人为bug<br>- 直观<br>- 简易<br>- 具有交互式文档<br>- 基于API的开放标准（并与之完全兼容）：OpenAPI（以前称为Swagger）和JSON Schema。</p>
 </blockquote>
 <p>技术背景：python3.6+、<a href="https://www.starlette.io/">Starlette</a>、<a href="https://pydantic-docs.helpmanual.io/">Pydantic</a></p>
+<span id="more"></span>
+
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install fastapi</span><br><span class="line">pip install uvicorn</span><br></pre></td></tr></table></figure>
 
 <h2 id="quick-start"><a href="#quick-start" class="headerlink" title="quick start"></a>quick start</h2><h3 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_root</span>():</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;Hello&quot;</span>: <span class="string">&quot;World&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id: <span class="built_in">int</span>, q: <span class="built_in">str</span> = <span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item_id&quot;</span>: item_id, <span class="string">&quot;q&quot;</span>: q&#125;</span><br></pre></td></tr></table></figure>
@@ -954,13 +958,13 @@
   <entry>
     <title>fastapi教程-进阶七（Request Forms and Files）</title>
     <url>/2020/09/04/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B8%83%EF%BC%88Request%20Forms%20and%20Files%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p><strong>参考内容</strong>：</p>
+    <content><![CDATA[<p><strong>参考内容</strong>：</p>
 <ul>
 <li><a href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></li>
 </ul>
 <h2 id="Form-Data"><a href="#Form-Data" class="headerlink" title="Form Data"></a>Form Data</h2><p>前面介绍的参数都是以json格式传递的，这节我们来介绍表单参数如何使用</p>
+<span id="more"></span>
+
 <blockquote>
 <p>如果要使用表单参数要先安装<code>python-multipart</code><br><code>pip install python-multipart</code></p>
 </blockquote>
@@ -1034,13 +1038,13 @@
   <entry>
     <title>fastapi教程-进阶五（Response Model）</title>
     <url>/2020/09/02/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%BA%94%EF%BC%88Response%20Model%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p><strong>参考内容</strong>：</p>
+    <content><![CDATA[<p><strong>参考内容</strong>：</p>
 <ul>
 <li><a href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></li>
 </ul>
 <h2 id="Response-Model"><a href="#Response-Model" class="headerlink" title="Response Model"></a>Response Model</h2><p>还是以一个例子开头：</p>
+<span id="more"></span>
+
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, EmailStr</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserIn</span>(<span class="params">BaseModel</span>):</span></span><br><span class="line">    username: <span class="built_in">str</span></span><br><span class="line">    password: <span class="built_in">str</span></span><br><span class="line">    email: EmailStr</span><br><span class="line">    full_name: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Don&#x27;t do this in production!</span></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/user/&quot;</span>, response_model=UserIn</span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">create_user</span>(<span class="params">user: UserIn</span>):</span></span><br><span class="line">    <span class="keyword">return</span> user</span><br></pre></td></tr></table></figure>
 
 <p>我们可以在下面这几个操作中用<code>response_model</code>参数来声明响应的模板结构:</p>
@@ -1123,9 +1127,7 @@
   <entry>
     <title>fastapi教程-进阶八（Handling Errors）</title>
     <url>/2020/09/09/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AB%EF%BC%88Handling%20Errors%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p><strong>参考内容</strong>：</p>
+    <content><![CDATA[<p><strong>参考内容</strong>：</p>
 <ul>
 <li><a href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></li>
 </ul>
@@ -1135,6 +1137,8 @@
 <li>客户端无权访问该资源。</li>
 <li>客户端尝试访问的项目不存在。</li>
 </ul>
+<span id="more"></span>
+
 <p>这时，我们需要返回给客户端400-499范围内的HTTP状态码。接下来介绍如何通过fastapi对服务端错误进行处理并返回给客户端HTTP状态码</p>
 <h2 id="HTTPException"><a href="#HTTPException" class="headerlink" title="HTTPException"></a>HTTPException</h2><p>如果希望将错误返回给客户端，可以使用<code>HTTPException</code>:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, HTTPException</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line">items = &#123;<span class="string">&quot;foo&quot;</span>: <span class="string">&quot;The Foo Wrestlers&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&#123;item_id&#125;&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_item</span>(<span class="params">item_id: <span class="built_in">str</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> item_id <span class="keyword">not</span> <span class="keyword">in</span> items:</span><br><span class="line">        <span class="keyword">raise</span> HTTPException(status_code=<span class="number">404</span>, detail=<span class="string">&quot;Item not found&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;item&quot;</span>: items[item_id]&#125;</span><br></pre></td></tr></table></figure>
@@ -1206,13 +1210,13 @@
   <entry>
     <title>fastapi教程-进阶六（Response Status Code）</title>
     <url>/2020/09/03/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%85%AD%EF%BC%88Response%20Status%20Code%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p><strong>参考内容</strong>：</p>
+    <content><![CDATA[<p><strong>参考内容</strong>：</p>
 <ul>
 <li><a href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></li>
 </ul>
 <p>在<a href="https://chuxiaoyi.blog.csdn.net/article/details/108336769">fastapi教程-进阶五（Response Model）</a>中我们学习了如何控制响应体结构，这节来学习如何使用http状态码：</p>
+<span id="more"></span>
+
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/items/&quot;</span>, status_code=<span class="number">201</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">create_item</span>(<span class="params">name: <span class="built_in">str</span></span>):</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;name&quot;</span>: name&#125;</span><br></pre></td></tr></table></figure>
 
 <p>启动服务，打开<code>http://127.0.0.1:8000/docs</code>，我们来看看response：<br><img src="https://img-blog.csdnimg.cn/20200903141853609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
@@ -1250,13 +1254,13 @@
   <entry>
     <title>fastapi教程-进阶四（cookie、header parameter）</title>
     <url>/2020/09/01/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E5%9B%9B%EF%BC%88cookie%E3%80%81header%20parameter%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p><strong>参考内容</strong>：</p>
+    <content><![CDATA[<p><strong>参考内容</strong>：</p>
 <ul>
 <li><a href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></li>
 </ul>
 <p>在<a href="https://blog.csdn.net/weixin_40156487/article/details/108281234">fastapi教程-进阶（三）</a>和<a href="https://blog.csdn.net/weixin_40156487/article/details/108279120">fastapi教程-进阶（二）</a>中我们介绍了<code>Query</code>、<code>Path</code>和<code>Body</code>参数，这里介绍<code>cookie</code>和<code>header</code></p>
+<span id="more"></span>
+
 <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> Cookie, FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_items</span>(<span class="params">ads_id: <span class="type">Optional</span>[<span class="built_in">str</span>] = Cookie(<span class="params"><span class="literal">None</span></span>)</span>):</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;ads_id&quot;</span>: ads_id&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -1307,13 +1311,13 @@
   <entry>
     <title>fastapi教程-进阶（三）</title>
     <url>/2020/08/28/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%89%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p><strong>参考内容</strong>：</p>
+    <content><![CDATA[<p><strong>参考内容</strong>：</p>
 <ul>
 <li><a href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></li>
 </ul>
 <p>在fastapi教程的前几篇教程里，我们学习了如何声明路径参数、查询参数和请求体，这篇我们会对这些参数进行扩展学习，学习更多的用法</p>
+<span id="more"></span>
+
 <h2 id="Query-Parameters"><a href="#Query-Parameters" class="headerlink" title="Query Parameters"></a>Query Parameters</h2><p>我们先看一个例子：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI, Query</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">read_items</span>(<span class="params">q: <span class="type">Optional</span>[<span class="built_in">str</span>] = Query(<span class="params"><span class="literal">None</span>, min_length=<span class="number">3</span>, max_length=<span class="number">50</span>, regex=<span class="string">&quot;^fixedquery$&quot;</span></span>)</span>):</span></span><br><span class="line">    results = &#123;<span class="string">&quot;items&quot;</span>: [&#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Foo&quot;</span>&#125;, &#123;<span class="string">&quot;item_id&quot;</span>: <span class="string">&quot;Bar&quot;</span>&#125;]&#125;</span><br><span class="line">    <span class="keyword">if</span> q:</span><br><span class="line">        results.update(&#123;<span class="string">&quot;q&quot;</span>: q&#125;)</span><br><span class="line">    <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
 
@@ -1407,13 +1411,13 @@
   <entry>
     <title>fastapi教程-进阶（二）</title>
     <url>/2020/08/28/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p><strong>参考内容</strong>：</p>
+    <content><![CDATA[<p><strong>参考内容</strong>：</p>
 <ul>
 <li><a href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></li>
 </ul>
 <h2 id="Request-Body"><a href="#Request-Body" class="headerlink" title="Request Body"></a>Request Body</h2><p>这里我们来介绍一下POST请求时，fastapi是如何接收请求体的</p>
+<span id="more"></span>
+
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span>(<span class="params">BaseModel</span>):</span></span><br><span class="line">    name: <span class="built_in">str</span></span><br><span class="line">    description: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span></span><br><span class="line">    price: <span class="built_in">float</span></span><br><span class="line">    tax: <span class="type">Optional</span>[<span class="built_in">float</span>] = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/items/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">create_item</span>(<span class="params">item: Item</span>):</span></span><br><span class="line">    <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
 
 <p>接下来，我们来拆解一下步骤：</p>
@@ -1463,9 +1467,9 @@
   <entry>
     <title>fastapi教程——进阶（一）</title>
     <url>/2019/10/11/fastapi%E6%95%99%E7%A8%8B%E2%80%94%E2%80%94%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h2 id="一个简单的栗子"><a href="#一个简单的栗子" class="headerlink" title="一个简单的栗子"></a>一个简单的栗子</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">root</span>():</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="一个简单的栗子"><a href="#一个简单的栗子" class="headerlink" title="一个简单的栗子"></a>一个简单的栗子</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fastapi <span class="keyword">import</span> FastAPI</span><br><span class="line"></span><br><span class="line">app = FastAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">root</span>():</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 
 <blockquote>
 <p>FASTAPI继承Starlette，因此在Starlette中的所有可调用的对象在FASTAPI中可以直接引用</p>
@@ -1559,11 +1563,11 @@
   <entry>
     <title>flask + SQLAlchemy设置读写分离</title>
     <url>/2019/12/04/flask%20+%20SQLAlchemy%E8%AE%BE%E7%BD%AE%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><blockquote>
+    <content><![CDATA[<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><blockquote>
 <p><a href="https://www.jb51.net/article/174365.htm">https://www.jb51.net/article/174365.htm</a><br><a href="https://gist.github.com/trustrachel/6828122#file-routing-py">https://gist.github.com/trustrachel/6828122#file-routing-py</a></p>
 </blockquote>
+<span id="more"></span>
+
 <h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>在配置中添加以下配置</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">SQLALCHEMY_DATABASE_URI = <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">SQLALCHEMY_BINDS = &#123;</span><br><span class="line">        <span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
@@ -1571,7 +1575,8 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy, get_state</span><br><span class="line"><span class="keyword">import</span> sqlalchemy.orm <span class="keyword">as</span> orm</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">log = logging.getLogger(__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoRouteSession</span>(<span class="params">orm.Session</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, db, autocommit=<span class="literal">False</span>, autoflush=<span class="literal">False</span>, **options</span>):</span></span><br><span class="line">        self.app = db.get_app()</span><br><span class="line">        self._model_changes = &#123;&#125;</span><br><span class="line">        orm.Session.__init__(self, autocommit=autocommit, autoflush=autoflush,</span><br><span class="line">                             bind=db.engine,</span><br><span class="line">                             binds=db.get_binds(self.app), **options)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_bind</span>(<span class="params">self, mapper=<span class="literal">None</span>, clause=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        根据配置及读写操作，自动更改数据库引擎</span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            mapper:</span></span><br><span class="line"><span class="string">            clause:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Returns:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            state = get_state(self.app)</span><br><span class="line">        <span class="keyword">except</span> (AssertionError, AttributeError, TypeError) <span class="keyword">as</span> err:</span><br><span class="line">            log.info(<span class="string">&quot;获取配置失败，使用默认数据库:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(err))</span><br><span class="line">            <span class="keyword">return</span> orm.Session.get_bind(self, mapper, clause)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 如果没有设置SQLALCHEMY_BINDS，则默认使用SQLALCHEMY_DATABASE_URI</span></span><br><span class="line">        <span class="keyword">if</span> state <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> <span class="keyword">not</span> self.app.config[<span class="string">&#x27;SQLALCHEMY_BINDS&#x27;</span>]:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> self.app.debug:</span><br><span class="line">                log.debug(<span class="string">&quot;未获取数据库绑定信息(SQLALCHEMY_BINDS),使用默认数据库&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> orm.Session.get_bind(self, mapper, clause)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># insert、update、delete操作使用master</span></span><br><span class="line">        <span class="keyword">elif</span> self._flushing:</span><br><span class="line">            log.debug(<span class="string">&quot;当前使用master&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> state.db.get_engine(self.app, bind=<span class="string">&#x27;master&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 其他操作使用slave</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            log.debug(<span class="string">&quot;当前使用slave&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> state.db.get_engine(self.app, bind=<span class="string">&#x27;slave&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoRouteSQLAlchemy</span>(<span class="params">SQLAlchemy</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_scoped_session</span>(<span class="params">self, options=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        用于工厂类创建session</span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            options:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Returns:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> options <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            options = &#123;&#125;</span><br><span class="line">        scopefunc = options.pop(<span class="string">&#x27;scopefunc&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">        <span class="keyword">return</span> orm.scoped_session(</span><br><span class="line">            partial(AutoRouteSession, self, **options), scopefunc=scopefunc</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
 
 <p>实例化</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">db = AutoRouteSQLAlchemy()</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">db = AutoRouteSQLAlchemy()</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -1582,10 +1587,10 @@
   <entry>
     <title>leetcode自测答题——2019-01-13</title>
     <url>/2019/01/13/leetcode%E8%87%AA%E6%B5%8B%E7%AD%94%E9%A2%98%E2%80%94%E2%80%942019-01-13/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p>emmmm决定从今天开始刷leetcode。。。在这里记录一下我的答题思路和结果吧。可能不是最棒的。如果大家有更好的解题思路请多多指教～</p>
+<h2 id="给定一个字符串，请你找出其中不含有重复字符的-最长子串-的长度。"><a href="#给定一个字符串，请你找出其中不含有重复字符的-最长子串-的长度。" class="headerlink" title="给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。"></a>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</h2><span id="more"></span>
 
-<p>emmmm决定从今天开始刷leetcode。。。在这里记录一下我的答题思路和结果吧。可能不是最棒的。如果大家有更好的解题思路请多多指教～</p>
-<h2 id="给定一个字符串，请你找出其中不含有重复字符的-最长子串-的长度。"><a href="#给定一个字符串，请你找出其中不含有重复字符的-最长子串-的长度。" class="headerlink" title="给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。"></a>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</h2><p>原题：<a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/">https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</a><br><img src="https://img-blog.csdnimg.cn/20190113172119403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>原题：<a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/">https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</a><br><img src="https://img-blog.csdnimg.cn/20190113172119403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>这里利用了窗口滑动的效果。当已经确定[i, j]中没有重复元素的时候，就可以直接看j+1在不在[i-1, j]中就可以了。最后不要忘记，如果字符串长度为1的情况。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def lengthOfLongestSubstring(self, s):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type s: str</span><br><span class="line">        :rtype: int</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        no_same = []</span><br><span class="line">        i = 0</span><br><span class="line">        max_len = 0</span><br><span class="line">        while i &lt; len(s):</span><br><span class="line">            if s[i] not in no_same:</span><br><span class="line">                no_same.append(s[i])</span><br><span class="line">                i += 1</span><br><span class="line">            else:</span><br><span class="line">                max_len = max([max_len, len(no_same)])</span><br><span class="line">                no_same.pop(0)</span><br><span class="line">        max_len = max([max_len, len(no_same)])</span><br><span class="line">        return max_len</span><br></pre></td></tr></table></figure>
 
@@ -1597,7 +1602,8 @@
 <p><img src="https://img-blog.csdnimg.cn/20190113172053140.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>回文，说简单了就是顺序读和倒序读是一样的。或者说，从中心开始，依次往外依次扩散的字符都相同。因此，以这个为思路，从中心出发。但是，字符串长度可能是奇数，也可能是偶数。因此需要考虑这两种情况，以下是图解：</p>
 <p><img src="https://img-blog.csdnimg.cn/20190113172025844.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def longestPalindrome(self, s):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type s: str</span><br><span class="line">        :rtype: str</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        longest_str = str()</span><br><span class="line">        for i in range(len(s)):</span><br><span class="line">            lstr = get_around_string(s, i, i)</span><br><span class="line">            rstr = get_around_string(s, i, i+1)</span><br><span class="line">            longe_str = lstr if len(lstr) &gt;= len(rstr) else rstr</span><br><span class="line">            longest_str = longe_str if len(longe_str) &gt;= len(longest_str) else longest_str</span><br><span class="line">        return longest_str</span><br><span class="line"></span><br><span class="line">def get_around_string(s, left, right):</span><br><span class="line">    while left &gt;= 0 and right &lt; len(s) and s[left] == s[right]:</span><br><span class="line">        left -= 1</span><br><span class="line">        right += 1</span><br><span class="line">    left += 1</span><br><span class="line">    return s[left: right]</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def longestPalindrome(self, s):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type s: str</span><br><span class="line">        :rtype: str</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        longest_str = str()</span><br><span class="line">        for i in range(len(s)):</span><br><span class="line">            lstr = get_around_string(s, i, i)</span><br><span class="line">            rstr = get_around_string(s, i, i+1)</span><br><span class="line">            longe_str = lstr if len(lstr) &gt;= len(rstr) else rstr</span><br><span class="line">            longest_str = longe_str if len(longe_str) &gt;= len(longest_str) else longest_str</span><br><span class="line">        return longest_str</span><br><span class="line"></span><br><span class="line">def get_around_string(s, left, right):</span><br><span class="line">    while left &gt;= 0 and right &lt; len(s) and s[left] == s[right]:</span><br><span class="line">        left -= 1</span><br><span class="line">        right += 1</span><br><span class="line">    left += 1</span><br><span class="line">    return s[left: right]</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -1608,9 +1614,7 @@
   <entry>
     <title>mysql innodb索引结构及相关原理</title>
     <url>/2019/12/30/mysql%20innodb%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<blockquote>
+    <content><![CDATA[<blockquote>
 <p>最近在优化线上代码，优化过程中，对数据库进行了一系列的学习和基础巩固，看了很多大佬写的文章，整理了一下，记录在这里～</p>
 </blockquote>
 <p>参考文档：</p>
@@ -1618,6 +1622,8 @@
 <li><a href="https://juejin.im/post/5def29f2518825121f6994f7#heading-2">清空认知，然后重新理解MySQL索引结构</a></li>
 <li><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html">MySQL索引背后的数据结构及算法原理</a></li>
 </ul>
+<span id="more"></span>
+
 <h2 id="B-tree的结构"><a href="#B-tree的结构" class="headerlink" title="B+tree的结构"></a>B+tree的结构</h2><h3 id="页"><a href="#页" class="headerlink" title="页"></a>页</h3><p>在操作系统中，当我们往磁盘中取数据的时候，如果我们想要取出1kb的数据时，会发现，操作系统取出了4kb的数据，这是因为操作系统中<code>页</code>的大小是4kb。这是为什么呢？</p>
 <p>当一个程序访问了一条数据之后，很有可能在此访问这条数据或访问这条数据相邻的数据。因此，干脆直接把4kb的数据全部取出，放到内存中，下次再来访问时，直接从内存中取出，减少了磁盘IO。</p>
 <p>假设，我们现在有一张用户表，我们要找出id=5的数据，在没了解页这个概念之前，最原始的方法就是<code>遍历</code>。我们会不断的从磁盘中取出一条数据，然后判断这条数据是不是id=5，如果不等于，会继续向后遍历，此时，我们会查找5次，也就是经过了5次磁盘IO。</p>
@@ -1664,10 +1670,10 @@
   <entry>
     <title>py3.7标准库-collections-ChainMap</title>
     <url>/2018/09/13/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-ChainMap/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h2 id="ChainMap"><a href="#ChainMap" class="headerlink" title="ChainMap"></a><strong>ChainMap</strong></h2><p><code>ChainMap</code>类提供一个快速链接多个映射（字典）的操作。通常情况下，他会比创建字典然后调用<code>update()</code>快。</p>
+    <content><![CDATA[<h2 id="ChainMap"><a href="#ChainMap" class="headerlink" title="ChainMap"></a><strong>ChainMap</strong></h2><p><code>ChainMap</code>类提供一个快速链接多个映射（字典）的操作。通常情况下，他会比创建字典然后调用<code>update()</code>快。</p>
 <p>该类可用于模拟嵌套作用域，在模板中很有用。</p>
+<span id="more"></span>
+
 <p>实现：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">collections</span>.<span class="title">ChainMap</span>(<span class="params">*maps</span>)</span></span><br></pre></td></tr></table></figure>
 
@@ -1705,10 +1711,10 @@
   <entry>
     <title>py3.7标准库-collections-Counter</title>
     <url>/2018/09/13/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-Counter/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h2 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a><strong>Counter</strong></h2><p>实现：</p>
+    <content><![CDATA[<h2 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a><strong>Counter</strong></h2><p>实现：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">collections</span>.<span class="title">Counter</span>(<span class="params">[iterable-<span class="keyword">or</span>-mapping]</span>)</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
 
 <p>源码中，简单介绍了一些用法：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter(<span class="string">&#x27;abcdeabcdabcaba&#x27;</span>)  <span class="comment"># count elements from a string</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.most_common(<span class="number">3</span>)                <span class="comment"># three most common elements</span></span><br><span class="line">[(<span class="string">&#x27;a&#x27;</span>, <span class="number">5</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;c&#x27;</span>, <span class="number">3</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">sorted</span>(c)                       <span class="comment"># list all unique elements</span></span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#x27;</span>.join(<span class="built_in">sorted</span>(c.elements()))   <span class="comment"># list elements with repetitions</span></span><br><span class="line"><span class="string">&#x27;aaaaabbbbcccdde&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">sum</span>(c.values())                 <span class="comment"># total of all counts</span></span><br><span class="line"><span class="number">15</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;a&#x27;</span>]                          <span class="comment"># count of letter &#x27;a&#x27;</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> elem <span class="keyword">in</span> <span class="string">&#x27;shazam&#x27;</span>:           <span class="comment"># update counts from an iterable</span></span><br><span class="line"><span class="meta">... </span>    c[elem] += <span class="number">1</span>                <span class="comment"># by adding 1 to each element&#x27;s count</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;a&#x27;</span>]                          <span class="comment"># now there are seven &#x27;a&#x27;</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> c[<span class="string">&#x27;b&#x27;</span>]                      <span class="comment"># remove all &#x27;b&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;b&#x27;</span>]                          <span class="comment"># now there are zero &#x27;b&#x27;</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = Counter(<span class="string">&#x27;simsalabim&#x27;</span>)       <span class="comment"># make another counter</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.update(d)                     <span class="comment"># add in the second counter</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;a&#x27;</span>]                          <span class="comment"># now there are nine &#x27;a&#x27;</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.clear()                       <span class="comment"># empty the counter</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line">Counter()</span><br><span class="line"></span><br><span class="line">Note:  If a count <span class="keyword">is</span> <span class="built_in">set</span> to zero <span class="keyword">or</span> reduced to zero, it will remain</span><br><span class="line"><span class="keyword">in</span> the counter until the entry <span class="keyword">is</span> deleted <span class="keyword">or</span> the counter <span class="keyword">is</span> cleared:</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter(<span class="string">&#x27;aaabbc&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">&#x27;b&#x27;</span>] -= <span class="number">2</span>                     <span class="comment"># reduce the count of &#x27;b&#x27; by two</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.most_common()                 <span class="comment"># &#x27;b&#x27; is still in, but its count is zero</span></span><br><span class="line">[(<span class="string">&#x27;a&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;c&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">0</span>)]</span><br></pre></td></tr></table></figure>
@@ -1768,11 +1774,11 @@
   <entry>
     <title>py3.7标准库-collections-OrderedDict</title>
     <url>/2018/09/14/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-OrderedDict/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h2 id="OrderedDict"><a href="#OrderedDict" class="headerlink" title="OrderedDict"></a><strong>OrderedDict</strong></h2><p>OrderedDict和Dict一样，但是它记住了item插入到字典的顺序。当对有序字典进行迭代时，item会按照第一次插入到字典的顺序返回。</p>
+    <content><![CDATA[<h2 id="OrderedDict"><a href="#OrderedDict" class="headerlink" title="OrderedDict"></a><strong>OrderedDict</strong></h2><p>OrderedDict和Dict一样，但是它记住了item插入到字典的顺序。当对有序字典进行迭代时，item会按照第一次插入到字典的顺序返回。</p>
 <p>实现：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">collections</span>.<span class="title">OrderedDict</span>(<span class="params">[items]</span>)</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
 
 <p>OrderedDict是dict的子类，支持dict的方法。OrderedDict是一个能记住插入key的顺序的dict。如果有新的item覆盖现有item时，位置不变。但如果是删除该item，再次插入后，将会移到最后。</p>
 <ul>
@@ -1817,10 +1823,11 @@
   <entry>
     <title>py3.7标准库-collections-deque</title>
     <url>/2018/09/10/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-deque/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a><strong>deque</strong></h2><p>实现：</p>
+    <content><![CDATA[<h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a><strong>deque</strong></h2><p>实现：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">collections</span>.<span class="title">deque</span>(<span class="params">[iterable[, maxlen]]</span>)</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
 
 <p>返回一个新的deque（双端队列）对象，它初始化自<code>iterable</code>。 如果未指定iterable，则新的deque为空。</p>
 <p>Deques是堆栈和队列的泛化(名称发音为“deck”，是“双端队列”的缩写)。Deques支持从deque的任意一侧线程安全、内存高效的<code>appends</code>和<code>pop</code>，在任何方向上的性能都大致相同都是O(1)。</p>
@@ -1861,10 +1868,10 @@
   <entry>
     <title>py3.7标准库-collections-namedtuple</title>
     <url>/2018/09/10/py3.7%E6%A0%87%E5%87%86%E5%BA%93-collections-namedtuple/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>collection模块实现了专门的容器数据类型，为Python的通用内置容器<code>dict</code>，<code>list</code>，<code>set</code>和<code>tuple</code>提供了替代方案。接下来，将分别介绍他们。</p>
+    <content><![CDATA[<p>collection模块实现了专门的容器数据类型，为Python的通用内置容器<code>dict</code>，<code>list</code>，<code>set</code>和<code>tuple</code>提供了替代方案。接下来，将分别介绍他们。</p>
 <h2 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple()"></a><strong>namedtuple()</strong></h2><p>包含命名字段的元组工厂方法<br>命名元组为元组中的每个位置赋予含义，并允许更可读，自文档代码。<br>它们可以在使用常规元组的任何地方使用，并且它们添加了按名称而不是位置索引访问字段的功能。</p>
+<span id="more"></span>
+
 <p>实现：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">collections.namedtuple(typename, field_names, *, rename=<span class="literal">False</span>, defaults=<span class="literal">None</span>, module=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 
@@ -1925,7 +1932,8 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; Book = namedtuple(&#x27;Book&#x27;, [&#x27;id&#x27;, &#x27;title&#x27;, &#x27;authors&#x27;])</span><br><span class="line">&gt;&gt;&gt; Book.__doc__ += &#x27;: Hardcover book in active collection&#x27;</span><br><span class="line">&gt;&gt;&gt; Book.id.__doc__ = &#x27;13-digit ISBN&#x27;</span><br><span class="line">&gt;&gt;&gt; Book.title.__doc__ = &#x27;Title of first printing&#x27;</span><br><span class="line">&gt;&gt;&gt; Book.authors.__doc__ = &#x27;List of authors sorted by last name&#x27;</span><br></pre></td></tr></table></figure>
 
 <p>通过使用<code>_replace()</code>对定制的已经有默认值的原型实例进行改造</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; Account = namedtuple(&#x27;Account&#x27;, &#x27;owner balance transaction_count&#x27;)</span><br><span class="line">&gt;&gt;&gt; default_account = Account(&#x27;&lt;owner name&gt;&#x27;, 0.0, 0)</span><br><span class="line">&gt;&gt;&gt; johns_account = default_account._replace(owner=&#x27;John&#x27;)</span><br><span class="line">&gt;&gt;&gt; janes_account = default_account._replace(owner=&#x27;Jane&#x27;)</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; Account = namedtuple(&#x27;Account&#x27;, &#x27;owner balance transaction_count&#x27;)</span><br><span class="line">&gt;&gt;&gt; default_account = Account(&#x27;&lt;owner name&gt;&#x27;, 0.0, 0)</span><br><span class="line">&gt;&gt;&gt; johns_account = default_account._replace(owner=&#x27;John&#x27;)</span><br><span class="line">&gt;&gt;&gt; janes_account = default_account._replace(owner=&#x27;Jane&#x27;)</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -1936,10 +1944,10 @@
   <entry>
     <title>py3.7标准库-itertools</title>
     <url>/2018/09/07/py3.7%E6%A0%87%E5%87%86%E5%BA%93-itertools/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>Python的内建模块itertools提供了非常有用的用于操作迭代对象的函数。</p>
+    <content><![CDATA[<p>Python的内建模块itertools提供了非常有用的用于操作迭代对象的函数。</p>
 <h3 id="itertools-count-start-0-step-1"><a href="#itertools-count-start-0-step-1" class="headerlink" title="itertools.count(start=0, step=1)"></a><strong>itertools.count(start=0, step=1)</strong></h3><p>创建一个迭代器，生成从n开始的连续整数，如果忽略n，则从0开始计算（注意：此迭代器不支持长整数)</p>
+<span id="more"></span>
+
 <p>如果超出了sys.maxint，计数器将溢出并继续从-sys.maxint-1开始计算。</p>
 <p>当使用浮点数进行计数时，有时可以通过替换乘法代码来实现更高的准确率，例如：<code>(start + step * i for i in count())</code></p>
 <p>该方法等价于：</p>
@@ -2027,7 +2035,8 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinations</span>(<span class="params">iterable, r</span>):</span></span><br><span class="line">    <span class="comment"># combinations(&#x27;ABCD&#x27;, 2) --&gt; AB AC AD BC BD CD</span></span><br><span class="line">    <span class="comment"># combinations(range(4), 3) --&gt; 012 013 023 123</span></span><br><span class="line">    pool = <span class="built_in">tuple</span>(iterable)</span><br><span class="line">    n = <span class="built_in">len</span>(pool)</span><br><span class="line">    <span class="keyword">if</span> r &gt; n:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    indices = <span class="built_in">list</span>(<span class="built_in">range</span>(r))</span><br><span class="line">    <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(r)):</span><br><span class="line">            <span class="keyword">if</span> indices[i] != i + n - r:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        indices[i] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>, r):</span><br><span class="line">            indices[j] = indices[j-<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">        <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br></pre></td></tr></table></figure>
 
 <h3 id="itertools-combinations-with-replacement-iterable-r"><a href="#itertools-combinations-with-replacement-iterable-r" class="headerlink" title="itertools.combinations_with_replacement(iterable, r)"></a><strong>itertools.combinations_with_replacement(iterable, r)</strong></h3><p>和<a href="combinations"><code>combinations</code></a>相似。但不同的是，此方法返回的组合中，会有相同元素<br>其大致相当于：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinations_with_replacement</span>(<span class="params">iterable, r</span>):</span></span><br><span class="line">    <span class="comment"># combinations_with_replacement(&#x27;ABC&#x27;, 2) --&gt; AA AB AC BB BC CC</span></span><br><span class="line">    pool = <span class="built_in">tuple</span>(iterable)</span><br><span class="line">    n = <span class="built_in">len</span>(pool)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> n <span class="keyword">and</span> r:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    indices = [<span class="number">0</span>] * r</span><br><span class="line">    <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(r)):</span><br><span class="line">            <span class="keyword">if</span> indices[i] != n - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        indices[i:] = [indices[i] + <span class="number">1</span>] * (r - i)</span><br><span class="line">        <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinations_with_replacement</span>(<span class="params">iterable, r</span>):</span></span><br><span class="line">    <span class="comment"># combinations_with_replacement(&#x27;ABC&#x27;, 2) --&gt; AA AB AC BB BC CC</span></span><br><span class="line">    pool = <span class="built_in">tuple</span>(iterable)</span><br><span class="line">    n = <span class="built_in">len</span>(pool)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> n <span class="keyword">and</span> r:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    indices = [<span class="number">0</span>] * r</span><br><span class="line">    <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(r)):</span><br><span class="line">            <span class="keyword">if</span> indices[i] != n - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        indices[i:] = [indices[i] + <span class="number">1</span>] * (r - i)</span><br><span class="line">        <span class="keyword">yield</span> <span class="built_in">tuple</span>(pool[i] <span class="keyword">for</span> i <span class="keyword">in</span> indices)</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>python3.7标准库</category>
       </categories>
@@ -2038,11 +2047,11 @@
   <entry>
     <title>python2-mac10.13下安装mysql-python</title>
     <url>/2018/12/28/python2-mac10.13%E4%B8%8B%E5%AE%89%E8%A3%85mysql-python/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>安装环境：OS X 操作系统，Python 2.7.3。</p>
+    <content><![CDATA[<p>安装环境：OS X 操作系统，Python 2.7.3。</p>
 <p>MySQLdb 其实包含在 MySQL-python 包中，因此无论下载还是在 pip 中 search，都应该是搜寻 MySQL-python。</p>
 <p>以下为安装步骤</p>
+<span id="more"></span>
+
 <h4 id="安装MYSQLdb"><a href="#安装MYSQLdb" class="headerlink" title="安装MYSQLdb"></a>安装MYSQLdb</h4><p>在 SourceForge 可以下载 <a href="https://sourceforge.net/projects/mysql-python/">MySQL-python-1.2.4b4.tar</a>，下载后解压，然后在终端 Terminal 中执行以下命令：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(venv) ➜  MySQL-python-<span class="number">1.2</span><span class="number">.4</span>b4    python setup.py install</span><br></pre></td></tr></table></figure>
 
@@ -2084,14 +2093,14 @@
   <entry>
     <title>python打包发布pypi及更新流程</title>
     <url>/2020/08/05/python%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83pypi%E5%8F%8A%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
+    <content><![CDATA[<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
 <li> <a href="http://yangfangs.github.io/2018/08/06/python-distribution-packages/#%E5%9C%A8pypi%E5%AE%98%E7%BD%91%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AApypi%E4%B8%AA%E4%BA%BA%E8%B4%A6%E6%88%B7%E5%A6%82%E4%B8%8B">Python 快速打包发布软件PyPi上</a></li>
 <li> <a href="https://www.it-swarm.dev/zh/python/%E5%8C%85%E5%90%ABsetuppy%E7%9A%84%E9%9D%9Epython%E6%96%87%E4%BB%B6/968888625/">包含setup.py的非Python文件</a></li>
 <li> <a href="https://blog.csdn.net/weixin_41855010/article/details/105506343">五步法更新pypi包体</a></li>
 </ol>
-<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><h3 id="1-安装打包依赖工具"><a href="#1-安装打包依赖工具" class="headerlink" title="1. 安装打包依赖工具"></a>1. 安装打包依赖工具</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install setuptools</span><br></pre></td></tr></table></figure>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><span id="more"></span>
+
+<h3 id="1-安装打包依赖工具"><a href="#1-安装打包依赖工具" class="headerlink" title="1. 安装打包依赖工具"></a>1. 安装打包依赖工具</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install setuptools</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-安装上传工具"><a href="#2-安装上传工具" class="headerlink" title="2. 安装上传工具"></a>2. 安装上传工具</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install twine</span><br></pre></td></tr></table></figure>
 
@@ -2214,14 +2223,14 @@
   <entry>
     <title>tornado(二)——源码分析（一）</title>
     <url>/2019/02/26/tornado(%E4%BA%8C)%E2%80%94%E2%80%94%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>这里将从服务开启到请求进入之后的顺序进行源码解析。分析有误的地方希望大家指出哦～</p>
+    <content><![CDATA[<p>这里将从服务开启到请求进入之后的顺序进行源码解析。分析有误的地方希望大家指出哦～</p>
 <p>开发环境：</p>
 <ul>
 <li>python3.7、tornado5.0</li>
 </ul>
 <p>我们先创建一个最简单的tornado应用，从简单的栗子开始进行源码分析：</p>
+<span id="more"></span>
+
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tornado.httpserver</span><br><span class="line"><span class="keyword">import</span> tornado.ioloop</span><br><span class="line"><span class="keyword">import</span> tornado.options</span><br><span class="line"><span class="keyword">import</span> tornado.web</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tornado.options <span class="keyword">import</span> define, options</span><br><span class="line"></span><br><span class="line">define(<span class="string">&quot;port&quot;</span>, default=<span class="number">8000</span>, <span class="built_in">help</span>=<span class="string">&quot;run on the given port&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexHandler</span>(<span class="params">tornado.web.RequestHandler</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">        greeting = self.get_argument(<span class="string">&#x27;greeting&#x27;</span>, <span class="string">&#x27;Hello&#x27;</span>)</span><br><span class="line">        self.write(greeting + <span class="string">&#x27;, friendly user!&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    tornado.options.parse_command_line()</span><br><span class="line">    app = tornado.web.Application(</span><br><span class="line">        handlers=[</span><br><span class="line">            (<span class="string">r&quot;/&quot;</span>, IndexHandler)</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">    http_server = tornado.httpserver.HTTPServer(app)</span><br><span class="line">    http_server.listen(options.port)</span><br><span class="line">    tornado.ioloop.IOLoop.instance().start()</span><br></pre></td></tr></table></figure>
 
 <h2 id="程序运行"><a href="#程序运行" class="headerlink" title="程序运行"></a>程序运行</h2><p>首先，进入main中：</p>
@@ -2282,14 +2291,14 @@
   <entry>
     <title>tornado（一）——基础介绍</title>
     <url>/2019/02/12/tornado%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>参考文档：</p>
+    <content><![CDATA[<p>参考文档：</p>
 <ul>
 <li><a href="https://docs.pythontab.com/tornado/introduction-to-tornado/ch1.html#ch1-2-1-1">https://docs.pythontab.com/tornado/introduction-to-tornado/ch1.html#ch1-2-1-1</a></li>
 <li><a href="https://www.tornadoweb.org/en/stable/guide/intro.html">https://www.tornadoweb.org/en/stable/guide/intro.html</a></li>
 </ul>
 <p>开发环境：</p>
+<span id="more"></span>
+
 <ul>
 <li>python3.7</li>
 <li>tornado5.1</li>
@@ -2395,10 +2404,10 @@
   <entry>
     <title>二进制求和</title>
     <url>/2019/10/11/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>原题链接：<a href="https://leetcode-cn.com/problems/add-binary">https://leetcode-cn.com/problems/add-binary</a></p>
+    <content><![CDATA[<p>原题链接：<a href="https://leetcode-cn.com/problems/add-binary">https://leetcode-cn.com/problems/add-binary</a></p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定两个二进制字符串，返回他们的和（用二进制表示）。<br>输入为非空字符串且只包含数字 1 和 0。<br>示例 1:</p>
+<span id="more"></span>
+
 <blockquote>
 <p>输入: a = “11”, b = “1” 输出: “100”</p>
 </blockquote>
@@ -2406,7 +2415,8 @@
 <blockquote>
 <p>输入: a = “1010”, b = “1011” 输出: “10101”</p>
 </blockquote>
-<h2 id="答案："><a href="#答案：" class="headerlink" title="答案："></a>答案：</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addBinary</span>(<span class="params">self, a: <span class="built_in">str</span>, b: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bin</span>(<span class="built_in">int</span>(a,<span class="number">2</span>)+<span class="built_in">int</span>(b,<span class="number">2</span>))[<span class="number">2</span>:]</span><br></pre></td></tr></table></figure>]]></content>
+<h2 id="答案："><a href="#答案：" class="headerlink" title="答案："></a>答案：</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addBinary</span>(<span class="params">self, a: <span class="built_in">str</span>, b: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">bin</span>(<span class="built_in">int</span>(a,<span class="number">2</span>)+<span class="built_in">int</span>(b,<span class="number">2</span>))[<span class="number">2</span>:]</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>算法</category>
       </categories>
@@ -2417,14 +2427,14 @@
   <entry>
     <title>解决python3.7 + celery4.2.1运行时找不到async</title>
     <url>/2019/01/09/%E8%A7%A3%E5%86%B3python3.7%20+%20celery4.2.1%E8%BF%90%E8%A1%8C%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0async/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>参考文档：</p>
+    <content><![CDATA[<p>参考文档：</p>
 <ul>
 <li><a href="https://github.com/celery/celery/issues/4500">https://github.com/celery/celery/issues/4500</a></li>
 </ul>
 <p>最近在使用python3.7去运行celery4.2.1时，发现会报以下错误：<br><img src="https://img-blog.csdnimg.cn/20190109203309807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>原因是python3.7中<code>async</code>已经变成了关键字。因此出现这个错误时，需要将报错文件中所有的<code>async</code>改为<code>asynchronous</code>，并编写如下shell脚本运行：</p>
+<span id="more"></span>
+
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">TARGET=/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/celery/backends</span><br><span class="line">cd $TARGET</span><br><span class="line">if [ -e async.py ]</span><br><span class="line">then</span><br><span class="line">    mv async.py asynchronous.py</span><br><span class="line">    sed -n &#x27;s/async/asynchronous/g&#x27; redis.py</span><br><span class="line">    sed -n &#x27;s/async/asynchronous/g&#x27; rpc.py</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 
 <p>运行后，你会发现celery可以正常使用了</p>
@@ -2439,10 +2449,10 @@
   <entry>
     <title>计算字符串相似度的一些方法</title>
     <url>/2018/09/30/%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BC%BC%E5%BA%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>产品出了一个奇怪的需求，想通过字符串相似度取匹配城市= =（当然，最后证实通过字符串相似度取判断两个字符串是不是一个城市是不对的！！！）</p>
+    <content><![CDATA[<p>产品出了一个奇怪的需求，想通过字符串相似度取匹配城市= =（当然，最后证实通过字符串相似度取判断两个字符串是不是一个城市是不对的！！！）</p>
 <p>这里就记录一下我计算字符串(英文字符串)相似度的方法吧～</p>
+<span id="more"></span>
+
 <p>参考文档：</p>
 <ul>
 <li><a href="https://www.jianshu.com/p/06370a33e1ee">python_levenshtein 的安装和使用</a></li>
@@ -2495,9 +2505,9 @@
   <entry>
     <title>django项目开发实战——博客</title>
     <url>/2018/08/08/django%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h3 id="p个大s："><a href="#p个大s：" class="headerlink" title="p个大s："></a>p个大s：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这里用的是python3.7和Django2.0.假设全都安装成功= =</span><br><span class="line">然后这个是我做个人网站的一个过程=。=</span><br><span class="line">然后这个也不能算是个教程吧=。=</span><br><span class="line">然后这只是粗糙的记录=。=</span><br><span class="line">最后，防脱发用霸王=3=</span><br></pre></td></tr></table></figure>
 
-<h3 id="p个大s："><a href="#p个大s：" class="headerlink" title="p个大s："></a>p个大s：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这里用的是python3.7和Django2.0.假设全都安装成功= =</span><br><span class="line">然后这个是我做个人网站的一个过程=。=</span><br><span class="line">然后这个也不能算是个教程吧=。=</span><br><span class="line">然后这只是粗糙的记录=。=</span><br><span class="line">最后，防脱发用霸王=3=</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 
 <h3 id="生成一个完整的django项目"><a href="#生成一个完整的django项目" class="headerlink" title="生成一个完整的django项目"></a>生成一个完整的django项目</h3><ul>
 <li><p><strong>创建Django项目</strong></p>
@@ -2637,13 +2647,13 @@
   <entry>
     <title>fastapi教程-进阶九（Dependencies-1）</title>
     <url>/2020/09/18/fastapi%E6%95%99%E7%A8%8B-%E8%BF%9B%E9%98%B6%E4%B9%9D%EF%BC%88Dependencies-1%EF%BC%89/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p><strong>参考内容</strong>：</p>
+    <content><![CDATA[<p><strong>参考内容</strong>：</p>
 <ul>
 <li><a href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></li>
 </ul>
 <p>fastapi有非常强大的<strong>依赖注入</strong>系统，虽然听起来会很难，但是用起来非常简单，并且非常方便我们集成各种组件</p>
+<span id="more"></span>
+
 <h2 id="什么是依赖注入"><a href="#什么是依赖注入" class="headerlink" title="什么是依赖注入"></a>什么是依赖注入</h2><p>依赖注入是指在我们的项目中，定义了一些方法，这些方法是我们某些路径方法需要依赖的，这些方法叫做<code>依赖项</code>，当代码运行时，fastapi会将这个依赖项<strong>注入</strong>到路径方法中。</p>
 <p>如果很难理解，我们可以通过了解他的使用场景来理解他的意思。依赖注入可以用在下面的场景：</p>
 <ul>
@@ -2734,15 +2744,15 @@
   <entry>
     <title>py3.7标准库-functools</title>
     <url>/2018/09/06/py3.7%E6%A0%87%E5%87%86%E5%BA%93-functools/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>参考文档：</p>
+    <content><![CDATA[<p>参考文档：</p>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/27643991">https://zhuanlan.zhihu.com/p/27643991</a></li>
 <li><a href="https://docs.python.org/3.7/library/functools.html#functools.lru_cache">https://docs.python.org/3.7/library/functools.html#functools.lru_cache</a></li>
 <li><a href="https://segmentfault.com/a/1190000009398663">https://segmentfault.com/a/1190000009398663</a></li>
 </ul>
-<h3 id="functools-cmp-to-key-func"><a href="#functools-cmp-to-key-func" class="headerlink" title="functools.cmp_to_key(func)"></a><strong>functools.cmp_to_key(func)</strong></h3><p>将旧式比较函数转换为关键字函数。与接受字关键函数(如sort()、min()、max()、heapq. nbiggest()、heapq.nsmallest()、itertools.groupby())的工具一起使用。该函数主要用于从Python 2转换过来的程序的转换工具，Python 2支持使用比较函数。</p>
+<h3 id="functools-cmp-to-key-func"><a href="#functools-cmp-to-key-func" class="headerlink" title="functools.cmp_to_key(func)"></a><strong>functools.cmp_to_key(func)</strong></h3><span id="more"></span>
+
+<p>将旧式比较函数转换为关键字函数。与接受字关键函数(如sort()、min()、max()、heapq. nbiggest()、heapq.nsmallest()、itertools.groupby())的工具一起使用。该函数主要用于从Python 2转换过来的程序的转换工具，Python 2支持使用比较函数。</p>
 <p>比较函数是任何可调用的函数，它接受两个参数，进行比较，然后返回负数(小于)、零(相等)或正数(大于)。键函数是一个可调用函数，它接受一个参数并返回另一个值作为排序键。</p>
 <p>放上一波源码：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">################################################################################</span></span><br><span class="line"><span class="comment">### cmp_to_key() function converter</span></span><br><span class="line"><span class="comment">################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cmp_to_key</span>(<span class="params">mycmp</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Convert a cmp= function into a key= function&quot;&quot;&quot;</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">K</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">        __slots__ = [<span class="string">&#x27;obj&#x27;</span>]</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, obj</span>):</span></span><br><span class="line">            self.obj = obj</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__lt__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) &lt; <span class="number">0</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__gt__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) &gt; <span class="number">0</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__eq__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) == <span class="number">0</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__le__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) &lt;= <span class="number">0</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__ge__</span>(<span class="params">self, other</span>):</span></span><br><span class="line">            <span class="keyword">return</span> mycmp(self.obj, other.obj) &gt;= <span class="number">0</span></span><br><span class="line">        __hash__ = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">return</span> K</span><br></pre></td></tr></table></figure>
@@ -2863,9 +2873,7 @@
   <entry>
     <title>排序算法总结——python语言实现</title>
     <url>/2019/01/17/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E2%80%94%E2%80%94python%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>参考文档：</p>
+    <content><![CDATA[<p>参考文档：</p>
 <ul>
 <li><a href="https://www.cnblogs.com/onepixel/p/7674659.html">十大经典排序算法（动图演示）</a></li>
 <li><a href="https://my.oschina.net/u/3346994/blog/895131">基于python的七种经典排序算法</a></li>
@@ -2873,7 +2881,9 @@
 <li><a href="https://www.toptal.com/developers/sorting-algorithms">https://www.toptal.com/developers/sorting-algorithms</a></li>
 <li><a href="http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/">http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/</a></li>
 </ul>
-<h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><h5 id="算法分类"><a href="#算法分类" class="headerlink" title="算法分类"></a>算法分类</h5><p>十种常见排序算法可以分为两大类：</p>
+<h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><span id="more"></span>
+
+<h5 id="算法分类"><a href="#算法分类" class="headerlink" title="算法分类"></a>算法分类</h5><p>十种常见排序算法可以分为两大类：</p>
 <blockquote>
 <p><strong>非线性时间比较类排序</strong>：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此称为非线性时间比较类排序。<br><strong>线性时间非比较类排序</strong>：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此称为线性时间非比较类排序。</p>
 </blockquote>
@@ -2984,9 +2994,7 @@
   <entry>
     <title>日常遇到的问题</title>
     <url>/2018/08/03/%E6%97%A5%E5%B8%B8%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<ul>
+    <content><![CDATA[<ul>
 <li><ul>
 <li><ul>
 <li><a href="#1-%E5%B0%8F%E6%95%B0%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%99%BE%E5%88%86%E6%95%B0">1. 小数转换为百分数</a></li>
@@ -3019,6 +3027,8 @@
 </li>
 </ul>
 <hr>
+<span id="more"></span>
+
 <h3 id="1-小数转换为百分数"><a href="#1-小数转换为百分数" class="headerlink" title="1. 小数转换为百分数"></a>1. 小数转换为百分数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_percent</span>(<span class="params">num</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;%.2f%%&quot;</span> % (num * <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-文件操作"><a href="#2-文件操作" class="headerlink" title="2. 文件操作"></a>2. 文件操作</h3><ul>
