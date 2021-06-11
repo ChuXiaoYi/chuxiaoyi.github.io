@@ -5,13 +5,14 @@ tags: python fastapi
 categories: fastapi
 ---
 
-<!--more-->
 
 **参考内容**：
 
 - <https://fastapi.tiangolo.com/>
 
 在[fastapi教程-进阶（三）](https://blog.csdn.net/weixin_40156487/article/details/108281234)和[fastapi教程-进阶（二）](https://blog.csdn.net/weixin_40156487/article/details/108279120)中我们介绍了`Query`、`Path`和`Body`参数，这里介绍`cookie`和`header`
+
+<!--more-->
 
 ## Cookie
 

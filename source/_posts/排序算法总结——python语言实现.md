@@ -5,7 +5,6 @@ tags: 算法 python 算法
 categories: python
 ---
 
-<!--more-->
 
 参考文档：
 
@@ -17,7 +16,10 @@ categories: python
 
 ### 算法概述
 
+<!--more-->
+
 ##### 算法分类
+
 
 十种常见排序算法可以分为两大类：
 

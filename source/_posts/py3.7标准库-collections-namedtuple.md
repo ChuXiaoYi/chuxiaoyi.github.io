@@ -5,7 +5,6 @@ tags: python3.7标准库 python python3.7标准库 python3.7标准库
 categories: python
 ---
 
-<!--more-->
 
 collection模块实现了专门的容器数据类型，为Python的通用内置容器`dict`，`list`，`set`和`tuple`提供了替代方案。接下来，将分别介绍他们。
 
@@ -14,6 +13,8 @@ collection模块实现了专门的容器数据类型，为Python的通用内置�
 包含命名字段的元组工厂方法  
 命名元组为元组中的每个位置赋予含义，并允许更可读，自文档代码。  
 它们可以在使用常规元组的任何地方使用，并且它们添加了按名称而不是位置索引访问字段的功能。
+
+<!--more-->
 
 实现：
 

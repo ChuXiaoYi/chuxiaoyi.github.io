@@ -5,7 +5,6 @@ tags: python fastapi
 categories: fastapi
 ---
 
-<!--more-->
 
 **参考内容**：
 
@@ -14,6 +13,8 @@ categories: fastapi
 ## Form Data
 
 前面介绍的参数都是以json格式传递的，这节我们来介绍表单参数如何使用
+
+<!--more-->
 
 > 如果要使用表单参数要先安装`python-multipart`  
 > `pip install python-multipart`

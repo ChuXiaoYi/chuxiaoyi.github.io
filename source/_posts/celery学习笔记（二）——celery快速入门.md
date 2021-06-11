@@ -5,7 +5,6 @@ tags: celery celery
 categories: python
 ---
 
-<!--more-->
 
 ## 在应用中使用celery
 
@@ -16,6 +15,8 @@ proj/__init__.py
     /celery.py
     /tasks.py
 ```
+
+<!--more-->
 
 proj/celery.py
 

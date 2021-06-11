@@ -5,7 +5,6 @@ tags: python3.7标准库
 categories: python
 ---
 
-<!--more-->
 
 ## **Counter**
 
@@ -14,6 +13,8 @@ categories: python
 ```python
 class collections.Counter([iterable-or-mapping])
 ```
+
+<!--more-->
 
 源码中，简单介绍了一些用法：
 

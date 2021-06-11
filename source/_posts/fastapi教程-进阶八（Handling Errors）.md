@@ -5,7 +5,6 @@ tags: python fastapi
 categories: fastapi
 ---
 
-<!--more-->
 
 **参考内容**：
 
@@ -16,6 +15,8 @@ categories: fastapi
 - 客户端没有足够的权限进行该操作。
 - 客户端无权访问该资源。
 - 客户端尝试访问的项目不存在。
+
+<!--more-->
 
 这时，我们需要返回给客户端400-499范围内的HTTP状态码。接下来介绍如何通过fastapi对服务端错误进行处理并返回给客户端HTTP状态码
 

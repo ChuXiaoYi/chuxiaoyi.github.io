@@ -5,7 +5,6 @@ tags: python python fastapi
 categories: fastapi
 ---
 
-<!--more-->
 
 **参考内容**：
 
@@ -14,6 +13,8 @@ categories: fastapi
 ## Request Body
 
 这里我们来介绍一下POST请求时，fastapi是如何接收请求体的
+
+<!--more-->
 
 ```python
 from typing import Optional

@@ -5,13 +5,14 @@ tags: django django
 categories: python
 ---
 
-<!--more-->
 
 参考文档：  
 \- [Django 博客使用 Markdown 自动生成文章目录](https://cloud.tencent.com/developer/article/1099709)  
 \- [Django Haystack 全文检索与关键词高亮](https://www.zmrenwu.com/post/45/)
 
 自从做了之前的[django项目开发实战——博客](https://blog.csdn.net/weixin_40156487/article/details/81512807)之后，一直没有继续做下去。现在终于有时间把后面的笔记补起来了！\(虽然还是一个很简陋滴= =\)
+
+<!--more-->
 
 git地址：<https://github.com/ChuXiaoYi/BlogWebSite/tree/test>
 

@@ -5,7 +5,7 @@ tags: fastapi python fastapi
 categories: python
 ---
 
-<!--more-->
+
 
 > fastapi是高性能的web框架。他的主要特点是：  
 > \- 快速编码  
@@ -16,6 +16,8 @@ categories: python
 > \- 基于API的开放标准（并与之完全兼容）：OpenAPI（以前称为Swagger）和JSON Schema。
 
 技术背景：python3.6+、[Starlette](https://www.starlette.io/)、[Pydantic](https://pydantic-docs.helpmanual.io/)
+
+<!--more-->
 
 ## 安装
 

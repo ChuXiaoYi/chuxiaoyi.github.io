@@ -5,13 +5,15 @@ tags: python fastapi
 categories: fastapi
 ---
 
-<!--more-->
+
 
 **参考内容**：
 
 - <https://fastapi.tiangolo.com/>
 
 fastapi有非常强大的**依赖注入**系统，虽然听起来会很难，但是用起来非常简单，并且非常方便我们集成各种组件
+
+<!--more-->
 
 ## 什么是依赖注入
 

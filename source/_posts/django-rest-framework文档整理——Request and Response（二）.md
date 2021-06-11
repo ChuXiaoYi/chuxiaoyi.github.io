@@ -5,9 +5,9 @@ tags: django rest framework django rest framework python
 categories: python
 ---
 
-<!--more-->
-
 从这里开始，我们将真正开始涵盖REST框架的核心。让我们介绍几个基本构建块。
+
+<!--more-->
 
 # Request对象
 

@@ -5,9 +5,9 @@ tags: django celery django
 categories: python
 ---
 
-<!--more-->
-
 经过好几版的修改，终于变成了现在这个样子（咳咳。）网站可以[戳这里](http://chuxiaoyi.cn/)，欢迎大家多提意见哦～
+
+<!--more-->
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190109171946399.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDE1NjQ4Nw==,size_16,color_FFFFFF,t_70)
 

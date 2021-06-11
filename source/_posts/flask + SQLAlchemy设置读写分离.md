@@ -5,12 +5,14 @@ tags: flask sqlalchemy flask sqlalchemy
 categories: python
 ---
 
-<!--more-->
+
 
 ## 参考文档
 
 > <https://www.jb51.net/article/174365.htm>  
 > <https://gist.github.com/trustrachel/6828122#file-routing-py>
+
+<!--more-->
 
 ## 步骤
 

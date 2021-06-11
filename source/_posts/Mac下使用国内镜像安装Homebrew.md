@@ -5,13 +5,15 @@ tags: brew安装
 categories: 操作系统
 ---
 
-<!--more-->
+
 
 ## 通用安装方式
 
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
+
+<!--more-->
 
 ## 使用国内镜像安装步骤
 

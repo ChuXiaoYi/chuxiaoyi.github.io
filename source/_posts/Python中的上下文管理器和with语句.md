@@ -5,13 +5,14 @@ tags: python
 categories: python
 ---
 
-<!--more-->
 
 转载来自：<https://www.cnblogs.com/ybjourney/p/8859519.html>
 
 Python2.5之后引入了上下文管理器（context manager），算是Python的黑魔法之一，它用于规定某个对象的使用范围。本文是针对于该功能的思考总结。
 
 ## 为什么需要上下文管理器？
+
+<!--more-->
 
 首先，需要思索下为什么需要引入上下文管理器。  
 在正常情况下，管理各种系统资源（如文件）、数据库连接时，通常是先打开这些资源，执行完相应的业务逻辑，最后关闭资源。  

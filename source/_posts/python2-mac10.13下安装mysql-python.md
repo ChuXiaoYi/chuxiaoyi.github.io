@@ -5,13 +5,14 @@ tags: myql python2.7 mysql
 categories: python
 ---
 
-<!--more-->
 
 安装环境：OS X 操作系统，Python 2.7.3。
 
 MySQLdb 其实包含在 MySQL-python 包中，因此无论下载还是在 pip 中 search，都应该是搜寻 MySQL-python。
 
 以下为安装步骤
+
+<!--more-->
 
 #### 安装MYSQLdb
 

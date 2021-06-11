@@ -5,7 +5,7 @@ tags: celery celery
 categories: python
 ---
 
-<!--more-->
+
 
 **参考文档：**
 
@@ -18,6 +18,8 @@ categories: python
 - python： 3.7
 
 - celery： 4.2.1
+
+<!--more-->
 
 ## 什么是生产者与消费者模式
 

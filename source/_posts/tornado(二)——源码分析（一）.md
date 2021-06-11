@@ -5,7 +5,6 @@ tags: tornado 源码
 categories: tornado
 ---
 
-<!--more-->
 
 这里将从服务开启到请求进入之后的顺序进行源码解析。分析有误的地方希望大家指出哦～
 
@@ -14,6 +13,8 @@ categories: tornado
 - python3.7、tornado5.0
 
 我们先创建一个最简单的tornado应用，从简单的栗子开始进行源码分析：
+
+<!--more-->
 
 ```python
 import tornado.httpserver

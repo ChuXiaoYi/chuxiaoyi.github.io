@@ -5,13 +5,14 @@ tags: python fastapi
 categories: fastapi
 ---
 
-<!--more-->
 
 **参考内容**：
 
 - <https://fastapi.tiangolo.com/>
 
 在[fastapi教程-进阶五（Response Model）](https://chuxiaoyi.blog.csdn.net/article/details/108336769)中我们学习了如何控制响应体结构，这节来学习如何使用http状态码：
+
+<!--more-->
 
 ```python
 from fastapi import FastAPI

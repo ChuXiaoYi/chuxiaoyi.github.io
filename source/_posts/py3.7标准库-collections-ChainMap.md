@@ -5,13 +5,14 @@ tags: python3.7标准库
 categories: python
 ---
 
-<!--more-->
 
 ## **ChainMap**
 
 `ChainMap`类提供一个快速链接多个映射（字典）的操作。通常情况下，他会比创建字典然后调用`update()`快。
 
 该类可用于模拟嵌套作用域，在模板中很有用。
+
+<!--more-->
 
 实现：
 

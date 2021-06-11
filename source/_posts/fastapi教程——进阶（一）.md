@@ -5,7 +5,6 @@ tags: fastapi python
 categories: fastapi
 ---
 
-<!--more-->
 
 ## 一个简单的栗子
 
@@ -19,6 +18,8 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 ```
+
+<!--more-->
 
 > FASTAPI继承Starlette，因此在Starlette中的所有可调用的对象在FASTAPI中可以直接引用
 

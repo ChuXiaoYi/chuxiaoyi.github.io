@@ -5,13 +5,15 @@ tags: django django rest
 categories: python
 ---
 
-<!--more-->
+
 
 注意： 该笔记主要翻译自[官方文档](http://www.django-rest-framework.org/tutorial/1-serialization/)
 
 # 入门
 
 首先，创建新项目
+
+<!--more-->
 
 ```
 django-admin.py startproject tutorial

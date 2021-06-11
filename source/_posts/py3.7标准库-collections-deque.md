@@ -5,8 +5,6 @@ tags: python3.7标准库 python python3.7标准库 python3.7标准库
 categories: python
 ---
 
-<!--more-->
-
 ## **deque**
 
 实现：
@@ -14,6 +12,9 @@ categories: python
 ```python
 class collections.deque([iterable[, maxlen]])
 ```
+
+<!--more-->
+
 
 返回一个新的deque（双端队列）对象，它初始化自`iterable`。 如果未指定iterable，则新的deque为空。
 

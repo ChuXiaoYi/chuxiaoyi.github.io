@@ -5,9 +5,11 @@ tags: python django
 categories: django
 ---
 
-<!--more-->
+
 
 最近有一个需求。是可以通过可视化界面分别操作测试环境/生产环境的数据库。这里我使用了Django框架。在这里记录一下重点知识点>.\<
+
+<!--more-->
 
 具体需求是：
 

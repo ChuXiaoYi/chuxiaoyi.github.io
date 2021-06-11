@@ -5,7 +5,6 @@ tags: python 打包 pypi
 categories: python
 ---
 
-<!--more-->
 
 ## 参考文档
 
@@ -14,6 +13,8 @@ categories: python
 3.  [五步法更新pypi包体](https://blog.csdn.net/weixin_41855010/article/details/105506343)
 
 ## 发布
+
+<!--more-->
 
 ### 1\. 安装打包依赖工具
 

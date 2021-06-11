@@ -5,7 +5,6 @@ tags: python3.7标准库 python python3.7标准库 python3.7标准库
 categories: python
 ---
 
-<!--more-->
 
 参考文档：
 
@@ -14,6 +13,8 @@ categories: python
 - <https://segmentfault.com/a/1190000009398663>
 
 ### **functools.cmp\_to\_key\(func\)**
+
+<!--more-->
 
 将旧式比较函数转换为关键字函数。与接受字关键函数\(如sort\(\)、min\(\)、max\(\)、heapq. nbiggest\(\)、heapq.nsmallest\(\)、itertools.groupby\(\)\)的工具一起使用。该函数主要用于从Python 2转换过来的程序的转换工具，Python 2支持使用比较函数。
 

@@ -5,7 +5,6 @@ tags: tornado tornado
 categories: python
 ---
 
-<!--more-->
 
 参考文档：
 
@@ -13,6 +12,8 @@ categories: python
 - <https://www.tornadoweb.org/en/stable/guide/intro.html>
 
 开发环境：
+
+<!--more-->
 
 - python3.7
 - tornado5.1

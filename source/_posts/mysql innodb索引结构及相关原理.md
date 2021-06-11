@@ -5,7 +5,6 @@ tags: 数据库 mysql
 categories: myql
 ---
 
-<!--more-->
 
 > 最近在优化线上代码，优化过程中，对数据库进行了一系列的学习和基础巩固，看了很多大佬写的文章，整理了一下，记录在这里～
 
@@ -13,6 +12,8 @@ categories: myql
 
 - [清空认知，然后重新理解MySQL索引结构](https://juejin.im/post/5def29f2518825121f6994f7#heading-2)
 - [MySQL索引背后的数据结构及算法原理](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
+
+<!--more-->
 
 ## B+tree的结构
 

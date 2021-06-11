@@ -5,13 +5,14 @@ tags: python python python3.7标准库 python3.7标准库
 categories: python3.7标准库
 ---
 
-<!--more-->
 
 Python的内建模块itertools提供了非常有用的用于操作迭代对象的函数。
 
 ### **itertools.count\(start=0, step=1\)**
 
 创建一个迭代器，生成从n开始的连续整数，如果忽略n，则从0开始计算（注意：此迭代器不支持长整数\)
+
+<!--more-->
 
 如果超出了sys.maxint，计数器将溢出并继续从-sys.maxint-1开始计算。
 

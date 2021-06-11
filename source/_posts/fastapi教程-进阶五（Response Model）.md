@@ -5,7 +5,7 @@ tags: fastapi python
 categories: fastapi
 ---
 
-<!--more-->
+
 
 **参考内容**：
 
@@ -14,6 +14,8 @@ categories: fastapi
 ## Response Model
 
 还是以一个例子开头：
+
+<!--more-->
 
 ```python
 from typing import Optional

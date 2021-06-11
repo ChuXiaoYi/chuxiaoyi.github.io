@@ -5,7 +5,7 @@ tags: python3.7标准库
 categories: python
 ---
 
-<!--more-->
+
 
 ## **OrderedDict**
 
@@ -16,6 +16,8 @@ OrderedDict和Dict一样，但是它记住了item插入到字典的顺序。当�
 ```python
 class collections.OrderedDict([items])
 ```
+
+<!--more-->
 
 OrderedDict是dict的子类，支持dict的方法。OrderedDict是一个能记住插入key的顺序的dict。如果有新的item覆盖现有item时，位置不变。但如果是删除该item，再次插入后，将会移到最后。
 

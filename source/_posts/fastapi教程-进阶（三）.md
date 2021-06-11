@@ -5,13 +5,14 @@ tags: python python fastapi
 categories: fastapi
 ---
 
-<!--more-->
 
 **参考内容**：
 
 - <https://fastapi.tiangolo.com/>
 
 在fastapi教程的前几篇教程里，我们学习了如何声明路径参数、查询参数和请求体，这篇我们会对这些参数进行扩展学习，学习更多的用法
+
+<!--more-->
 
 ## Query Parameters
 

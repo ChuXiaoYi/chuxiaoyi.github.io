@@ -5,7 +5,7 @@ tags: django python django
 categories: python
 ---
 
-<!--more-->
+
 
 ### p个大s：
 
@@ -16,6 +16,8 @@ categories: python
 然后这只是粗糙的记录=。=
 最后，防脱发用霸王=3=
 ```
+
+<!--more-->
 
 ### 生成一个完整的django项目
 
