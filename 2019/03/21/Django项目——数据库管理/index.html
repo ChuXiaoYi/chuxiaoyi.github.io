@@ -28,7 +28,7 @@
 <meta property="og:description" content="最近有一个需求。是可以通过可视化界面分别操作测试环境&#x2F;生产环境的数据库。这里我使用了Django框架。在这里记录一下重点知识点&gt;.&lt; 具体需求是：   可以查看&#x2F;修改数据库  不同的人员有不同的权限  可以查看修改历史，方便回滚  我的实现方式是：   开发环境：python3.7 + django2.1  直接利用django的admin，以及内置权限进行操作  django连接">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-03-21T04:12:18.000Z">
-<meta property="article:modified_time" content="2021-06-10T10:59:56.767Z">
+<meta property="article:modified_time" content="2021-06-11T02:14:13.240Z">
 <meta property="article:author" content="chuxiaoyi">
 <meta property="article:tag" content="python django">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-06-10 18:59:56" itemprop="dateModified" datetime="2021-06-10T18:59:56+08:00">2021-06-10</time>
+                <time title="Modified: 2021-06-11 10:14:13" itemprop="dateModified" datetime="2021-06-11T10:14:13+08:00">2021-06-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,7 +240,28 @@
                 </span>
             </span>
 
-          <br>
+          
+            <span id="/2019/03/21/Django%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86/" class="post-meta-item leancloud_visitors" data-flag-title="Django项目——数据库管理" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/03/21/Django%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/21/Django%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -353,6 +374,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -557,6 +579,35 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'UoAYLF0z3oYbWIgg81AteFrr-gzGzoHsz',
+      appKey     : 'vuNJoCW8O7xStR0kweRnyIhS',
+      placeholder: "快来一起讨论吧～",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'en, zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 <script type="text/javascript" src="/js/src/dytitle.js"></script>
