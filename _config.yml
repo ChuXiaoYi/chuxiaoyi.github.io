@@ -120,3 +120,8 @@ search:
   format: html
   limit: 10000
 
+admin:
+  username: chuxiaoyi
+  password_hash: $2a$10$Gygbh7YNIpcMYsgqXrsK2el3uHRcurrSQKHCxa6jQkG1GUJOGqsIS
+  secret: 0815muyuhangxxxxxxxxxawerwefadfasdfas
+
